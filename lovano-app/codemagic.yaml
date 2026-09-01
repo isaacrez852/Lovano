@@ -1,0 +1,41 @@
+workflows:
+  android-workflow:
+    name: Lovano - Android
+    max_build_duration: 60
+    instance_type: linux
+    environment:
+      node: 20
+    scripts:
+      - name: Installer les dépendances
+        script: npm install
+      - name: Ajouter la plateforme Android
+        script: npx cap add android || true
+      - name: Synchroniser le code web
+        script: npx cap sync android
+      - name: Construire l'APK (debug, test rapide)
+        script: |
+          cd android
+          ./gradlew assembleDebug
+    artifacts:
+      - android/app/build/outputs/**/*.apk
+
+  ios-workflow:
+    name: Lovano - iOS
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      node: 20
+      xcode: latest
+    scripts:
+      - name: Installer les dépendances
+        script: npm install
+      - name: Ajouter la plateforme iOS
+        script: npx cap add ios || true
+      - name: Synchroniser le code web
+        script: npx cap sync ios
+      - name: Installer les pods iOS
+        script: |
+          cd ios/App
+          pod install
+    artifacts:
+      - ios/App/build/**/*.ipa
