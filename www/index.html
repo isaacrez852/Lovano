@@ -334,6 +334,20 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .dest-photo .pname{position:relative; z-index:1; font-family:var(--serif); font-size:21px; font-weight:600;}
 .dest-photo .pcountry{position:relative; z-index:1; font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.1em; opacity:.9;}
 .dest-card .fav-stamp{position:absolute; top:10px; right:10px; z-index:2; width:52px; height:52px; font-size:8px; background:rgba(250,248,242,.92);}
+.fav-heart-btn{
+  position:absolute; top:10px; left:10px; z-index:3; width:34px; height:34px; border-radius:50%;
+  background:rgba(27,42,74,.35); backdrop-filter:blur(2px); border:none; display:flex; align-items:center; justify-content:center;
+  color:#fff; transition:transform .15s ease, background .15s ease;
+}
+.fav-heart-btn svg{width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:2;}
+.fav-heart-btn:hover{transform:scale(1.08); background:rgba(27,42,74,.55);}
+.fav-heart-btn.active{color:var(--danger); background:rgba(250,248,242,.92);}
+.fav-heart-btn.active svg{fill:currentColor;}
+.fav-heart-btn.on-detail{position:static; width:44px; height:44px; background:var(--offwhite); color:var(--navy); border:1.5px solid var(--navy-15); flex:none;}
+.fav-heart-btn.on-detail svg{width:20px; height:20px;}
+.fav-heart-btn.on-detail.active{color:var(--danger); border-color:var(--danger);}
+.empty-favs{text-align:center; padding:70px 20px; color:var(--navy-80);}
+.empty-favs svg{width:44px; height:44px; margin-bottom:14px; opacity:.4;}
 .dest-body{padding:16px 18px 20px;}
 .dest-body .styles{display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 12px;}
 .dest-foot{display:flex; justify-content:space-between; align-items:center; margin-top:6px;}
@@ -489,6 +503,7 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
     <nav class="main-nav" id="mainNav">
       <a href="#" onclick="go('home');return false;">Itinéraires sur mesure</a>
       <a href="#" onclick="go('destinations');return false;">Destinations</a>
+      <a href="#" onclick="go('favorites');return false;">Favoris</a>
       <a href="#" onclick="go('mytrips');return false;">Mon voyage</a>
       <a href="#" onclick="go('contact');return false;">Conseiller</a>
       <a class="nav-cta" href="#" onclick="go('home');return false;">Planifier ✦</a>
@@ -509,6 +524,7 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
     </div>
     <div class="flinks">
       <a href="#" onclick="go('destinations');return false;">Destinations</a>
+      <a href="#" onclick="go('favorites');return false;">Favoris</a>
       <a href="#" onclick="go('mytrips');return false;">Mon espace</a>
       <a href="#" onclick="go('contact');return false;">Contact conseiller</a>
       <a href="#" onclick="go('admin');return false;">Espace pro</a>
@@ -528,8 +544,6 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
 ============================================================ */
 const BOOKING_AFFILIATE_LINK = 'https://www.tkqlhce.com/click-101873178-15734897'; // Evergreen Link (page d'accueil Booking.com, recommandé)
 const BOOKING_CARS_AFFILIATE_LINK = 'https://www.kqzyfj.com/click-101873178-17122698';
-const BOOKING_ATTRACTIONS_AFFILIATE_LINK = 'https://www.dpbolvw.net/click-101873178-17254615';
-const BOOKING_FLIGHTS_AFFILIATE_LINK = 'https://www.jdoqocy.com/click-101873178-17053223';
 
 const ICN = {
   compass: `<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.4"/><path d="M15.5 8.5L11 11L8.5 15.5L13 13L15.5 8.5Z" fill="currentColor"/></svg>`,
@@ -616,12 +630,6 @@ const DESTINATIONS = [
       {title:'Excursion à Sintra et ses palais', styles:['culture','nature'], period:'Journée', price:35, meta:'8h · minibus'},
       {title:'Cours de cuisine portugaise', styles:['gastronomie','famille'], period:'Après-midi', price:55, meta:'3h'},
       {title:'Plage de Cascais en train', styles:['farniente','famille'], period:'Journée', price:15, meta:'6h'},
-      {title:'Croisière sur le Tage au coucher du soleil', styles:['romantique','nature'], period:'Soir', price:22, meta:'1h30'},
-      {title:'Marché da Ribeira et dégustation locale', styles:['gastronomie','culture'], period:'Midi', price:10, meta:'1h30'},
-      {title:'Visite du monastère des Hiéronymites', styles:['culture'], period:'Matin', price:10, meta:'1h30'},
-      {title:'Balade dans le quartier de Belém', styles:['culture','famille'], period:'Après-midi', price:0, meta:'2h'},
-      {title:'Atelier d\'azulejos (céramique portugaise)', styles:['culture','famille'], period:'Après-midi', price:30, meta:'2h'},
-      {title:'Sortie surf à Costa da Caparica', styles:['aventure','nature'], period:'Journée', price:45, meta:'5h · cours inclus'},
     ]},
   { id:'marrakech', name:'Marrakech', country:'Maroc', gradient:'linear-gradient(135deg,#C9A24B,#1B2A4A)',
     aliases:['maroc','morocco','agadir','fès','fez','casablanca','tanger','rabat','oujda','essaouira','meknès'],
@@ -644,12 +652,6 @@ const DESTINATIONS = [
       {title:'Balade à dos de dromadaire au coucher du soleil', styles:['aventure','romantique','famille'], period:'Soir', price:40, meta:'2h'},
       {title:'Dîner spectacle dans un riad', styles:['gastronomie','culture'], period:'Soir', price:38, meta:'2h30'},
       {title:'Nuit sous tente berbère dans le désert d\'Agafay', styles:['aventure','romantique'], period:'Nuit', price:95, meta:'1 nuit tout compris'},
-      {title:'Visite du Palais de la Bahia', styles:['culture'], period:'Matin', price:10, meta:'1h30'},
-      {title:'Balade dans les jardins de la Ménara', styles:['nature','romantique'], period:'Après-midi', price:0, meta:'1h30'},
-      {title:'Cours de cuisine marocaine et marché', styles:['gastronomie','famille'], period:'Matin', price:42, meta:'4h'},
-      {title:'Spectacle de musique gnaoua en soirée', styles:['culture','solo'], period:'Soir', price:18, meta:'2h'},
-      {title:'Excursion aux cascades d\'Ouzoud', styles:['nature','aventure'], period:'Journée', price:38, meta:'8h'},
-      {title:'Shopping et artisanat dans le souk des teinturiers', styles:['culture','famille'], period:'Après-midi', price:0, meta:'2h'},
     ]},
   { id:'crete', name:'La Canée', country:'Crète, Grèce', gradient:'linear-gradient(135deg,#1B2A4A,#2F5D4F)',
     aliases:['grèce','greece','crète','crete','athenes','athènes','santorin','mykonos','rhodes'],
@@ -671,12 +673,6 @@ const DESTINATIONS = [
       {title:'Excursion en bateau et snorkeling', styles:['nature','aventure'], period:'Journée', price:48, meta:'5h'},
       {title:'Visite d\'un domaine oléicole', styles:['gastronomie','culture'], period:'Après-midi', price:18, meta:'2h · dégustation incluse'},
       {title:'Spa face à la mer', styles:['farniente','romantique'], period:'Après-midi', price:60, meta:'2h'},
-      {title:'Balade dans le marché municipal de La Canée', styles:['gastronomie','culture'], period:'Matin', price:0, meta:'1h'},
-      {title:'Visite du phare vénitien', styles:['culture','romantique'], period:'Soir', price:0, meta:'1h'},
-      {title:'Excursion à la lagune de Balos', styles:['nature','farniente'], period:'Journée', price:38, meta:'6h · bateau inclus'},
-      {title:'Atelier de cuisine crétoise', styles:['gastronomie','famille'], period:'Après-midi', price:40, meta:'3h'},
-      {title:'Vélo électrique le long de la côte', styles:['aventure','nature'], period:'Après-midi', price:28, meta:'3h'},
-      {title:'Soirée musique traditionnelle crétoise', styles:['culture','solo'], period:'Soir', price:15, meta:'2h'},
     ]},
   { id:'rome', name:'Rome', country:'Italie', gradient:'linear-gradient(135deg,#2F5D4F,#C9A24B)',
     aliases:['italie','italy','milan','venise','florence','naples','sicile','toscane'],
@@ -698,12 +694,6 @@ const DESTINATIONS = [
       {title:'Balade gourmande à Trastevere', styles:['gastronomie','culture'], period:'Soir', price:35, meta:'2h30 · dégustations'},
       {title:'Journée à Ostia Antica', styles:['culture','nature'], period:'Journée', price:22, meta:'5h'},
       {title:'Glace artisanale sur la Piazza Navona', styles:['famille','gastronomie'], period:'Soir', price:6, meta:'30 min'},
-      {title:'Visite de la Galerie Borghèse', styles:['culture'], period:'Matin', price:26, meta:'2h'},
-      {title:'Balade nocturne au Panthéon et Piazza Navona', styles:['culture','romantique'], period:'Soir', price:0, meta:'1h30'},
-      {title:'Marché de Campo de\' Fiori et dégustation', styles:['gastronomie','culture'], period:'Matin', price:12, meta:'1h30'},
-      {title:'Excursion à Tivoli et la Villa d\'Este', styles:['culture','nature'], period:'Journée', price:34, meta:'6h'},
-      {title:'Cours de pizza napolitaine', styles:['gastronomie','famille'], period:'Après-midi', price:40, meta:'2h30'},
-      {title:'Coucher de soleil au Gianicolo', styles:['romantique','nature'], period:'Soir', price:0, meta:'1h'},
     ]},
   { id:'zanzibar', name:'Zanzibar', country:'Tanzanie', gradient:'linear-gradient(135deg,#1B2A4A,#C9A24B)',
     aliases:['tanzanie','tanzania','stone town','pemba','pwani'],
@@ -725,12 +715,6 @@ const DESTINATIONS = [
       {title:'Journée farniente à Paje Beach', styles:['farniente'], period:'Journée', price:0, meta:'libre'},
       {title:'Visite d\'une plantation d\'épices', styles:['culture','nature'], period:'Après-midi', price:18, meta:'2h30'},
       {title:'Dîner romantique les pieds dans l\'eau', styles:['romantique','gastronomie'], period:'Soir', price:55, meta:'2h'},
-      {title:'Balade dans les ruelles de Stone Town', styles:['culture'], period:'Après-midi', price:0, meta:'2h'},
-      {title:'Séance de yoga au lever du soleil sur la plage', styles:['farniente','solo'], period:'Matin', price:15, meta:'1h'},
-      {title:'Rencontre avec les dauphins à Kizimkazi', styles:['nature','aventure'], period:'Matin', price:50, meta:'4h'},
-      {title:'Marché aux épices et forodhani food market', styles:['gastronomie','culture'], period:'Soir', price:12, meta:'2h'},
-      {title:'Excursion en boutre traditionnel', styles:['aventure','romantique'], period:'Journée', price:42, meta:'5h'},
-      {title:'Cours de cuisine swahilie', styles:['gastronomie','famille'], period:'Après-midi', price:38, meta:'3h'},
     ]},
   { id:'budapest', name:'Budapest', country:'Hongrie', gradient:'linear-gradient(135deg,#1B2A4A,#2F5D4F)',
     aliases:['hongrie','hungary'],
@@ -751,12 +735,6 @@ const DESTINATIONS = [
       {title:'Dégustation de goulasch et vins hongrois', styles:['gastronomie'], period:'Soir', price:28, meta:'2h'},
       {title:'Visite du bastion des pêcheurs à Buda', styles:['culture'], period:'Matin', price:0, meta:'1h30'},
       {title:'Croisière nocturne sur le Danube', styles:['romantique','culture'], period:'Soir', price:24, meta:'1h30'},
-      {title:'Visite du Parlement hongrois', styles:['culture'], period:'Matin', price:18, meta:'1h30'},
-      {title:'Marché couvert central et dégustation', styles:['gastronomie','culture'], period:'Midi', price:10, meta:'1h30'},
-      {title:'Balade dans le quartier juif et ruin bars de jour', styles:['culture','solo'], period:'Après-midi', price:0, meta:'2h'},
-      {title:'Excursion à Szentendre, ville d\'artistes', styles:['culture','famille'], period:'Journée', price:26, meta:'5h'},
-      {title:'Spa et bains thermaux Gellért', styles:['farniente'], period:'Après-midi', price:24, meta:'2h30'},
-      {title:'Cours de pâtisserie hongroise', styles:['gastronomie','famille'], period:'Après-midi', price:35, meta:'2h30'},
     ]},
 ];
 
@@ -827,20 +805,14 @@ const REGION_GRADIENTS = ['linear-gradient(135deg,#2F5D4F,#1B2A4A)','linear-grad
 const GENERIC_ACTIVITY_TEMPLATES = [
   {title:'Balade dans le centre historique de {city}', styles:['culture'], period:'Matin', priceFactor:0, meta:'2h · à pied'},
   {title:'Visite d\'un musée emblématique de {city}', styles:['culture'], period:'Matin', priceFactor:0.12, meta:'2h'},
-  {title:'Dégustation de spécialités locales à {city}', styles:['gastronomie'], period:'Midi', priceFactor:0.08, meta:'1h30'},
-  {title:'Marché local et artisanat de {city}', styles:['culture','famille'], period:'Après-midi', priceFactor:0.03, meta:'1h30'},
+  {title:'Dégustation de spécialités locales', styles:['gastronomie'], period:'Midi', priceFactor:0.08, meta:'1h30'},
+  {title:'Marché local et artisanat', styles:['culture','famille'], period:'Après-midi', priceFactor:0.03, meta:'1h30'},
   {title:'Point de vue et coucher de soleil sur {city}', styles:['romantique','nature'], period:'Soir', priceFactor:0, meta:'1h'},
   {title:'Excursion nature aux alentours de {city}', styles:['nature','aventure'], period:'Journée', priceFactor:0.3, meta:'6h'},
-  {title:'Cours de cuisine locale à {city}', styles:['gastronomie','famille'], period:'Après-midi', priceFactor:0.4, meta:'3h'},
-  {title:'Soirée dans le quartier animé de {city}', styles:['solo','aventure'], period:'Soir', priceFactor:0.15, meta:'2h30'},
-  {title:'Spa ou détente en fin de journée à {city}', styles:['farniente','romantique'], period:'Après-midi', priceFactor:0.35, meta:'2h'},
-  {title:'Journée farniente à votre rythme à {city}', styles:['farniente'], period:'Journée', priceFactor:0, meta:'libre'},
-  {title:'Visite guidée des monuments emblématiques de {city}', styles:['culture','famille'], period:'Matin', priceFactor:0.18, meta:'2h30'},
-  {title:'Balade en bord d\'eau ou en front de mer à {city}', styles:['nature','romantique'], period:'Après-midi', priceFactor:0, meta:'1h30'},
-  {title:'Découverte des quartiers typiques de {city}', styles:['culture','solo'], period:'Après-midi', priceFactor:0.05, meta:'2h'},
-  {title:'Dîner dans un lieu emblématique de {city}', styles:['gastronomie','romantique'], period:'Soir', priceFactor:0.45, meta:'2h'},
-  {title:'Excursion à la journée depuis {city}', styles:['aventure','nature'], period:'Journée', priceFactor:0.35, meta:'7h'},
-  {title:'Atelier artisanal ou culturel à {city}', styles:['culture','famille'], period:'Après-midi', priceFactor:0.25, meta:'2h30'},
+  {title:'Cours de cuisine locale', styles:['gastronomie','famille'], period:'Après-midi', priceFactor:0.4, meta:'3h'},
+  {title:'Soirée dans un quartier animé', styles:['solo','aventure'], period:'Soir', priceFactor:0.15, meta:'2h30'},
+  {title:'Spa ou détente en fin de journée', styles:['farniente','romantique'], period:'Après-midi', priceFactor:0.35, meta:'2h'},
+  {title:'Journée farniente à votre rythme', styles:['farniente'], period:'Journée', priceFactor:0, meta:'libre'},
 ];
 
 // Plusieurs centaines de villes célèbres, regroupées par pays/région pour rester lisible
@@ -1040,7 +1012,41 @@ const state = {
   trips: [],                // voyages confirmés/à venir/passés
   bookingsAdmin: [],         // {id, tripLabel, date, total, commission, reversed}
   chatMsgs: [],
+  favorites: [],             // ids des destinations mises en favori (persisté dans localStorage)
 };
+
+/* ============================================================
+   FAVORIS — persistés dans le navigateur (localStorage)
+============================================================ */
+function loadFavorites(){
+  try{
+    const raw = localStorage.getItem('lovano_favorites');
+    return raw ? JSON.parse(raw) : [];
+  }catch(e){ return []; }
+}
+function saveFavorites(){
+  try{ localStorage.setItem('lovano_favorites', JSON.stringify(state.favorites)); }catch(e){}
+}
+state.favorites = loadFavorites();
+function isFavorite(destId){
+  return state.favorites.includes(destId);
+}
+function toggleFavorite(destId, evt){
+  if(evt){ evt.stopPropagation(); evt.preventDefault(); }
+  const i = state.favorites.indexOf(destId);
+  if(i>=0){ state.favorites.splice(i,1); toast('Retiré des favoris'); }
+  else{ state.favorites.push(destId); toast('Ajouté aux favoris ♥'); }
+  saveFavorites();
+  render();
+}
+function favHeartBtnHTML(destId, extraClass){
+  const active = isFavorite(destId);
+  return `<button class="fav-heart-btn ${extraClass||''} ${active?'active':''}" type="button"
+    aria-label="${active?'Retirer des favoris':'Ajouter aux favoris'}"
+    onclick="toggleFavorite('${destId}', event)">
+    <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.2C.5 8 2.4 4.5 6 4.5c2 0 3.4 1 6 3.6 2.6-2.6 4-3.6 6-3.6 3.6 0 5.5 3.5 4 7.3C19.5 16.4 12 21 12 21z"/></svg>
+  </button>`;
+}
 
 // ---- pré-remplissage: un voyage passé + un à venir pour éviter les zones vides ----
 (function seedDemoTrips(){
@@ -1130,23 +1136,14 @@ function roomsForTravelers(travelers){
 
 function buildDaysFromPool(pool, duration){
   const days = [];
-  // Fenêtre "anti-répétition" : on évite de reproposer une activité déjà utilisée
-  // récemment, tant que d'autres options existent dans le pool.
-  const cooldownSize = Math.max(0, Math.min(pool.length - 1, pool.length - 2, 6));
-  const recent = [];
-  function pickNext(){
-    let candidate = pool.find(p => !recent.includes(p.title));
-    if(!candidate) candidate = pool[recent.length % pool.length]; // pool épuisé : on ré-autorise
-    recent.push(candidate.title);
-    if(recent.length > cooldownSize) recent.shift();
-    return candidate;
-  }
+  let poolIdx = 0;
   for(let d=1; d<=duration; d++){
     const stepsCount = d===1 ? 2 : (d===duration ? 2 : 3);
     const steps = [];
     for(let i=0;i<stepsCount;i++){
-      const act = pool.length ? pickNext() : null;
-      if(act) steps.push({...act, id: 'd'+d+'s'+i+'-'+Math.random().toString(36).slice(2,7)});
+      const act = pool[poolIdx % pool.length];
+      poolIdx++;
+      steps.push({...act, id: 'd'+d+'s'+i+'-'+Math.random().toString(36).slice(2,7)});
     }
     days.push({ day:d, steps, id:'day-'+d });
   }
@@ -1158,39 +1155,16 @@ function daysActivitiesGroupCost(days, trav){
   return sum;
 }
 
-function fillerFor(period, avoidTitles){
-  const avoid = avoidTitles || [];
+function fillerFor(period){
   const FREE_FILLER_BY_PERIOD = {
-    'Matin': [
-      {title:'Matinée libre pour explorer par vous-même', meta:'à votre rythme'},
-      {title:'Petit-déjeuner et balade tranquille dans le quartier', meta:'à votre rythme'},
-      {title:'Matinée détente, sans programme imposé', meta:'à votre rythme'},
-    ],
-    'Midi': [
-      {title:'Pause déjeuner libre', meta:'à votre rythme'},
-      {title:'Déjeuner au choix, sans réservation', meta:'à votre rythme'},
-    ],
-    'Après-midi': [
-      {title:'Après-midi libre : flânerie ou détente', meta:'à votre rythme'},
-      {title:'Après-midi libre pour vos découvertes personnelles', meta:'à votre rythme'},
-      {title:'Temps libre pour flâner dans les environs', meta:'à votre rythme'},
-    ],
-    'Soir': [
-      {title:'Soirée libre : restaurant ou bar au choix', meta:'à votre rythme'},
-      {title:'Soirée tranquille au choix', meta:'à votre rythme'},
-      {title:'Dîner libre, sans réservation nécessaire', meta:'à votre rythme'},
-    ],
-    'Journée': [
-      {title:'Journée libre pour explorer par vous-même', meta:'à votre rythme'},
-      {title:'Journée libre, à composer selon vos envies', meta:'à votre rythme'},
-    ],
-    'Nuit': [
-      {title:'Soirée libre', meta:'à votre rythme'},
-      {title:'Fin de soirée tranquille', meta:'à votre rythme'},
-    ],
+    'Matin': {title:'Matinée libre pour explorer par vous-même', meta:'à votre rythme'},
+    'Midi': {title:'Pause déjeuner libre', meta:'à votre rythme'},
+    'Après-midi': {title:'Après-midi libre : flânerie ou détente', meta:'à votre rythme'},
+    'Soir': {title:'Soirée libre : restaurant ou bar au choix', meta:'à votre rythme'},
+    'Journée': {title:'Journée libre pour explorer par vous-même', meta:'à votre rythme'},
+    'Nuit': {title:'Soirée libre', meta:'à votre rythme'},
   };
-  const options = FREE_FILLER_BY_PERIOD[period] || [{title:'Temps libre', meta:'à votre rythme'}];
-  const f = options.find(o => !avoid.includes(o.title)) || options[0];
+  const f = FREE_FILLER_BY_PERIOD[period] || {title:'Temps libre', meta:'à votre rythme'};
   return {title:f.title, period, price:0, meta:f.meta, styles:[]};
 }
 
@@ -1201,17 +1175,13 @@ function fitActivitiesToBudget(days, remainingForActivities, trav){
   days.forEach((day, di) => day.steps.forEach((s, si) => flat.push({di, si, price:s.price||0})));
   let total = flat.reduce((sum,x)=>sum+x.price*trav, 0);
   flat.sort((a,b)=>b.price-a.price); // les plus chères d'abord
-  const usedFillersByDay = {}; // évite de répéter le même texte de "temps libre" deux fois le même jour
   let i = 0;
   while(total > budget && i < flat.length){
     const ref = flat[i];
     if(ref.price > 0){
       const step = days[ref.di].steps[ref.si];
       total -= step.price*trav;
-      const usedToday = usedFillersByDay[ref.di] || [];
-      const filler = fillerFor(step.period, usedToday);
-      usedFillersByDay[ref.di] = [...usedToday, filler.title];
-      days[ref.di].steps[ref.si] = {...filler, id:'filler-'+ref.di+'-'+ref.si+'-'+Math.random().toString(36).slice(2,7)};
+      days[ref.di].steps[ref.si] = {...fillerFor(step.period), id:'filler-'+ref.di+'-'+ref.si+'-'+Math.random().toString(36).slice(2,7)};
     }
     i++;
   }
@@ -1234,13 +1204,13 @@ function buildItineraryFor(destId, duration, styles, targetPerPerson, budgetTier
   let remaining = groupTarget - flightGroupCost;
 
   // Hébergement : on vise ~55% du reliquat pour le logement, en choisissant l'hôtel le plus proche de ce budget
-  const hotelShare = Math.max(remaining*0.45, 0);
+  const hotelShare = Math.max(remaining*0.55, 0);
   const idealPricePerNight = hotelShare / Math.max(nights*rooms, 1);
   const hotel = [...dest.hotels].sort((a,b)=>Math.abs(a.pricePerNight-idealPricePerNight)-Math.abs(b.pricePerNight-idealPricePerNight))[0] || dest.hotels[0];
   const hotelGroupCost = hotel.pricePerNight * nights * rooms;
   const remainingForActivities = remaining - hotelGroupCost;
 
-  // Activités : sélection la plus pertinente selon les styles choisis, avec un maximum de variété
+  // Activités : on essaie d'abord la sélection la plus pertinente selon les styles choisis
   const byStyle = [...dest.activities].sort((a,b)=>{
     const sa = a.styles.filter(s=>styles.includes(s)).length;
     const sb = b.styles.filter(s=>styles.includes(s)).length;
@@ -1249,11 +1219,17 @@ function buildItineraryFor(destId, duration, styles, targetPerPerson, budgetTier
   let days = buildDaysFromPool(byStyle, duration);
   let activitiesCost = daysActivitiesGroupCost(days, trav);
 
-  // Si ça dépasse le budget restant, on ajuste finement : on remplace uniquement les étapes
-  // payantes les plus chères par du temps libre gratuit, jusqu'à rentrer dans le budget —
-  // plutôt que de tout regénérer avec les moins chères (ce qui écraserait la variété).
-  if(activitiesCost > remainingForActivities*1.15 + 1){
-    days = fitActivitiesToBudget(days, remainingForActivities*1.15, trav);
+  // Si ça dépasse le budget restant, on retente avec les activités les moins chères en priorité
+  if(activitiesCost > remainingForActivities + 1){
+    const byPrice = [...dest.activities].sort((a,b)=>a.price-b.price);
+    days = buildDaysFromPool(byPrice, duration);
+    activitiesCost = daysActivitiesGroupCost(days, trav);
+  }
+
+  // Toujours trop cher (pool trop restreint / budget très serré) : on remplace les étapes payantes
+  // les plus chères par du temps libre gratuit, jusqu'à rentrer dans le budget restant
+  if(activitiesCost > remainingForActivities + 1){
+    days = fitActivitiesToBudget(days, remainingForActivities, trav);
     activitiesCost = daysActivitiesGroupCost(days, trav);
   }
 
@@ -1388,6 +1364,7 @@ function render(){
   const routes = {
     home: renderHome, loading: renderLoading, itinerary: renderItinerary,
     destinations: renderDestinationsList, destination: renderDestinationPage,
+    favorites: renderFavorites,
     cart: renderCart, payment: renderPayment, confirmation: renderConfirmation,
     mytrips: renderMyTrips, document: renderDocument, contact: renderContact, admin: renderAdmin,
   };
@@ -1536,6 +1513,7 @@ function destCardHTML(d){
   return `
   <div class="dest-card" onclick="go('destination','${d.id}')">
     ${d.coupDeCoeur ? `<div class="stamp r2 fav-stamp"><span>Coup de<br>cœur</span></div>` : ''}
+    ${favHeartBtnHTML(d.id)}
     <div class="dest-photo" style="background:${d.gradient}">
       <div>
         <div class="pname">${d.name}</div>
@@ -1641,14 +1619,6 @@ function renderItinerary(){
         <a href="${BOOKING_CARS_AFFILIATE_LINK}" target="_blank" rel="noopener sponsored" class="btn btn-outline btn-sm">Voir les locations de voiture</a>
       </div>
 
-      <div class="flight-picker dashed-box" style="margin-top:22px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
-        <div>
-          <div class="eyebrow" style="margin-bottom:6px;">${ICN.suitcase.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-1px;margin-right:5px;"')} Encore plus d'activités ?</div>
-          <h3 style="font-size:16px;">Réservez des visites et attractions à ${itin.destination.name}</h3>
-        </div>
-        <a href="${BOOKING_ATTRACTIONS_AFFILIATE_LINK}" target="_blank" rel="noopener sponsored" class="btn btn-outline btn-sm">Voir les attractions</a>
-      </div>
-
       <div id="dayCards">
         ${itin.days.map((day,idx)=>dayCardHTML(day,idx,itin)).join('')}
       </div>
@@ -1690,12 +1660,6 @@ function flightPickerHTML(itin){
     </div>
     <div class="flight-options">
       ${flights.map(f=>flightOptionHTML(f, itin)).join('')}
-    </div>
-    <div style="margin-top:16px; padding-top:16px; border-top:1px dotted rgba(27,42,74,.15); display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
-      <div class="muted" style="font-size:12.5px;">Comparez d'autres compagnies et créneaux chez notre partenaire officiel</div>
-      <a href="${BOOKING_FLIGHTS_AFFILIATE_LINK}" target="_blank" rel="noopener sponsored" class="btn btn-outline btn-sm">
-        ${ICN.plane.replace('<svg','<svg style="width:13px;height:13px;"')} Voir sur Booking.com
-      </a>
     </div>
   </div>`;
 }
@@ -1837,6 +1801,35 @@ function renderDestinationsList(){
 }
 
 /* ============================================================
+   FAVORIS — page
+============================================================ */
+function renderFavorites(){
+  const favDests = DESTINATIONS.filter(d => isFavorite(d.id));
+  return `
+  <section class="section">
+    <div class="wrap">
+      <div class="hero-top" style="margin-bottom:36px;">
+        <div class="eyebrow" style="margin-bottom:10px;">${ICN.heart.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-1px;margin-right:5px;"')} Vos coups de cœur</div>
+        <h1 style="font-size:38px;">Mes favoris</h1>
+        <p>Les destinations que vous avez mises de côté pour plus tard.</p>
+      </div>
+      ${favDests.length === 0 ? `
+        <div class="empty-favs dashed-box">
+          ${ICN.heart}
+          <h3>Aucun favori pour l'instant</h3>
+          <p class="muted" style="max-width:380px; margin:0 auto 22px;">Cliquez sur le cœur d'une destination pour la retrouver ici.</p>
+          <button class="btn btn-primary" onclick="go('destinations')">Découvrir les destinations</button>
+        </div>
+      ` : `
+        <div class="dest-grid">
+          ${favDests.map(destCardHTML).join('')}
+        </div>
+      `}
+    </div>
+  </section>`;
+}
+
+/* ============================================================
    DESTINATION PAGE
 ============================================================ */
 function renderDestinationPage(){
@@ -1853,7 +1846,10 @@ function renderDestinationPage(){
 
       <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:20px; margin-top:26px; flex-wrap:wrap;">
         <p style="max-width:600px; font-size:16px; color:var(--navy-80);">${d.summary}</p>
-        ${d.coupDeCoeur ? `<div class="stamp r1">Coup<br>de cœur</div>` : ''}
+        <div style="display:flex; align-items:center; gap:12px;">
+          ${favHeartBtnHTML(d.id, 'on-detail')}
+          ${d.coupDeCoeur ? `<div class="stamp r1">Coup<br>de cœur</div>` : ''}
+        </div>
       </div>
 
       <div class="info-grid">
