@@ -527,6 +527,7 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
       <a href="#" onclick="go('favorites');return false;">Favoris</a>
       <a href="#" onclick="go('mytrips');return false;">Mon espace</a>
       <a href="#" onclick="go('contact');return false;">Contact conseiller</a>
+      <a href="#" onclick="go('privacy');return false;">Politique de confidentialité</a>
       <a href="#" onclick="go('admin');return false;">Espace pro</a>
     </div>
   </div>
@@ -1390,6 +1391,7 @@ function render(){
     favorites: renderFavorites,
     cart: renderCart, payment: renderPayment, confirmation: renderConfirmation,
     mytrips: renderMyTrips, document: renderDocument, contact: renderContact, admin: renderAdmin,
+    privacy: renderPrivacy,
   };
   app.innerHTML = '';
   const view = document.createElement('div');
@@ -2336,6 +2338,44 @@ function renderContact(){
           <button class="btn btn-gold btn-block" type="submit">Envoyer ma demande</button>
         </form>
       </div>
+    </div>
+  </section>`;
+}
+
+function renderPrivacy(){
+  const pp = (title, body) => `
+    <div style="margin-bottom:26px;">
+      <h3 style="font-size:16px; margin-bottom:8px;">${title}</h3>
+      <div class="muted" style="font-size:14.5px; line-height:1.7;">${body}</div>
+    </div>`;
+  return `
+  <section class="section">
+    <div class="wrap" style="max-width:760px;">
+      <div class="hero-top" style="margin-bottom:34px;">
+        <div class="eyebrow" style="margin-bottom:8px;">Vos données, en toute transparence</div>
+        <h1 style="font-size:32px;">Politique de confidentialité</h1>
+        <p>Dernière mise à jour : ${new Date().toLocaleDateString('fr-BE',{day:'numeric',month:'long',year:'numeric'})}</p>
+      </div>
+
+      ${pp('1. Qui nous sommes', `Lovano est une agence de voyage en ligne basée à Bruxelles, Belgique. Cette politique explique quelles données l'application et le site Lovano traitent, pourquoi, et comment vous pouvez les contrôler. Pour toute question, contactez-nous à <a href="mailto:contact@lovano.be" style="color:var(--forest);">contact@lovano.be</a>.`)}
+
+      ${pp('2. Les données que vous nous donnez', `Lorsque vous décrivez votre voyage (destination, durée, styles, budget, nombre de voyageurs), ces informations sont utilisées uniquement pour générer votre itinéraire et ne sont pas stockées sur nos serveurs. Si vous engagez une réservation, nous vous demandons votre nom, votre e-mail et une date de départ afin de traiter votre demande et de vous tenir informé de votre voyage.`)}
+
+      ${pp('3. Vos favoris et vos voyages', `Les destinations que vous mettez en favori, ainsi que l'historique de vos voyages affichés dans "Mon espace", sont enregistrés uniquement sur votre appareil (mémoire locale de l'application). Nous n'y avons pas accès et ils ne quittent jamais votre téléphone ou votre ordinateur.`)}
+
+      ${pp('4. Notifications', `Si vous réservez un voyage dans l'application mobile et que vous autorisez les notifications, nous programmons des rappels locaux (arrivée, activités, repas prévus) directement sur votre appareil, à partir des informations de votre itinéraire. Ces notifications sont générées et stockées localement sur votre téléphone : elles ne transitent par aucun serveur Lovano. Vous pouvez désactiver les notifications à tout moment dans les réglages de votre appareil.`)}
+
+      ${pp('5. Réservations auprès de nos partenaires', `Pour réserver un hébergement, une location de voiture ou une activité, vous pouvez être redirigé vers notre partenaire Booking.com. Cette redirection nous permet de vous proposer ces réservations gratuitement. Une fois sur leur site, c'est la politique de confidentialité de Booking.com qui s'applique — nous vous invitons à la consulter. Lovano ne reçoit aucune donnée de paiement de votre part lors de ces réservations.`)}
+
+      ${pp('6. Polices de caractères', `Le site utilise Google Fonts pour afficher certaines polices. Le chargement de ces polices peut transmettre votre adresse IP à Google, selon leur propre politique de confidentialité.`)}
+
+      ${pp('7. Ce que nous ne faisons pas', `Nous ne vendons ni ne louons vos données à des tiers. Nous n'utilisons pas d'outils de suivi publicitaire ou d'analyse comportementale dans l'application.`)}
+
+      ${pp('8. Vos droits', `Conformément au RGPD, vous pouvez à tout moment demander l'accès, la correction ou la suppression des données que vous nous avez transmises (par exemple lors d'une demande de contact ou d'une réservation) en nous écrivant à <a href="mailto:contact@lovano.be" style="color:var(--forest);">contact@lovano.be</a>. Vous pouvez aussi supprimer vos favoris et l'historique local directement depuis l'application, ou désinstaller l'application pour effacer toutes les données stockées sur votre appareil.`)}
+
+      ${pp('9. Enfants', `Lovano ne s'adresse pas aux personnes de moins de 16 ans et ne collecte pas sciemment de données les concernant.`)}
+
+      ${pp('10. Modifications', `Cette politique peut évoluer, notamment si de nouvelles fonctionnalités (comme le paiement en ligne direct) sont ajoutées à l'application. La date de mise à jour en haut de cette page reflète la version la plus récente.`)}
     </div>
   </section>`;
 }
