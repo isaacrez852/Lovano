@@ -36,7 +36,10 @@ workflows:
         script: npx cap sync android
       - name: Préparer la clé de signature
         script: |
-          echo "$CM_KEYSTORE" | base64 -D > android/app/lovano-release.keystore
+          echo "Longueur de CM_KEYSTORE recue : $(printf '%s' "$CM_KEYSTORE" | wc -c) caracteres (attendu ~3444)"
+          printf '%s' "$CM_KEYSTORE" | tr -d '[:space:]' | base64 -D > android/app/lovano-release.keystore
+          echo "Taille du fichier keystore genere : $(wc -c < android/app/lovano-release.keystore) octets (attendu 2583)"
+          keytool -list -keystore android/app/lovano-release.keystore -storepass "$CM_KEYSTORE_PASSWORD" -alias "$CM_KEY_ALIAS"
       - name: Configurer la signature Android (release)
         script: |
           cat >> android/app/build.gradle <<'EOF'
