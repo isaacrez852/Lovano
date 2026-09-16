@@ -1140,10 +1140,21 @@ function buildDaysFromPool(pool, duration){
   for(let d=1; d<=duration; d++){
     const stepsCount = d===1 ? 2 : (d===duration ? 2 : 3);
     const steps = [];
-    for(let i=0;i<stepsCount;i++){
+    const usedPeriods = new Set();
+    // 1er passage : on évite de placer deux fois le même créneau (ex. deux activités "Soir") le même jour
+    let scanned = 0;
+    while(steps.length < stepsCount && scanned < pool.length){
+      const act = pool[poolIdx % pool.length];
+      poolIdx++; scanned++;
+      if(usedPeriods.has(act.period)) continue;
+      usedPeriods.add(act.period);
+      steps.push({...act, id: 'd'+d+'s'+steps.length+'-'+Math.random().toString(36).slice(2,7)});
+    }
+    // 2e passage (pool trop restreint) : on complète même si le créneau se répète, plutôt que de laisser la journée incomplète
+    while(steps.length < stepsCount){
       const act = pool[poolIdx % pool.length];
       poolIdx++;
-      steps.push({...act, id: 'd'+d+'s'+i+'-'+Math.random().toString(36).slice(2,7)});
+      steps.push({...act, id: 'd'+d+'s'+steps.length+'-'+Math.random().toString(36).slice(2,7)});
     }
     days.push({ day:d, steps, id:'day-'+d });
   }
@@ -1168,8 +1179,10 @@ function fillerFor(period){
   return {title:f.title, period, price:0, meta:f.meta, styles:[]};
 }
 
-// Remplace les étapes payantes les plus chères par du temps libre gratuit jusqu'à rentrer dans le budget restant
-function fitActivitiesToBudget(days, remainingForActivities, trav){
+// Remplace les étapes payantes les plus chères par une activité réelle moins chère du même créneau
+// (si le pool en propose une compatible avec le budget restant), et seulement en tout dernier recours
+// par du temps libre gratuit, jusqu'à rentrer dans le budget restant
+function fitActivitiesToBudget(days, remainingForActivities, trav, pool){
   const budget = Math.max(remainingForActivities, 0);
   let flat = [];
   days.forEach((day, di) => day.steps.forEach((s, si) => flat.push({di, si, price:s.price||0})));
@@ -1180,8 +1193,17 @@ function fitActivitiesToBudget(days, remainingForActivities, trav){
     const ref = flat[i];
     if(ref.price > 0){
       const step = days[ref.di].steps[ref.si];
-      total -= step.price*trav;
-      days[ref.di].steps[ref.si] = {...fillerFor(step.period), id:'filler-'+ref.di+'-'+ref.si+'-'+Math.random().toString(36).slice(2,7)};
+      const usedTitles = days[ref.di].steps.map(s=>s.title);
+      const cheaperReal = (pool||[])
+        .filter(a => a.period===step.period && a.price < step.price && !usedTitles.includes(a.title))
+        .sort((a,b)=>b.price-a.price)[0];
+      if(cheaperReal){
+        total -= (step.price-cheaperReal.price)*trav;
+        days[ref.di].steps[ref.si] = {...cheaperReal, id:'d'+ref.di+'s'+ref.si+'-'+Math.random().toString(36).slice(2,7)};
+      } else {
+        total -= step.price*trav;
+        days[ref.di].steps[ref.si] = {...fillerFor(step.period), id:'filler-'+ref.di+'-'+ref.si+'-'+Math.random().toString(36).slice(2,7)};
+      }
     }
     i++;
   }
@@ -1229,7 +1251,7 @@ function buildItineraryFor(destId, duration, styles, targetPerPerson, budgetTier
   // Toujours trop cher (pool trop restreint / budget très serré) : on remplace les étapes payantes
   // les plus chères par du temps libre gratuit, jusqu'à rentrer dans le budget restant
   if(activitiesCost > remainingForActivities + 1){
-    days = fitActivitiesToBudget(days, remainingForActivities, trav);
+    days = fitActivitiesToBudget(days, remainingForActivities, trav, dest.activities);
     activitiesCost = daysActivitiesGroupCost(days, trav);
   }
 
@@ -1300,7 +1322,7 @@ function budgetNoteHTML(itin){
     return `<div class="est-banner" style="border-color:rgba(156,74,60,.4); margin-bottom:26px;">
       <div>
         <div class="eyebrow" style="color:var(--danger); margin-bottom:4px;">Budget dépassé</div>
-        <div style="font-size:14px; max-width:560px;">Nous avons choisi le vol et l'hébergement les plus économiques disponibles pour ${itin.destination.name}, mais le prix réel dépasse votre budget de <b>${euro(g.diff)}</b>. Vous pouvez changer de vol, réduire la durée ou le nombre de voyageurs, ou en parler à un conseiller.</div>
+        <div style="font-size:14px; max-width:560px;">Nous avons choisi le vol et l'hébergement les plus économiques disponibles pour ${itin.destination.name}, mais le prix réel${itin.travelers>1?` pour ${itin.travelers} voyageurs`:''} dépasse votre budget de <b>${euro(g.diff)}</b> (${euro(g.actual)} au total${itin.travelers>1?`, soit ${euro(Math.round(g.actual/itin.travelers))}/pers.`:''} contre ${euro(g.target)} prévu). Vous pouvez changer de vol, réduire la durée ou le nombre de voyageurs, ou en parler à un conseiller.</div>
       </div>
       <button class="btn btn-outline btn-sm" onclick="go('contact')">Parler à un conseiller</button>
     </div>`;
@@ -1309,7 +1331,7 @@ function budgetNoteHTML(itin){
     return `<div class="est-banner" style="margin-bottom:26px;">
       <div>
         <div class="eyebrow" style="margin-bottom:4px;">Dans votre budget</div>
-        <div style="font-size:14px;">Ce voyage revient à <b>${euro(g.actual)}</b>, soit ${euro(-g.diff)} de moins que votre budget de ${euro(g.target)}.</div>
+        <div style="font-size:14px;">Ce voyage revient à <b>${euro(g.actual)}</b>${itin.travelers>1?` (${euro(Math.round(g.actual/itin.travelers))}/pers. pour ${itin.travelers} voyageurs)`:''}, soit ${euro(-g.diff)} de moins que votre budget de ${euro(g.target)}.</div>
       </div>
       <div class="badge gold">Marge disponible pour des extras</div>
     </div>`;
@@ -1598,7 +1620,7 @@ function renderItinerary(){
         <div class="item"><div class="eyebrow">Durée</div><div class="val">${itin.duration} jours</div></div>
         <div class="item"><div class="eyebrow">Voyageurs</div><div class="val" style="font-size:16px;">${travelersSummaryText(itin.travelersByAge)}</div></div>
         <div class="item"><div class="eyebrow">Hébergement</div><div class="val" style="font-size:16px;">${itin.hotel.name}</div></div>
-        <div class="item"><div class="eyebrow">Budget estimé</div><div class="val">${euro(total)}</div></div>
+        <div class="item"><div class="eyebrow">Budget estimé</div><div class="val">${euro(total)}</div>${itin.travelers>1?`<div class="muted" style="font-size:11px; margin-top:2px;">soit ${euro(Math.round(total/itin.travelers))} / pers.</div>`:''}</div>
       </div>
 
       ${destinationMatchNoteHTML(itin)}
@@ -1640,7 +1662,7 @@ function renderItinerary(){
 
       <div style="text-align:center; margin-top:40px;">
         <button class="btn btn-primary" onclick="prepareCart()">${ICN.suitcase.replace('<svg','<svg style="width:15px;height:15px;"')} Réserver ce voyage — ${euro(total)}</button>
-        <div class="center-note">Aucun frais caché · vous payez uniquement le prix de votre voyage</div>
+        <div class="center-note">Aucun frais caché · vous payez uniquement le prix de votre voyage${itin.travelers>1?` · ${euro(Math.round(total/itin.travelers))} / pers. pour ${itin.travelers} voyageurs`:''}</div>
       </div>
     </div>
   </section>`;
@@ -1961,6 +1983,7 @@ function renderCart(){
           <div class="summary-row"><span>Hébergement</span><span>${euro(hotelTotal)}</span></div>
           <div class="summary-row"><span>Activités</span><span>${euro(activitiesTotal)}</span></div>
           <div class="summary-total"><span>Total du voyage</span><span class="amt">${euro(total)}</span></div>
+          ${trav>1?`<div class="muted" style="font-size:11.5px; margin-top:-14px; margin-bottom:14px;">soit ${euro(Math.round(total/trav))} / pers. pour ${trav} voyageurs</div>`:''}
           <button class="btn btn-gold btn-block" style="margin-top:20px;" onclick="go('payment')">Réserver — ${euro(total)}</button>
           <div class="free-note">${ICN.shield}<span>Aucun frais de service Lovano : ce montant correspond exactement au prix de votre voyage.</span></div>
         </div>
@@ -1994,6 +2017,8 @@ function renderPayment(){
             <div class="pay-field"><label>CVC</label><input type="text" placeholder="123" required></div>
           </div>
           <div class="pay-field"><label>E-mail de confirmation</label><input type="email" placeholder="vous@exemple.be" required></div>
+          <div class="pay-field"><label>Date de départ</label><input type="date" id="payStartDate" min="${new Date().toISOString().slice(0,10)}" required></div>
+          <div class="pay-field" style="margin-top:-8px;"><label style="text-transform:none; letter-spacing:0; font-family:var(--sans); font-weight:400; font-size:12.5px;" class="muted">${ICN.shield?ICN.shield.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-2px;margin-right:4px;"'):''}Utilisée pour vous notifier au bon moment de chaque étape de votre voyage une fois l'app installée.</label></div>
           <button class="btn btn-primary btn-block" id="btnPay" type="submit">Payer ${euro(total)} et confirmer</button>
           <div class="center-note">Paiement simulé à des fins de démonstration</div>
         </form>
@@ -2002,6 +2027,7 @@ function renderPayment(){
             <h3 style="font-size:17px;">${cart.itinerary.destination.name}</h3>
             <div class="muted" style="color:rgba(255,255,255,.7); font-size:13px; margin-bottom:14px;">${cart.itinerary.duration} jours · ${cart.itinerary.hotel.name}</div>
             <div class="summary-total" style="margin-top:0; padding-top:0; border-top:none;"><span>Total</span><span class="amt">${euro(total)}</span></div>
+            ${cart.itinerary.travelers>1?`<div class="muted" style="color:rgba(255,255,255,.7); font-size:11.5px; margin-top:4px;">soit ${euro(Math.round(total/cart.itinerary.travelers))} / pers. pour ${cart.itinerary.travelers} voyageurs</div>`:''}
           </div>
         </div>
       </div>
@@ -2015,9 +2041,12 @@ function confirmPayment(){
   const total = computeCartTotal(itin);
   const breakdown = computeCartBreakdown(itin);
   const tripId = 'trip-'+Math.random().toString(36).slice(2,8);
+  const startDateInput = document.getElementById('payStartDate');
+  const startDate = startDateInput && startDateInput.value ? startDateInput.value : null;
   const newTrip = {
     id:tripId, label: 'Voyage à '+itin.destination.name, destinationId: itin.destinationId, duration: itin.duration,
     createdAt: new Date().toLocaleDateString('fr-BE',{day:'numeric',month:'long',year:'numeric'}),
+    startDate,
     status:'upcoming', itinerary: itin, total,
     steps:{vol:true, hebergement:true, activites:true, termine:false},
   };
@@ -2028,8 +2057,67 @@ function confirmPayment(){
     date: new Date().toLocaleDateString('fr-BE'),
     ...breakdown,
   });
+  scheduleTripNotifications(newTrip);
   state.routeParam = tripId;
   go('confirmation', tripId);
+}
+
+/* ============================================================
+   NOTIFICATIONS DE VOYAGE (app native uniquement, via Capacitor)
+   Prévient le voyageur au moment de chaque étape payante de son
+   planning (activité, restaurant) ainsi qu'à son arrivée.
+============================================================ */
+const PERIOD_NOTIF_TIME = {
+  'Matin': {h:9, m:0}, 'Midi': {h:12, m:30}, 'Après-midi': {h:15, m:0},
+  'Soir': {h:19, m:30}, 'Nuit': {h:21, m:0}, 'Journée': {h:10, m:0},
+};
+async function scheduleTripNotifications(trip){
+  try{
+    if(!trip.startDate) return;
+    if(typeof Capacitor === 'undefined' || !Capacitor.isNativePlatform || !Capacitor.isNativePlatform()) return;
+    const LocalNotifications = Capacitor.Plugins && Capacitor.Plugins.LocalNotifications;
+    if(!LocalNotifications) return;
+    const perm = await LocalNotifications.requestPermissions();
+    if(perm.display !== 'granted') return;
+
+    const startDate = new Date(trip.startDate+'T00:00:00');
+    const notifications = [];
+    let notifId = Math.floor(Math.random()*1000000);
+
+    trip.itinerary.days.forEach(day => {
+      const dayDate = new Date(startDate);
+      dayDate.setDate(dayDate.getDate() + (day.day - 1));
+
+      if(day.day === 1){
+        const arrivalAt = new Date(dayDate);
+        arrivalAt.setHours(9, 0, 0, 0);
+        if(arrivalAt.getTime() > Date.now()){
+          notifications.push({
+            id: notifId++,
+            title: 'Lovano — Arrivée à '+trip.itinerary.destination.name,
+            body: "Bon voyage ! Votre séjour à "+trip.itinerary.destination.name+" commence aujourd'hui.",
+            schedule: { at: arrivalAt },
+          });
+        }
+      }
+
+      day.steps.forEach(step => {
+        if(!step.price || step.price<=0) return; // pas de notification pour les créneaux libres
+        const t = PERIOD_NOTIF_TIME[step.period] || PERIOD_NOTIF_TIME['Matin'];
+        const at = new Date(dayDate);
+        at.setHours(t.h, t.m, 0, 0);
+        if(at.getTime() <= Date.now()) return;
+        notifications.push({
+          id: notifId++,
+          title: "Lovano — C'est l'heure !",
+          body: step.title+' ('+step.meta+') commence maintenant.',
+          schedule: { at },
+        });
+      });
+    });
+
+    if(notifications.length) await LocalNotifications.schedule({ notifications });
+  }catch(e){ console.warn('Notifications de voyage non programmées :', e); }
 }
 
 /* ============================================================
