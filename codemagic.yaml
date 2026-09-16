@@ -10,6 +10,8 @@ workflows:
         script: npm install
       - name: Ajouter la plateforme Android
         script: npx cap add android || true
+      - name: Générer l'icône et l'écran de démarrage
+        script: npx @capacitor/assets generate --android
       - name: Synchroniser le code web
         script: npx cap sync android
       - name: Construire l'APK (debug, test rapide)
@@ -32,6 +34,8 @@ workflows:
         script: npm install
       - name: Ajouter la plateforme Android
         script: npx cap add android || true
+      - name: Générer l'icône et l'écran de démarrage
+        script: npx @capacitor/assets generate --android
       - name: Synchroniser le code web
         script: npx cap sync android
       - name: Préparer la clé de signature
@@ -73,6 +77,8 @@ workflows:
         script: npm install
       - name: Ajouter la plateforme iOS
         script: npx cap add ios || true
+      - name: Générer l'icône et l'écran de démarrage
+        script: npx @capacitor/assets generate --ios
       - name: Synchroniser le code web
         script: npx cap sync ios
       - name: Installer les pods iOS
