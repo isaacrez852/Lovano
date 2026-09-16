@@ -19,6 +19,45 @@ workflows:
     artifacts:
       - android/app/build/outputs/**/*.apk
 
+  android-release-workflow:
+    name: Lovano - Android (Release Play Store)
+    max_build_duration: 60
+    instance_type: mac_mini_m1
+    environment:
+      node: 20
+      groups:
+        - lovano_signing
+    scripts:
+      - name: Installer les dépendances
+        script: npm install
+      - name: Ajouter la plateforme Android
+        script: npx cap add android || true
+      - name: Synchroniser le code web
+        script: npx cap sync android
+      - name: Préparer la clé de signature
+        script: |
+          echo "$CM_KEYSTORE" | base64 -D > android/app/lovano-release.keystore
+      - name: Configurer la signature Android (release)
+        script: |
+          cat >> android/app/build.gradle <<'EOF'
+
+          android.signingConfigs {
+              release {
+                  storeFile file("lovano-release.keystore")
+                  storePassword System.getenv("CM_KEYSTORE_PASSWORD")
+                  keyAlias System.getenv("CM_KEY_ALIAS")
+                  keyPassword System.getenv("CM_KEY_PASSWORD")
+              }
+          }
+          android.buildTypes.release.signingConfig = android.signingConfigs.release
+          EOF
+      - name: Construire l'AAB signé (pour le Play Store)
+        script: |
+          cd android
+          ./gradlew bundleRelease
+    artifacts:
+      - android/app/build/outputs/**/*.aab
+
   ios-workflow:
     name: Lovano - iOS
     max_build_duration: 60
