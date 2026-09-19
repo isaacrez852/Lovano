@@ -1,7 +1,7 @@
 {
   "name": "lovano-app",
   "version": "1.0.0",
-  "description": "Lovano - agence de voyage en ligne, application mobile",
+  "description": "Lovano - outil de planification de voyage, application mobile",
   "scripts": {
     "sync": "npx cap sync"
   },

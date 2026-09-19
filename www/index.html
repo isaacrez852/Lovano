@@ -3,15 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lovano — Voyages sur mesure</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Lovano — Planification de voyage</title>
+<meta name="description" content="Lovano : un outil de planification de voyage. Décrivez votre envie (destination, durée, budget) et obtenez un itinéraire jour par jour avec vols, hébergement et activités indicatifs.">
+<meta name="theme-color" content="#1B2A4A">
+<link rel="icon" href="data:,">
 <style>
+/* Polices hébergées dans l'application (aucune requête vers Google Fonts) */
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:500;font-display:swap;src:url(fonts/fraunces-ddaaa584.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/fraunces-39ce2001.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/fraunces-39ce2001.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/fraunces-39ce2001.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/fraunces-39ce2001.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/inter-56724408.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/inter-56724408.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/inter-56724408.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/inter-56724408.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Space Mono';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/space-mono-e04b1d07.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Space Mono';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/space-mono-0319ea60.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
 /* ===================== TOKENS ===================== */
 :root{
   --navy:#1B2A4A;
   --navy-80: rgba(27,42,74,.8);
   --navy-15: rgba(27,42,74,.15);
+  --ui-border:#737e98; /* contraste >= 3:1 pour les contours de champs et boutons (WCAG 1.4.11) */
   --cream:#E8E2D0;
   --forest:#2F5D4F;
   --forest-dark:#234639;
@@ -132,7 +146,7 @@ nav.main-nav a:hover, nav.main-nav a.active{opacity:1; border-color:var(--gold);
 .stamp.r2{transform:rotate(6deg);}
 .stamp.r3{transform:rotate(-4deg);}
 .stamp.r4{transform:rotate(10deg);}
-.stamp.pending{color:var(--navy-80); border-style:dashed; opacity:.5;}
+.stamp.pending{color:var(--navy-80); border-style:dashed;}
 .stamp.danger{color:var(--danger);}
 .stamp-pop{animation:stampPop .35s ease-out;}
 @keyframes stampPop{ 0%{transform:scale(2) rotate(-14deg); opacity:0;} 70%{transform:scale(.94) rotate(-9deg); opacity:1;} 100%{transform:scale(1) rotate(-9deg);} }
@@ -165,23 +179,24 @@ nav.main-nav a:hover, nav.main-nav a.active{opacity:1; border-color:var(--gold);
   letter-spacing:.14em; color:var(--forest); font-weight:700; margin-bottom:10px;
 }
 .field input[type=text]{
-  width:100%; border:none; border-bottom:2px solid var(--navy-15); background:transparent; padding:10px 2px;
+  width:100%; border:none; border-bottom:2px solid var(--ui-border); background:transparent; padding:10px 2px;
   font-family:var(--serif); font-size:20px; color:var(--navy);
 }
 .field input[type=text]:focus{border-color:var(--forest);}
-.field input[type=text]::placeholder{color:#9aa4b8; font-style:italic;}
+.field input[type=text]::placeholder{color:#5f6b85; font-style:italic;}
+::placeholder{color:#5f6b85; opacity:1;}
 
 .slider-wrap{padding-top:6px;}
 .slider-value{font-family:var(--serif); font-size:26px; color:var(--navy); margin-bottom:6px;}
 .slider-value b{color:var(--forest);}
 .dur-number-input{
-  font-family:var(--serif); font-size:26px; color:var(--forest); font-weight:600; border:none; border-bottom:2px solid var(--navy-15);
+  font-family:var(--serif); font-size:26px; color:var(--forest); font-weight:600; border:none; border-bottom:2px solid var(--ui-border);
   background:transparent; width:72px; padding:0 2px 2px; -moz-appearance:textfield;
 }
-.dur-number-input:focus{border-color:var(--forest); outline:none;}
+.dur-number-input:focus{border-color:var(--forest);}
 .dur-number-input::-webkit-outer-spin-button, .dur-number-input::-webkit-inner-spin-button{opacity:1; margin-left:4px;}
 input[type=range]{
-  width:100%; -webkit-appearance:none; height:4px; background:var(--navy-15); border-radius:4px; outline:none;
+  width:100%; -webkit-appearance:none; height:4px; background:var(--ui-border); border-radius:4px; outline:none;
 }
 input[type=range]::-webkit-slider-thumb{
   -webkit-appearance:none; width:20px; height:20px; border-radius:50%; background:var(--forest);
@@ -190,7 +205,7 @@ input[type=range]::-webkit-slider-thumb{
 input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; background:var(--forest); border:3px solid var(--offwhite); box-shadow:0 0 0 1.5px var(--forest); cursor:pointer;}
 .slider-ticks{display:flex; justify-content:space-between; font-family:var(--mono); font-size:10px; color:var(--navy-80); margin-top:6px;}
 
-.stepper{display:inline-flex; align-items:center; gap:18px; border:2px solid var(--navy-15); border-radius:100px; padding:8px 10px; width:max-content;}
+.stepper{display:inline-flex; align-items:center; gap:18px; border:2px solid var(--ui-border); border-radius:100px; padding:8px 10px; width:max-content;}
 .stepper-btn{
   width:34px; height:34px; border-radius:50%; border:1.5px solid var(--forest); background:var(--offwhite); color:var(--forest);
   font-family:var(--mono); font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center; font-weight:700;
@@ -201,21 +216,21 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .stepper-value small{font-family:var(--mono); font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--navy-80);}
 .age-stepper-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px;}
 @media(max-width:640px){ .age-stepper-grid{grid-template-columns:repeat(2,1fr);} }
-.age-stepper{border:1.5px solid var(--navy-15); border-radius:12px; padding:12px 10px; text-align:center; background:var(--offwhite);}
+.age-stepper{border:1.5px solid var(--ui-border); border-radius:12px; padding:12px 10px; text-align:center; background:var(--offwhite);}
 .age-stepper-label{font-family:var(--mono); font-size:9.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--forest); margin-bottom:10px; font-weight:700; min-height:22px;}
-.stepper-sm{display:inline-flex; align-items:center; gap:10px; border:1.5px solid var(--navy-15); border-radius:100px; padding:4px 6px; width:max-content;}
+.stepper-sm{display:inline-flex; align-items:center; gap:10px; border:1.5px solid var(--ui-border); border-radius:100px; padding:4px 6px; width:max-content;}
 .stepper-sm .stepper-btn{width:26px; height:26px; font-size:14px;}
 .stepper-sm .stepper-value{font-size:16px; min-width:20px;}
 .age-number-input{
   font-family:var(--serif); font-size:16px; font-weight:600; color:var(--navy); border:none; background:transparent;
   width:34px; text-align:center; -moz-appearance:textfield;
 }
-.age-number-input:focus{outline:none; color:var(--forest);}
+.age-number-input:focus{color:var(--forest);}
 .age-number-input::-webkit-outer-spin-button, .age-number-input::-webkit-inner-spin-button{-webkit-appearance:none; margin:0;}
 .pill-group{display:flex; flex-wrap:wrap; gap:10px;}
 .pill{
   font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; text-transform:uppercase;
-  padding:11px 18px; border-radius:100px; border:1.5px solid var(--navy-15); background:var(--offwhite);
+  padding:11px 18px; border-radius:100px; border:1.5px solid var(--ui-border); background:var(--offwhite);
   color:var(--navy); transition:all .15s ease;
 }
 .pill:hover{border-color:var(--forest);}
@@ -236,7 +251,7 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .custom-budget-toggle{font-family:var(--mono); font-size:11px; text-decoration:underline; color:var(--forest); background:none; border:none; letter-spacing:.05em;}
 .custom-budget-row{display:none; align-items:center; gap:10px; margin-top:14px;}
 .custom-budget-row.show{display:flex;}
-.custom-budget-row input{border:2px solid var(--navy-15); border-radius:8px; padding:9px 12px; font-family:var(--serif); font-size:16px; width:140px;}
+.custom-budget-row input{border:2px solid var(--ui-border); border-radius:8px; padding:9px 12px; font-family:var(--serif); font-size:16px; width:140px;}
 
 /* ===================== SECTIONS GENERAL ===================== */
 .section{padding:56px 0;}
@@ -279,7 +294,7 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .step .step-title{font-weight:600; font-size:14.5px;}
 .step .step-meta{font-family:var(--mono); font-size:10.5px; color:var(--navy-80); margin-top:2px; text-transform:uppercase; letter-spacing:.04em;}
 .step .step-price{font-family:var(--mono); font-size:13px; color:var(--forest); font-weight:700; white-space:nowrap;}
-.itin-card .drag-handle{position:absolute; top:16px; right:16px; cursor:grab; color:var(--navy-80); opacity:.5;}
+.itin-card .drag-handle{position:absolute; top:16px; right:16px; cursor:grab; color:var(--navy-80);}
 .itin-card .drag-handle:hover{opacity:1;}
 .itin-card.dragging{opacity:.4;}
 .itin-card-foot{display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:12px; border-top:1px dotted rgba(27,42,74,.15);}
@@ -288,7 +303,7 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .flight-options{display:flex; flex-direction:column; gap:12px;}
 .flight-option{
   display:grid; grid-template-columns:1fr auto auto auto; align-items:center; gap:18px; width:100%;
-  background:var(--offwhite); border:1.5px solid var(--navy-15); border-radius:12px; padding:14px 18px; text-align:left;
+  background:var(--offwhite); border:1.5px solid var(--ui-border); border-radius:12px; padding:14px 18px; text-align:left;
   position:relative; transition:border-color .15s ease, background .15s ease;
 }
 .flight-option:hover{border-color:var(--forest);}
@@ -317,9 +332,9 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .itin-summary-bar .item .val{font-family:var(--serif); font-size:22px; margin-top:4px;}
 
 .refine-box{background:var(--offwhite); border:1.5px dashed var(--navy-15); border-radius:16px; padding:24px; margin-top:30px;}
-.refine-box textarea{width:100%; border:2px solid var(--navy-15); border-radius:10px; padding:12px 14px; font-family:var(--sans); font-size:14.5px; min-height:70px; resize:vertical;}
+.refine-box textarea{width:100%; border:2px solid var(--ui-border); border-radius:10px; padding:12px 14px; font-family:var(--sans); font-size:14.5px; min-height:70px; resize:vertical;}
 .refine-chip-row{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 16px;}
-.refine-chip{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; background:var(--cream); border:1px solid var(--navy-15); border-radius:100px; padding:7px 13px;}
+.refine-chip{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; background:var(--cream); border:1px solid var(--ui-border); border-radius:100px; padding:7px 13px;}
 .refine-chip:hover{border-color:var(--forest);}
 
 /* ===================== DESTINATION CARD (grid) ===================== */
@@ -343,7 +358,7 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .fav-heart-btn:hover{transform:scale(1.08); background:rgba(27,42,74,.55);}
 .fav-heart-btn.active{color:var(--danger); background:rgba(250,248,242,.92);}
 .fav-heart-btn.active svg{fill:currentColor;}
-.fav-heart-btn.on-detail{position:static; width:44px; height:44px; background:var(--offwhite); color:var(--navy); border:1.5px solid var(--navy-15); flex:none;}
+.fav-heart-btn.on-detail{position:static; width:44px; height:44px; background:var(--offwhite); color:var(--navy); border:1.5px solid var(--ui-border); flex:none;}
 .fav-heart-btn.on-detail svg{width:20px; height:20px;}
 .fav-heart-btn.on-detail.active{color:var(--danger); border-color:var(--danger);}
 .empty-favs{text-align:center; padding:70px 20px; color:var(--navy-80);}
@@ -388,7 +403,7 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .pay-form{background:var(--offwhite); border-radius:18px; box-shadow:var(--shadow); border:1.5px dashed var(--navy-15); padding:32px; max-width:520px;}
 .pay-field{margin-bottom:20px;}
 .pay-field label{display:block; font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--forest); margin-bottom:8px; font-weight:700;}
-.pay-field input{width:100%; border:2px solid var(--navy-15); border-radius:10px; padding:12px 14px; font-family:var(--sans); font-size:15px;}
+.pay-field input{width:100%; border:2px solid var(--ui-border); border-radius:10px; padding:12px 14px; font-family:var(--sans); font-size:15px;}
 .pay-field input:focus{border-color:var(--forest);}
 .pay-row2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
 
@@ -407,7 +422,7 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .passport-head .sub{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.1em; opacity:.75; margin-top:4px;}
 .passport-stamps{display:flex; gap:14px; flex-wrap:wrap; margin-top:20px; position:relative;}
 .passport-stamps .stamp{width:70px; height:70px; font-size:8.5px; color:var(--gold);}
-.passport-stamps .stamp.pending{color:rgba(255,255,255,.35);}
+.passport-stamps .stamp.pending{color:rgba(255,255,255,.8);}
 .passport-actions{display:flex; gap:10px; margin-top:20px; position:relative; flex-wrap:wrap;}
 
 .empty-state{text-align:center; padding:60px 24px; border:1.5px dashed var(--navy-15); border-radius:18px; background:var(--offwhite);}
@@ -441,14 +456,14 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .msg.them{background:var(--cream); align-self:flex-start; border-bottom-left-radius:4px;}
 .msg.me{background:var(--forest); color:#fff; align-self:flex-end; border-bottom-right-radius:4px;}
 .chat-input-row{display:flex; gap:10px; padding:16px 20px; border-top:1px dotted var(--navy-15);}
-.chat-input-row textarea{flex:1; border:2px solid var(--navy-15); border-radius:12px; padding:11px 14px; font-family:var(--sans); resize:none; min-height:44px;}
+.chat-input-row textarea{flex:1; border:2px solid var(--ui-border); border-radius:12px; padding:11px 14px; font-family:var(--sans); resize:none; min-height:44px;}
 .typing-dots{display:flex; gap:4px; align-self:flex-start; padding:12px 16px;}
 .typing-dots span{width:6px; height:6px; border-radius:50%; background:var(--navy-80); animation:blink 1.2s infinite;}
 .typing-dots span:nth-child(2){animation-delay:.2s;} .typing-dots span:nth-child(3){animation-delay:.4s;}
 @keyframes blink{ 0%,80%,100%{opacity:.25;} 40%{opacity:1;} }
 .advisor-form{background:var(--offwhite); border:1.5px dashed var(--navy-15); border-radius:18px; padding:28px; max-width:640px; margin:26px auto 0;}
 .advisor-form .field{margin-bottom:18px;}
-.advisor-form input, .advisor-form textarea{width:100%; border:2px solid var(--navy-15); border-radius:10px; padding:11px 14px; font-family:var(--sans); font-size:14.5px;}
+.advisor-form input, .advisor-form textarea{width:100%; border:2px solid var(--ui-border); border-radius:10px; padding:11px 14px; font-family:var(--sans); font-size:14.5px;}
 .advisor-form textarea{min-height:90px; resize:vertical;}
 
 /* ===================== ADMIN ===================== */
@@ -473,7 +488,7 @@ footer.site-footer .fbrand svg{width:24px; height:24px; color:var(--gold);}
 footer.site-footer .flinks{display:flex; gap:22px; flex-wrap:wrap; font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; opacity:.8;}
 footer.site-footer .flinks a{text-decoration:none;}
 footer.site-footer .flinks a:hover{color:var(--gold);}
-footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12); font-family:var(--mono); font-size:10.5px; opacity:.55;}
+footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12); font-family:var(--mono); font-size:10.5px; opacity:.8; line-height:1.6;}
 
 /* ===================== MISC ===================== */
 .two-col{display:grid; grid-template-columns:1fr; gap:40px;}
@@ -486,6 +501,13 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
 .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
 .toast svg{width:16px; height:16px; color:var(--gold);}
 .hidden{display:none !important;}
+#app:focus{outline:none;}
+.sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+.skip-link{position:absolute; left:8px; top:-60px; background:var(--forest); color:#fff; padding:10px 16px; border-radius:8px; z-index:300; font-family:var(--mono); font-size:12px;}
+.skip-link:focus{top:8px;}
+.legal p, .legal li{font-size:14.5px; line-height:1.7; color:var(--navy-80);}
+.legal ul{padding-left:20px; margin:8px 0 0;}
+.legal a{color:var(--forest); text-decoration:underline;}
 .fade-in{animation:fadeIn .4s ease;}
 @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
 .center-note{text-align:center; color:var(--navy-80); font-family:var(--mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; margin-top:20px;}
@@ -493,25 +515,27 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
 </style>
 </head>
 <body>
-<div id="toast" class="toast"></div>
+<noscript><p style="padding:24px;font-family:sans-serif;">Lovano nécessite JavaScript. Lovano est un outil de planification de voyage : décrivez votre envie et obtenez un itinéraire indicatif jour par jour. Contact : lovano.voyages@gmail.com</p></noscript>
+<a class="skip-link" href="#app" onclick="document.getElementById('app').focus();return true;">Aller au contenu</a>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 <header class="top">
   <div class="wrap">
     <button class="brand" onclick="go('home')" aria-label="Accueil Lovano">
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.6"/><circle cx="20" cy="20" r="1.6" fill="currentColor"/><path d="M27 13L18 18L13 27L22 22L27 13Z" fill="currentColor"/></svg>
       <span>Lovano</span>
     </button>
-    <nav class="main-nav" id="mainNav">
+    <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
       <a href="#" onclick="go('home');return false;">Itinéraires sur mesure</a>
       <a href="#" onclick="go('destinations');return false;">Destinations</a>
       <a href="#" onclick="go('favorites');return false;">Favoris</a>
       <a href="#" onclick="go('mytrips');return false;">Mon voyage</a>
-      <a href="#" onclick="go('contact');return false;">Conseiller</a>
+      <a href="#" onclick="go('contact');return false;">Contact</a>
       <a class="nav-cta" href="#" onclick="go('home');return false;">Planifier ✦</a>
     </nav>
   </div>
 </header>
 
-<main id="app"></main>
+<main id="app" tabindex="-1"></main>
 
 <footer class="site-footer">
   <div class="wrap">
@@ -519,19 +543,20 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.6"/><path d="M27 13L18 18L13 27L22 22L27 13Z" fill="currentColor"/></svg>
       <div>
         <div style="font-family:var(--serif); font-size:19px;">Lovano</div>
-        <div class="muted" style="font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; opacity:.7;">VOYAGES SUR MESURE, GRATUITS À CONCEVOIR</div>
+        <div style="font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; opacity:.85;">PLANIFICATION DE VOYAGE GRATUITE</div>
       </div>
     </div>
     <div class="flinks">
       <a href="#" onclick="go('destinations');return false;">Destinations</a>
       <a href="#" onclick="go('favorites');return false;">Favoris</a>
       <a href="#" onclick="go('mytrips');return false;">Mon espace</a>
-      <a href="#" onclick="go('contact');return false;">Contact conseiller</a>
-      <a href="#" onclick="go('privacy');return false;">Politique de confidentialité</a>
-      <a href="#" onclick="go('admin');return false;">Espace pro</a>
+      <a href="#" onclick="go('contact');return false;">Contact</a>
+      <a href="#" onclick="go('privacy');return false;">Confidentialité</a>
+      <a href="#" onclick="go('terms');return false;">Conditions d'utilisation</a>
+      <a href="#" onclick="go('cookies');return false;">Cookies</a>
     </div>
   </div>
-  <div class="wrap fbottom">© 2026 Lovano — Agence de voyage en ligne. Bruxelles, Belgique. Itinéraire et réservation gratuits pour le client.</div>
+  <div class="wrap fbottom">© 2026 Lovano — Outil de planification de voyage, Bruxelles, Belgique. Lovano n'est pas une agence de voyage et ne vend aucun voyage. Lovano peut percevoir une commission lorsque vous réservez via un lien partenaire (Booking.com), sans surcoût pour vous.</div>
 </footer>
 
 <script>
@@ -974,7 +999,7 @@ function createProceduralDestination(name, country, regionKey){
     avgBudgetPerDay: region.avgBudgetPerDay,
     idealWeather: region.idealWeather,
     coupDeCoeur: false,
-    summary: `${name}${country?', '+country:''} fait partie de notre catalogue élargi de destinations. Itinéraire généré automatiquement à partir du profil tarifaire de la région — un conseiller Lovano peut l'affiner avec des adresses locales précises.`,
+    summary: `${name}${country?', '+country:''} fait partie de notre catalogue élargi de destinations. Itinéraire généré automatiquement à partir du profil tarifaire de la région — les noms d'établissements sont génériques et donnés à titre illustratif.`,
     depart: 'Bruxelles (BRU)',
     flights: region.flights.map((f,i)=>({...f, id:id+'-f'+i})),
     hotels,
@@ -1051,30 +1076,6 @@ function favHeartBtnHTML(destId, extraClass){
   </button>`;
 }
 
-// ---- pré-remplissage: un voyage passé + un à venir pour éviter les zones vides ----
-(function seedDemoTrips(){
-  const past = buildItineraryFor('rome', 4, ['culture','gastronomie'], 400, 'b400', {age0_6:0, age6_12:0, age12_18:0, age18plus:2});
-  state.trips.push({
-    id:'trip-demo-1', label:'Escapade à Rome', destinationId:'rome', duration:4, createdAt:'12 mars 2026',
-    status:'past', itinerary:past, total: computeCartTotal(past),
-    steps:{vol:true, hebergement:true, activites:true, termine:true},
-  });
-  const upcoming = buildItineraryFor('crete', 6, ['nature','farniente','romantique'], 600, 'b600', {age0_6:0, age6_12:1, age12_18:0, age18plus:2});
-  state.trips.push({
-    id:'trip-demo-2', label:'Semaine en Crète', destinationId:'crete', duration:6, createdAt:'2 août 2026',
-    status:'upcoming', itinerary:upcoming, total: computeCartTotal(upcoming),
-    steps:{vol:true, hebergement:true, activites:true, termine:false},
-  });
-  const marrakechDemo = buildItineraryFor('marrakech', 5, ['culture','aventure'], 350, 'b400', {age0_6:0, age6_12:0, age12_18:0, age18plus:2});
-  const bPast = computeCartBreakdown(past);
-  const bUpcoming = computeCartBreakdown(upcoming);
-  const bMarrakech = computeCartBreakdown(marrakechDemo);
-  state.bookingsAdmin.push(
-    {id:'RES-10231', tripLabel:'Escapade à Rome — F. Dubois', date:'12/03/2026', ...bPast},
-    {id:'RES-10344', tripLabel:'Semaine en Crète — L. Peeters', date:'02/08/2026', ...bUpcoming},
-    {id:'RES-10399', tripLabel:'Marrakech découverte — S. El Amrani', date:'19/08/2026', ...bMarrakech},
-  );
-})();
 
 /* ============================================================
    HELPERS
@@ -1091,6 +1092,8 @@ function go(route, param=null){
   state.route = route; state.routeParam = param;
   window.scrollTo({top:0, behavior:'smooth'});
   render();
+  const appEl = document.getElementById('app');
+  if(appEl) appEl.focus({preventScroll:true});
 }
 function destById(id){ return DESTINATIONS.find(d=>d.id===id) || PROCEDURAL_CACHE[id]; }
 function styleLabel(id){ return (STYLES.find(s=>s.id===id)||{}).label || id; }
@@ -1304,9 +1307,9 @@ function destinationMatchNoteHTML(itin){
     return `<div class="est-banner" style="margin-bottom:22px;">
       <div>
         <div class="eyebrow" style="margin-bottom:4px;">Destination sur mesure</div>
-        <div style="font-size:14px; max-width:560px;">« <b>${itin.searchInput}</b> » ne fait pas encore partie de nos villes pré-chargées : cet itinéraire est généré automatiquement à partir d'un profil tarifaire générique, pour cette destination précise. Un conseiller peut l'affiner avec de vraies adresses locales.</div>
+        <div style="font-size:14px; max-width:560px;">« <b>${itin.searchInput}</b> » ne fait pas encore partie de nos villes pré-chargées : cet itinéraire est généré automatiquement à partir d'un profil tarifaire générique, pour cette destination précise. Les noms d'établissements sont génériques et donnés à titre illustratif.</div>
       </div>
-      <button class="btn btn-outline btn-sm" onclick="go('contact')">Affiner avec un conseiller</button>
+      <button class="btn btn-outline btn-sm" onclick="go('contact')">Nous contacter</button>
     </div>`;
   }
   if(itin.matchType === 'known-country'){
@@ -1325,9 +1328,9 @@ function budgetNoteHTML(itin){
     return `<div class="est-banner" style="border-color:rgba(156,74,60,.4); margin-bottom:26px;">
       <div>
         <div class="eyebrow" style="color:var(--danger); margin-bottom:4px;">Budget dépassé</div>
-        <div style="font-size:14px; max-width:560px;">Nous avons choisi le vol et l'hébergement les plus économiques disponibles pour ${itin.destination.name}, mais le prix réel${itin.travelers>1?` pour ${itin.travelers} voyageurs`:''} dépasse votre budget de <b>${euro(g.diff)}</b> (${euro(g.actual)} au total${itin.travelers>1?`, soit ${euro(Math.round(g.actual/itin.travelers))}/pers.`:''} contre ${euro(g.target)} prévu). Vous pouvez changer de vol, réduire la durée ou le nombre de voyageurs, ou en parler à un conseiller.</div>
+        <div style="font-size:14px; max-width:560px;">Nous avons choisi le vol et l'hébergement les plus économiques disponibles pour ${itin.destination.name}, mais le prix réel${itin.travelers>1?` pour ${itin.travelers} voyageurs`:''} dépasse votre budget de <b>${euro(g.diff)}</b> (${euro(g.actual)} au total${itin.travelers>1?`, soit ${euro(Math.round(g.actual/itin.travelers))}/pers.`:''} contre ${euro(g.target)} prévu). Vous pouvez changer de vol, réduire la durée ou le nombre de voyageurs, ou nous contacter.</div>
       </div>
-      <button class="btn btn-outline btn-sm" onclick="go('contact')">Parler à un conseiller</button>
+      <button class="btn btn-outline btn-sm" onclick="go('contact')">Nous contacter</button>
     </div>`;
   }
   if(g.under){
@@ -1392,16 +1395,53 @@ function render(){
     favorites: renderFavorites,
     cart: renderCart, payment: renderPayment, confirmation: renderConfirmation,
     mytrips: renderMyTrips, document: renderDocument, contact: renderContact, admin: renderAdmin,
-    privacy: renderPrivacy,
+    privacy: renderPrivacy, terms: renderTerms, cookies: renderCookies,
   };
   app.innerHTML = '';
   const view = document.createElement('div');
   view.className='fade-in';
   view.innerHTML = (routes[state.route]||renderHome)();
   app.appendChild(view);
+  document.title = ROUTE_TITLES[state.route] || 'Lovano — Planification de voyage';
+  a11yPass(document);
   afterRender();
   window.scrollTo(0,0);
 }
+
+const ROUTE_TITLES = {
+  home:'Lovano — Planification de voyage', loading:'Composition de votre itinéraire — Lovano', itinerary:'Votre itinéraire — Lovano',
+  destinations:'Destinations — Lovano', destination:'Destination — Lovano', favorites:'Favoris — Lovano',
+  cart:'Récapitulatif estimatif — Lovano', payment:'Enregistrer mon voyage — Lovano', confirmation:'Voyage enregistré — Lovano',
+  mytrips:'Mon carnet de voyage — Lovano', document:'Carnet de voyage — Lovano', contact:'Nous contacter — Lovano',
+  privacy:'Politique de confidentialité — Lovano', terms:"Conditions d'utilisation — Lovano", cookies:'Politique de cookies — Lovano',
+};
+const CONTROL_LABELS = {inpDest:'Destination', durInput:'Durée du séjour en jours', durRange:'Durée du séjour (curseur)', customBudgetInput:'Budget par personne en euros pour tout le séjour', payStartDate:'Date de départ (facultatif)', contactMsg:'Votre message'};
+function syncPressed(){
+  document.querySelectorAll('.pill, .flight-option').forEach(p=>p.setAttribute('aria-pressed', p.classList.contains('selected') ? 'true' : 'false'));
+}
+// Accessibilité : icônes décoratives masquées aux lecteurs d'écran, champs étiquetés, états des boutons
+function a11yPass(root){
+  root.querySelectorAll('svg:not([role]):not([aria-label])').forEach(el=>{ el.setAttribute('aria-hidden','true'); el.setAttribute('focusable','false'); });
+  root.querySelectorAll('label:not([for])').forEach(l=>{
+    const holder = l.closest('.field, .pay-field');
+    if(!holder || holder.querySelector('.pill-group, .age-stepper-grid')) return;
+    const ctl = holder.querySelector('input, select, textarea');
+    if(!ctl) return;
+    if(!ctl.id) ctl.id = 'ctl-' + Math.random().toString(36).slice(2,8);
+    l.setAttribute('for', ctl.id);
+  });
+  Object.keys(CONTROL_LABELS).forEach(id=>{ const c = document.getElementById(id); if(c) c.setAttribute('aria-label', CONTROL_LABELS[id]); });
+  root.querySelectorAll('.age-number-input').forEach(c=>{
+    const b = AGE_BRACKETS.find(x=>x.key===c.dataset.ageKey);
+    if(b) c.setAttribute('aria-label', 'Nombre de voyageurs, ' + b.label);
+  });
+  root.querySelectorAll('input:not([type=hidden]), textarea, select').forEach(c=>{
+    if(c.getAttribute('aria-label') || (c.id && root.querySelector('label[for="'+c.id+'"]'))) return;
+    if(c.getAttribute('placeholder')) c.setAttribute('aria-label', c.getAttribute('placeholder'));
+  });
+  syncPressed();
+}
+document.addEventListener('click', ()=>setTimeout(syncPressed,0));
 
 /* ============================================================
    HOME
@@ -1412,7 +1452,7 @@ function renderHome(){
   <section class="hero">
     <div class="wrap">
       <div class="hero-top">
-        <div class="eyebrow">${ICN.compass.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-1px;margin-right:5px;"')} Planification par IA · affinée par un vrai conseiller</div>
+        <div class="eyebrow">${ICN.compass.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-1px;margin-right:5px;"')} Planification de voyage automatique et gratuite</div>
         <h1>Racontez-nous le voyage que vous imaginez.</h1>
         <p>Lovano compose votre itinéraire complet — vols, hébergements, activités — sur mesure et 100&nbsp;% gratuit. Vous ne payez que votre voyage, jamais notre service.</p>
       </div>
@@ -1516,17 +1556,17 @@ function renderHome(){
       <div class="two-col" style="margin-top:34px;">
         <div>
           <div class="eyebrow" style="margin-bottom:8px;">Comment ça marche</div>
-          <h2 style="font-size:26px;">De l'idée au billet, en 4 étapes</h2>
+          <h2 style="font-size:26px;">De l'idée au voyage, en 4 étapes</h2>
         </div>
         <div>
           ${[
             ['01','Décrivez votre envie','Destination libre ou inspiration, durée, styles et budget.'],
-            ['02','L\'IA compose votre voyage','Itinéraire jour par jour, vols et hébergements inclus.'],
-            ['03','Affinez avec un conseiller','Réordonnez, ajustez, ou discutez avec un vrai conseiller Lovano.'],
-            ['04','Réservez sans frais cachés','Vous payez uniquement le prix affiché de votre voyage.'],
+            ['02','Lovano compose votre voyage','Itinéraire jour par jour, avec vols, hébergement et activités indicatifs.'],
+            ['03','Ajustez votre itinéraire','Changez de vol, réordonnez les journées et comparez les prix.'],
+            ['04','Réservez chez nos partenaires','Lovano ne vend rien : vous réservez directement chez Booking.com, sans surcoût.'],
           ].map(([n,t,d])=>`
             <div style="display:flex; gap:16px; margin-bottom:20px;">
-              <div style="font-family:var(--mono); color:var(--gold); font-weight:700; font-size:13px; padding-top:2px;">${n}</div>
+              <div style="font-family:var(--mono); color:var(--forest); font-weight:700; font-size:13px; padding-top:2px;">${n}</div>
               <div><div style="font-weight:700; margin-bottom:3px;">${t}</div><div class="muted" style="font-size:14px;">${d}</div></div>
             </div>`).join('')}
         </div>
@@ -1615,7 +1655,7 @@ function renderItinerary(){
         </div>
         <div style="display:flex; gap:10px;">
           <button class="btn btn-outline btn-sm" id="btnRegenerate">↻ Régénérer</button>
-          <button class="btn btn-primary btn-sm" onclick="prepareCart()">Réserver ce voyage →</button>
+          <button class="btn btn-primary btn-sm" onclick="prepareCart()">Enregistrer ce voyage →</button>
         </div>
       </div>
 
@@ -1624,12 +1664,14 @@ function renderItinerary(){
         <div class="item"><div class="eyebrow">Durée</div><div class="val">${itin.duration} jours</div></div>
         <div class="item"><div class="eyebrow">Voyageurs</div><div class="val" style="font-size:16px;">${travelersSummaryText(itin.travelersByAge)}</div></div>
         <div class="item"><div class="eyebrow">Hébergement</div><div class="val" style="font-size:16px;">${itin.hotel.name}</div></div>
-        <div class="item"><div class="eyebrow">Budget estimé</div><div class="val">${euro(total)}</div>${itin.travelers>1?`<div class="muted" style="font-size:11px; margin-top:2px;">soit ${euro(Math.round(total/itin.travelers))} / pers.</div>`:''}</div>
+        <div class="item"><div class="eyebrow">Budget estimé</div><div class="val">${euro(total)}</div>${itin.travelers>1?`<div style="color:rgba(255,255,255,.85); font-size:11px; margin-top:2px;">soit ${euro(Math.round(total/itin.travelers))} / pers.</div>`:''}</div>
       </div>
 
       ${destinationMatchNoteHTML(itin)}
 
       ${budgetNoteHTML(itin)}
+
+      <p class="center-note" style="text-align:left; margin:0 0 18px; text-transform:none; letter-spacing:0;">Informations et prix indicatifs. Lovano ne vend pas de voyages : les boutons "Booking.com" sont des liens partenaires (publicité) et Lovano peut percevoir une commission si vous réservez, sans surcoût pour vous.</p>
 
       ${flightPickerHTML(itin)}
 
@@ -1657,24 +1699,9 @@ function renderItinerary(){
         ${itin.days.map((day,idx)=>dayCardHTML(day,idx,itin)).join('')}
       </div>
 
-      <div class="refine-box">
-        <div class="eyebrow" style="margin-bottom:10px;">Affiner mon itinéraire</div>
-        <div class="refine-chip-row">
-          <button class="refine-chip" data-refine="plus-culture">+ Plus de culture</button>
-          <button class="refine-chip" data-refine="plus-farniente">+ Plus de farniente</button>
-          <button class="refine-chip" data-refine="moins-cher">Réduire le budget</button>
-          <button class="refine-chip" data-refine="plus-gastro">+ Gastronomie</button>
-        </div>
-        <textarea id="refineTxt" placeholder="Ex. « Ajoute une journée détente sans activité prévue » — un conseiller Lovano pourra aussi reprendre ce message."></textarea>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; flex-wrap:wrap; gap:10px;">
-          <button class="btn btn-outline btn-sm" onclick="go('contact')">Parler à un conseiller</button>
-          <button class="btn btn-gold btn-sm" id="btnApplyRefine">Appliquer les retouches</button>
-        </div>
-      </div>
-
       <div style="text-align:center; margin-top:40px;">
-        <button class="btn btn-primary" onclick="prepareCart()">${ICN.suitcase.replace('<svg','<svg style="width:15px;height:15px;"')} Réserver ce voyage — ${euro(total)}</button>
-        <div class="center-note">Aucun frais caché · vous payez uniquement le prix de votre voyage${itin.travelers>1?` · ${euro(Math.round(total/itin.travelers))} / pers. pour ${itin.travelers} voyageurs`:''}</div>
+        <button class="btn btn-primary" onclick="prepareCart()">${ICN.suitcase.replace('<svg','<svg style="width:15px;height:15px;"')} Enregistrer ce voyage — ${euro(total)}</button>
+        <div class="center-note">Estimation indicative · aucun paiement dans l'application${itin.travelers>1?` · ${euro(Math.round(total/itin.travelers))} / pers. pour ${itin.travelers} voyageurs`:''}</div>
       </div>
     </div>
   </section>`;
@@ -1743,7 +1770,7 @@ function hotelInfoHTML(itin){
         <div class="fo-total">${itin.hotel.nights} nuits · ${rooms} chambre${rooms>1?'s':''} · ${euro(hotelTotal)} au total</div>
       </div>
     </div>
-    ${itin.destination.procedural ? `<div class="center-note" style="margin-top:14px; text-align:left;">Établissement donné à titre indicatif · un conseiller confirmera la disponibilité réelle avant réservation</div>` : `<div class="center-note" style="margin-top:14px; text-align:left;">Établissement réel · prix et disponibilité indicatifs, à confirmer avec un conseiller avant réservation</div>`}
+    ${itin.destination.procedural ? `<div class="center-note" style="margin-top:14px; text-align:left;">Établissement donné à titre indicatif · disponibilité à vérifier auprès du partenaire avant toute réservation</div>` : `<div class="center-note" style="margin-top:14px; text-align:left;">Établissement réel · prix et disponibilité indicatifs, à vérifier auprès du partenaire avant toute réservation</div>`}
     <div style="margin-top:16px; padding-top:16px; border-top:1px dotted rgba(27,42,74,.15); display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
       <div class="muted" style="font-size:12.5px;">Comparez et réservez directement chez notre partenaire officiel</div>
       <a href="${BOOKING_AFFILIATE_LINK}" target="_blank" rel="noopener sponsored" class="btn btn-outline btn-sm">
@@ -1779,7 +1806,7 @@ function restaurantInfoHTML(itin){
           </div>
         </div>`).join('')}
     </div>
-    <div class="center-note" style="margin-top:14px;">Adresses réelles et reconnues · prix indicatifs, un conseiller peut réserver une table sur place</div>
+    <div class="center-note" style="margin-top:14px;">Adresses réelles et reconnues · prix indicatifs, à vérifier sur place</div>
   </div>`;
 }
 
@@ -1959,7 +1986,7 @@ function renderCart(){
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="eyebrow" style="margin-bottom:8px;">${ICN.ticket.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-1px;margin-right:5px;"')} Votre panier de voyage</div>
+          <div class="eyebrow" style="margin-bottom:8px;">${ICN.ticket.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-1px;margin-right:5px;"')} Récapitulatif estimatif</div>
           <h2>${itin.destination.name} · ${itin.duration} jours · ${trav} ${trav>1?'voyageurs':'voyageur'}</h2>
         </div>
         <button class="btn btn-outline btn-sm" onclick="go('itinerary')">← Modifier l'itinéraire</button>
@@ -1996,14 +2023,14 @@ function renderCart(){
         </div>
 
         <div class="summary-card">
-          <h3>Récapitulatif</h3>
+          <h3>Estimation</h3>
           <div class="summary-row"><span>Vol (${cart.flight.airline})</span><span>${euro(flightTotal)}</span></div>
           <div class="summary-row"><span>Hébergement</span><span>${euro(hotelTotal)}</span></div>
           <div class="summary-row"><span>Activités</span><span>${euro(activitiesTotal)}</span></div>
-          <div class="summary-total"><span>Total du voyage</span><span class="amt">${euro(total)}</span></div>
-          ${trav>1?`<div class="muted" style="font-size:11.5px; margin-top:-14px; margin-bottom:14px;">soit ${euro(Math.round(total/trav))} / pers. pour ${trav} voyageurs</div>`:''}
-          <button class="btn btn-gold btn-block" style="margin-top:20px;" onclick="go('payment')">Réserver — ${euro(total)}</button>
-          <div class="free-note">${ICN.shield}<span>Aucun frais de service Lovano : ce montant correspond exactement au prix de votre voyage.</span></div>
+          <div class="summary-total"><span>Total estimé</span><span class="amt">${euro(total)}</span></div>
+          ${trav>1?`<div style="color:rgba(255,255,255,.8); font-size:11.5px; margin-top:-14px; margin-bottom:14px;">soit ${euro(Math.round(total/trav))} / pers. pour ${trav} voyageurs</div>`:''}
+          <button class="btn btn-gold btn-block" style="margin-top:20px;" onclick="go('payment')">Enregistrer — ${euro(total)}</button>
+          <div class="free-note">${ICN.shield}<span>Aucun frais de service Lovano. Prix indicatifs : le prix final est celui affiché par le partenaire au moment de la réservation.</span></div>
         </div>
       </div>
     </div>
@@ -2022,30 +2049,23 @@ function renderPayment(){
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="eyebrow" style="margin-bottom:8px;">${ICN.card.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-1px;margin-right:5px;"')} Paiement sécurisé</div>
-          <h2>Finaliser la réservation</h2>
+          <div class="eyebrow" style="margin-bottom:8px;">${ICN.suitcase.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-1px;margin-right:5px;"')} Carnet de voyage</div>
+          <h2>Enregistrer mon voyage</h2>
         </div>
       </div>
       <div style="display:flex; gap:30px; flex-wrap:wrap;">
         <form class="pay-form" id="payForm" onsubmit="return false;">
-          <div class="pay-field"><label>Nom sur la carte</label><input type="text" placeholder="Jean Dupont" required></div>
-          <div class="pay-field"><label>Numéro de carte</label><input type="text" placeholder="4242 4242 4242 4242" maxlength="19" required></div>
-          <div class="pay-row2">
-            <div class="pay-field"><label>Expiration</label><input type="text" placeholder="MM / AA" required></div>
-            <div class="pay-field"><label>CVC</label><input type="text" placeholder="123" required></div>
-          </div>
-          <div class="pay-field"><label>E-mail de confirmation</label><input type="email" placeholder="vous@exemple.be" required></div>
-          <div class="pay-field"><label>Date de départ</label><input type="date" id="payStartDate" min="${new Date().toISOString().slice(0,10)}" required></div>
-          <div class="pay-field" style="margin-top:-8px;"><label style="text-transform:none; letter-spacing:0; font-family:var(--sans); font-weight:400; font-size:12.5px;" class="muted">${ICN.shield?ICN.shield.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-2px;margin-right:4px;"'):''}Utilisée pour vous notifier au bon moment de chaque étape de votre voyage une fois l'app installée.</label></div>
-          <button class="btn btn-primary btn-block" id="btnPay" type="submit">Payer ${euro(total)} et confirmer</button>
-          <div class="center-note">Paiement simulé à des fins de démonstration</div>
+          <p class="muted" style="font-size:14px; margin-top:0;"><b>Aucun paiement n'est demandé et aucune réservation n'est effectuée dans l'application.</b> Ce voyage est enregistré dans votre carnet, sur votre appareil. Pour réserver vols, hébergements, voitures ou activités, utilisez ensuite les liens de notre partenaire Booking.com.</p>
+          <div class="pay-field"><label>Date de départ (facultatif)</label><input type="date" id="payStartDate" min="${new Date().toISOString().slice(0,10)}"></div>
+          <p class="muted" style="font-size:12.5px; margin:-6px 0 16px;">Cette date sert uniquement à programmer, sur votre appareil, des rappels (notifications locales) aux moments prévus de votre voyage. Elle n'est envoyée à personne. Ces rappels sont indicatifs et ne remplacent pas les horaires officiels de vos vols, hébergements ou activités.</p>
+          <button class="btn btn-primary btn-block" id="btnPay" type="submit">Enregistrer dans mon carnet</button>
         </form>
         <div style="flex:1; min-width:240px;">
           <div class="summary-card" style="position:static;">
             <h3 style="font-size:17px;">${cart.itinerary.destination.name}</h3>
-            <div class="muted" style="color:rgba(255,255,255,.7); font-size:13px; margin-bottom:14px;">${cart.itinerary.duration} jours · ${cart.itinerary.hotel.name}</div>
-            <div class="summary-total" style="margin-top:0; padding-top:0; border-top:none;"><span>Total</span><span class="amt">${euro(total)}</span></div>
-            ${cart.itinerary.travelers>1?`<div class="muted" style="color:rgba(255,255,255,.7); font-size:11.5px; margin-top:4px;">soit ${euro(Math.round(total/cart.itinerary.travelers))} / pers. pour ${cart.itinerary.travelers} voyageurs</div>`:''}
+            <div style="color:rgba(255,255,255,.8); font-size:13px; margin-bottom:14px;">${cart.itinerary.duration} jours · ${cart.itinerary.hotel.name}</div>
+            <div class="summary-total" style="margin-top:0; padding-top:0; border-top:none;"><span>Total estimé</span><span class="amt">${euro(total)}</span></div>
+            ${cart.itinerary.travelers>1?`<div style="color:rgba(255,255,255,.8); font-size:11.5px; margin-top:4px;">soit ${euro(Math.round(total/cart.itinerary.travelers))} / pers. pour ${cart.itinerary.travelers} voyageurs</div>`:''}
           </div>
         </div>
       </div>
@@ -2057,7 +2077,6 @@ function confirmPayment(){
   const cart = state.cart;
   const itin = cart.itinerary;
   const total = computeCartTotal(itin);
-  const breakdown = computeCartBreakdown(itin);
   const tripId = 'trip-'+Math.random().toString(36).slice(2,8);
   const startDateInput = document.getElementById('payStartDate');
   const startDate = startDateInput && startDateInput.value ? startDateInput.value : null;
@@ -2069,12 +2088,6 @@ function confirmPayment(){
     steps:{vol:true, hebergement:true, activites:true, termine:false},
   };
   state.trips.unshift(newTrip);
-  state.bookingsAdmin.unshift({
-    id:'RES-'+Math.floor(10000+Math.random()*89999),
-    tripLabel: newTrip.label+' — Client démo',
-    date: new Date().toLocaleDateString('fr-BE'),
-    ...breakdown,
-  });
   scheduleTripNotifications(newTrip);
   state.routeParam = tripId;
   go('confirmation', tripId);
@@ -2147,12 +2160,12 @@ function renderConfirmation(){
   return `
   <section class="section">
     <div class="wrap confirm-wrap">
-      <div class="stamp r1 stamp-pop"><span>Confirmé ✦</span></div>
-      <h2>Votre voyage est réservé !</h2>
-      <p class="muted">Un e-mail de confirmation reprenant tous les détails de votre séjour à ${trip.itinerary.destination.name} vous a été envoyé. Retrouvez-le à tout moment dans votre espace personnel.</p>
+      <div class="stamp r1 stamp-pop"><span>Enregistré ✦</span></div>
+      <h2>Votre voyage est enregistré</h2>
+      <p class="muted">Votre voyage à ${trip.itinerary.destination.name} est enregistré dans votre carnet, sur cet appareil, pour la durée de votre session. <b>Aucune réservation n'a été effectuée</b> : pour réserver, utilisez les liens Booking.com de votre itinéraire.</p>
       <div style="display:flex; gap:12px; justify-content:center; margin-top:30px; flex-wrap:wrap;">
-        <button class="btn btn-primary" onclick="go('document','${trip.id}')">${ICN.ticket.replace('<svg','<svg style="width:14px;height:14px;"')} Voir mon document de voyage</button>
-        <button class="btn btn-outline" onclick="go('mytrips')">Mon espace voyages</button>
+        <button class="btn btn-primary" onclick="go('document','${trip.id}')">${ICN.ticket.replace('<svg','<svg style="width:14px;height:14px;"')} Voir mon carnet de voyage</button>
+        <button class="btn btn-outline" onclick="go('mytrips')">Mon carnet</button>
       </div>
     </div>
   </section>`;
@@ -2169,15 +2182,15 @@ function renderMyTrips(){
     <div class="wrap">
       <div class="hero-top" style="margin-bottom:34px;">
         <div class="eyebrow" style="margin-bottom:8px;">Espace personnel</div>
-        <h1 style="font-size:34px;">Mon voyage</h1>
-        <p>Retrouvez ici vos voyages à venir et passés, chacun présenté comme un passeport avec ses tampons d'étape.</p>
+        <h1 style="font-size:34px;">Mon carnet de voyage</h1>
+        <p>Retrouvez ici les voyages enregistrés pendant cette session, présentés comme un passeport avec leurs étapes prévues.</p>
       </div>
 
       <h3 style="font-size:19px; margin-bottom:16px;">À venir</h3>
-      ${upcoming.length? upcoming.map(passportCardHTML).join('') : emptyStateHTML('Aucun voyage à venir', 'Générez votre premier itinéraire pour le voir apparaître ici.', "go('home')","Créer un itinéraire")}
+      ${upcoming.length? upcoming.map(passportCardHTML).join('') : emptyStateHTML('Aucun voyage enregistré', 'Générez un itinéraire puis enregistrez-le pour le voir apparaître ici.', "go('home')","Créer un itinéraire")}
 
       <h3 style="font-size:19px; margin:36px 0 16px;">Voyages passés</h3>
-      ${past.length? past.map(passportCardHTML).join('') : emptyStateHTML('Aucun voyage passé', 'Vos souvenirs de voyage Lovano apparaîtront ici.')}
+      ${past.length? past.map(passportCardHTML).join('') : emptyStateHTML('Aucun voyage passé', 'Les voyages terminés apparaîtront ici.')}
     </div>
   </section>`;
 }
@@ -2198,13 +2211,13 @@ function passportCardHTML(t){
       <span class="badge ${t.status==='upcoming'?'gold':'forest'}">${t.status==='upcoming'?'À venir':'Terminé'}</span>
     </div>
     <div class="passport-stamps">
-      <div class="stamp r1 ${steps.vol?'':'pending'}"><span>Vol${steps.vol?'\\nréservé':''}</span></div>
-      <div class="stamp r3 ${steps.hebergement?'':'pending'}"><span>Hôtel${steps.hebergement?'\\nconfirmé':''}</span></div>
-      <div class="stamp r2 ${steps.activites?'':'pending'}"><span>Activités${steps.activites?'\\nprêtes':''}</span></div>
+      <div class="stamp r1 ${steps.vol?'':'pending'}"><span>Vol${steps.vol?'\\nprévu':''}</span></div>
+      <div class="stamp r3 ${steps.hebergement?'':'pending'}"><span>Hôtel${steps.hebergement?'\\nprévu':''}</span></div>
+      <div class="stamp r2 ${steps.activites?'':'pending'}"><span>Activités${steps.activites?'\\nprévues':''}</span></div>
       <div class="stamp r4 ${steps.termine?'':'pending'}"><span>Voyage${steps.termine?'\\nvécu':' à venir'}</span></div>
     </div>
     <div class="passport-actions">
-      <button class="btn btn-gold btn-sm" onclick="go('document','${t.id}')">Voir le document de voyage</button>
+      <button class="btn btn-gold btn-sm" onclick="go('document','${t.id}')">Voir le carnet de voyage</button>
       <button class="btn btn-outline btn-sm" style="color:#fff; border-color:rgba(255,255,255,.4);" onclick="go('destination','${t.destinationId}')">Revoir la destination</button>
     </div>
   </div>`;
@@ -2227,7 +2240,7 @@ function renderDocument(){
     <div class="wrap">
       <div class="doc-sheet">
         <div class="doc-header">
-          <div class="dh-brand">${ICN.compass}<div><div style="font-family:var(--serif); font-size:19px;">Lovano</div><div style="font-family:var(--mono); font-size:9px; opacity:.75; letter-spacing:.1em;">DOCUMENT DE VOYAGE</div></div></div>
+          <div class="dh-brand">${ICN.compass}<div><div style="font-family:var(--serif); font-size:19px;">Lovano</div><div style="font-family:var(--mono); font-size:9px; opacity:.75; letter-spacing:.1em;">CARNET DE VOYAGE · INDICATIF</div></div></div>
           <div style="text-align:right; font-family:var(--mono); font-size:11px; opacity:.85;">RÉF. ${trip.id.toUpperCase()}<br>${trip.createdAt}</div>
         </div>
         <div class="doc-body">
@@ -2236,11 +2249,11 @@ function renderDocument(){
             <div class="doc-row"><span class="k">Voyage</span><span class="v">${itin.destination.name}, ${itin.destination.country}</span></div>
             <div class="doc-row"><span class="k">Durée</span><span class="v">${itin.duration} jours</span></div>
             <div class="doc-row"><span class="k">Voyageurs</span><span class="v">${travelersSummaryText(itin.travelersByAge)}</span></div>
-            <div class="doc-row"><span class="k">Statut</span><span class="v">${trip.status==='upcoming'?'Confirmé':'Voyage effectué'}</span></div>
+            <div class="doc-row"><span class="k">Statut</span><span class="v">${trip.status==='upcoming'?'Planifié (aucune réservation effectuée)':'Voyage effectué'}</span></div>
           </div>
 
           <div class="doc-section">
-            <h4>Billet d'avion</h4>
+            <h4>Vol envisagé (prix indicatif)</h4>
             <div class="doc-ticket">
               <div class="doc-row"><span class="k">Compagnie</span><span class="v">${flight.airline} (${flight.code})</span></div>
               <div class="doc-row"><span class="k">Trajet</span><span class="v">${flight.hub} → ${itin.destination.name} (aller-retour)</span></div>
@@ -2251,7 +2264,7 @@ function renderDocument(){
           </div>
 
           <div class="doc-section">
-            <h4>Bon d'échange hébergement</h4>
+            <h4>Hébergement envisagé (prix indicatif)</h4>
             <div class="doc-ticket">
               <div class="doc-row"><span class="k">Établissement</span><span class="v">${itin.hotel.name}</span></div>
               <div class="doc-row"><span class="k">Nuits / chambres</span><span class="v">${itin.hotel.nights} nuits · ${rooms} chambre${rooms>1?'s':''}</span></div>
@@ -2280,11 +2293,11 @@ function renderDocument(){
             <h4>Informations pratiques</h4>
             <div class="doc-row"><span class="k">Départ conseillé</span><span class="v">${itin.destination.depart}</span></div>
             <div class="doc-row"><span class="k">Météo idéale</span><span class="v">${itin.destination.idealWeather}</span></div>
-            <div class="doc-row"><span class="k">Assistance</span><span class="v">Conseillers Lovano disponibles 7j/7</span></div>
+            <div class="doc-row"><span class="k">Contact</span><span class="v">lovano.voyages@gmail.com</span></div>
           </div>
 
           <div class="doc-section" style="border-top:1.5px dashed var(--navy-15); padding-top:20px; margin-bottom:0;">
-            <div class="doc-row" style="font-size:16px;"><span class="k">Total du voyage</span><span class="v" style="color:var(--forest);">${euro(trip.total)}</span></div>
+            <div class="doc-row" style="font-size:16px;"><span class="k">Total estimé</span><span class="v" style="color:var(--forest);">${euro(trip.total)}</span></div>
           </div>
         </div>
       </div>
@@ -2299,115 +2312,93 @@ function renderDocument(){
 /* ============================================================
    CONTACT CONSEILLER
 ============================================================ */
-const ADVISOR_REPLIES = [
-  "Merci pour votre message ! Je regarde votre itinéraire et reviens vers vous avec des suggestions dans un instant.",
-  "Bonne idée — je peux ajuster le rythme de vos journées pour laisser plus de temps libre, si vous le souhaitez.",
-  "C'est noté. Je vous propose aussi une option d'hébergement un peu plus centrale, à budget équivalent.",
-  "Je transmets votre demande à notre équipe locale pour confirmer les disponibilités et je reviens vers vous rapidement.",
-];
+const CONTACT_EMAIL = 'lovano.voyages@gmail.com';
+const LEGAL_DATE = '19 septembre 2026';
+
+function sendContactMail(e){
+  e.preventDefault();
+  const msg = document.getElementById('contactMsg').value;
+  window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Question sur Lovano') + '&body=' + encodeURIComponent(msg);
+}
 
 function renderContact(){
-  if(state.chatMsgs.length===0){
-    state.chatMsgs.push({from:'them', text:"Bonjour ! Je suis Camille, conseillère Lovano. Dites-moi ce que vous aimeriez affiner dans votre voyage — rythme, budget, activités — et je m'en occupe avec vous."});
-  }
   return `
   <section class="section">
-    <div class="wrap">
-      <div class="hero-top" style="margin-bottom:30px;">
-        <div class="eyebrow" style="margin-bottom:8px;">Un vrai conseiller, à votre écoute</div>
-        <h1 style="font-size:32px;">Parlons de votre voyage</h1>
-        <p>Discutez directement avec un conseiller Lovano pour affiner votre itinéraire, ou laissez-nous vos coordonnées pour être rappelé.</p>
+    <div class="wrap legal" style="max-width:640px;">
+      <div class="hero-top" style="margin-bottom:26px;">
+        <div class="eyebrow" style="margin-bottom:8px;">Une question, une remarque ?</div>
+        <h1 style="font-size:32px;">Nous contacter</h1>
+        <p>Écrivez-nous par e-mail à <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. Nous répondons dès que possible. Lovano n'a pas de chat ni de standard téléphonique.</p>
       </div>
-
-      <div class="chat-shell">
-        <div class="chat-head">
-          <div class="chat-avatar">C</div>
-          <div>
-            <div style="font-weight:700;">Camille — Conseillère Lovano</div>
-            <div style="font-family:var(--mono); font-size:10px; opacity:.75; letter-spacing:.06em;">● EN LIGNE</div>
-          </div>
-        </div>
-        <div class="chat-body" id="chatBody">
-          ${state.chatMsgs.map(m=>`<div class="msg ${m.from}">${m.text}</div>`).join('')}
-        </div>
-        <div class="chat-input-row">
-          <textarea id="chatInput" placeholder="Écrivez votre message…"></textarea>
-          <button class="btn btn-primary btn-sm" id="btnSendChat">${ICN.send.replace('<svg','<svg style="width:14px;height:14px;"')}</button>
-        </div>
-      </div>
-
-      <div class="advisor-form">
-        <div class="eyebrow" style="margin-bottom:14px;">Ou laissez-nous vos coordonnées</div>
-        <form onsubmit="event.preventDefault(); toast('Votre demande a bien été envoyée à un conseiller.');">
-          <div class="field"><input type="text" placeholder="Votre nom" required></div>
-          <div class="field"><input type="email" placeholder="Votre e-mail" required></div>
-          <div class="field"><textarea placeholder="Décrivez ce que vous souhaitez affiner…"></textarea></div>
-          <button class="btn btn-gold btn-block" type="submit">Envoyer ma demande</button>
-        </form>
-      </div>
+      <form class="advisor-form" onsubmit="sendContactMail(event)">
+        <label for="contactMsg" class="eyebrow" style="display:block; margin-bottom:12px;">Votre message</label>
+        <textarea id="contactMsg" rows="6" required></textarea>
+        <button class="btn btn-gold btn-block" type="submit" style="margin-top:16px;">Ouvrir mon application de messagerie</button>
+        <p style="font-size:12.5px; margin-top:14px;">Ce bouton prépare un e-mail dans votre application de messagerie ; rien n'est envoyé avant que vous l'envoyiez vous-même. Si vous l'envoyez, nous recevons votre adresse e-mail et votre message, uniquement pour vous répondre (voir la <a href="#" onclick="go('privacy');return false;">politique de confidentialité</a>).</p>
+      </form>
     </div>
   </section>`;
 }
+
+function legalPage(eyebrow, title, body){
+  return `
+  <section class="section">
+    <div class="wrap legal" style="max-width:760px;">
+      <div class="hero-top" style="margin-bottom:30px;">
+        <div class="eyebrow" style="margin-bottom:8px;">${eyebrow}</div>
+        <h1 style="font-size:32px;">${title}</h1>
+        <p>Version du ${LEGAL_DATE}</p>
+      </div>
+      ${body}
+    </div>
+  </section>`;
+}
+const lg = (title, html) => `<div style="margin-bottom:26px;"><h2 style="font-size:19px; margin-bottom:8px;">${title}</h2>${html}</div>`;
 
 function renderPrivacy(){
-  const pp = (title, body) => `
-    <div style="margin-bottom:26px;">
-      <h3 style="font-size:16px; margin-bottom:8px;">${title}</h3>
-      <div class="muted" style="font-size:14.5px; line-height:1.7;">${body}</div>
-    </div>`;
-  return `
-  <section class="section">
-    <div class="wrap" style="max-width:760px;">
-      <div class="hero-top" style="margin-bottom:34px;">
-        <div class="eyebrow" style="margin-bottom:8px;">Vos données, en toute transparence</div>
-        <h1 style="font-size:32px;">Politique de confidentialité</h1>
-        <p>Dernière mise à jour : ${new Date().toLocaleDateString('fr-BE',{day:'numeric',month:'long',year:'numeric'})}</p>
-      </div>
-
-      ${pp('1. Qui nous sommes', `Lovano est une agence de voyage en ligne basée à Bruxelles, Belgique. Cette politique explique quelles données l'application et le site Lovano traitent, pourquoi, et comment vous pouvez les contrôler. Pour toute question, contactez-nous à <a href="mailto:lovano.voyages@gmail.com" style="color:var(--forest);">lovano.voyages@gmail.com</a>.`)}
-
-      ${pp('2. Les données que vous nous donnez', `Lorsque vous décrivez votre voyage (destination, durée, styles, budget, nombre de voyageurs), ces informations sont utilisées uniquement pour générer votre itinéraire et ne sont pas stockées sur nos serveurs. Si vous engagez une réservation, nous vous demandons votre nom, votre e-mail et une date de départ afin de traiter votre demande et de vous tenir informé de votre voyage.`)}
-
-      ${pp('3. Vos favoris et vos voyages', `Les destinations que vous mettez en favori, ainsi que l'historique de vos voyages affichés dans "Mon espace", sont enregistrés uniquement sur votre appareil (mémoire locale de l'application). Nous n'y avons pas accès et ils ne quittent jamais votre téléphone ou votre ordinateur.`)}
-
-      ${pp('4. Notifications', `Si vous réservez un voyage dans l'application mobile et que vous autorisez les notifications, nous programmons des rappels locaux (arrivée, activités, repas prévus) directement sur votre appareil, à partir des informations de votre itinéraire. Ces notifications sont générées et stockées localement sur votre téléphone : elles ne transitent par aucun serveur Lovano. Vous pouvez désactiver les notifications à tout moment dans les réglages de votre appareil.`)}
-
-      ${pp('5. Réservations auprès de nos partenaires', `Pour réserver un hébergement, une location de voiture ou une activité, vous pouvez être redirigé vers notre partenaire Booking.com. Cette redirection nous permet de vous proposer ces réservations gratuitement. Une fois sur leur site, c'est la politique de confidentialité de Booking.com qui s'applique — nous vous invitons à la consulter. Lovano ne reçoit aucune donnée de paiement de votre part lors de ces réservations.`)}
-
-      ${pp('6. Polices de caractères', `Le site utilise Google Fonts pour afficher certaines polices. Le chargement de ces polices peut transmettre votre adresse IP à Google, selon leur propre politique de confidentialité.`)}
-
-      ${pp('7. Ce que nous ne faisons pas', `Nous ne vendons ni ne louons vos données à des tiers. Nous n'utilisons pas d'outils de suivi publicitaire ou d'analyse comportementale dans l'application.`)}
-
-      ${pp('8. Vos droits', `Conformément au RGPD, vous pouvez à tout moment demander l'accès, la correction ou la suppression des données que vous nous avez transmises (par exemple lors d'une demande de contact ou d'une réservation) en nous écrivant à <a href="mailto:lovano.voyages@gmail.com" style="color:var(--forest);">lovano.voyages@gmail.com</a>. Vous pouvez aussi supprimer vos favoris et l'historique local directement depuis l'application, ou désinstaller l'application pour effacer toutes les données stockées sur votre appareil.`)}
-
-      ${pp('9. Enfants', `Lovano ne s'adresse pas aux personnes de moins de 16 ans et ne collecte pas sciemment de données les concernant.`)}
-
-      ${pp('10. Modifications', `Cette politique peut évoluer, notamment si de nouvelles fonctionnalités (comme le paiement en ligne direct) sont ajoutées à l'application. La date de mise à jour en haut de cette page reflète la version la plus récente.`)}
-    </div>
-  </section>`;
+  return legalPage('Vos données, en toute transparence', 'Politique de confidentialité',
+    lg('1. Qui est responsable ?', `<p>Le service Lovano est édité à Bruxelles (Belgique) par Lovano. Contact pour toute question sur vos données : <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>`) +
+    lg('2. En bref', `<p>Lovano n'a ni compte, ni inscription, ni publicité, ni outil de mesure d'audience, ni cookie. La plupart des informations que vous saisissez restent sur votre appareil et ne sont jamais envoyées à Lovano. Lovano ne demande et ne traite aucune donnée de paiement.</p>`) +
+    lg('3. Quelles données, pourquoi, combien de temps ?', `<ul>
+      <li><b>Paramètres de voyage</b> (destination, durée, nombre de voyageurs par tranche d'âge, styles, budget) : utilisés uniquement dans l'application, sur votre appareil, pour composer l'itinéraire. Ils ne sont pas envoyés à Lovano et disparaissent quand vous fermez l'application. Base légale : exécution du service que vous demandez (art. 6.1.b du RGPD).</li>
+      <li><b>Favoris</b> : la liste des destinations que vous marquez d'un cœur est enregistrée sur votre appareil (stockage local de l'application), jusqu'à ce que vous les retiriez ou effaciez les données de l'application. Elle n'est jamais envoyée à Lovano. Base légale : fonction que vous demandez.</li>
+      <li><b>Carnet de voyage</b> (voyages enregistrés et date de départ, facultative) : conservé en mémoire de l'application pendant la session uniquement, non envoyé à Lovano.</li>
+      <li><b>Rappels (notifications locales)</b> : si vous indiquez une date de départ et autorisez les notifications dans Android, l'application programme des rappels sur votre appareil. Ce ne sont pas des notifications "push" : aucun serveur n'est impliqué. Base légale : votre consentement (autorisation système), que vous pouvez retirer à tout moment dans les réglages d'Android.</li>
+      <li><b>E-mails que vous nous envoyez</b> : si vous nous écrivez, nous recevons votre adresse e-mail, votre nom éventuel et votre message, uniquement pour vous répondre. Base légale : intérêt légitime à répondre à votre demande (art. 6.1.f). Conservation : le temps de traiter votre demande, puis au maximum 12 mois. Ces e-mails sont reçus dans une boîte Gmail (Google), sous-traitant qui peut traiter des données hors de l'Union européenne dans le cadre de garanties reconnues (cadre de protection des données UE-États-Unis ou clauses contractuelles types).</li>
+    </ul>`) +
+    lg('4. Liens vers nos partenaires', `<p>L'application contient des liens vers Booking.com (vols, hébergements, voitures, attractions), via la plateforme d'affiliation CJ Affiliate. Lorsque vous cliquez, vous quittez Lovano : Booking.com et la plateforme d'affiliation peuvent alors utiliser des cookies pour mesurer le clic et attribuer une commission à Lovano. Ils sont responsables de ces traitements : consultez leurs politiques de confidentialité. Lovano reçoit uniquement des statistiques de clics et de commissions, qui ne l'identifient pas et ne permettent pas de vous identifier.</p>`) +
+    lg('5. Ce que nous ne faisons pas', `<p>Nous ne vendons pas vos données, ne les cédons pas à des fins publicitaires, ne vous profilons pas et ne prenons aucune décision automatisée produisant des effets juridiques à votre égard. Les polices de caractères sont intégrées à l'application : aucune requête n'est envoyée à Google Fonts.</p>`) +
+    lg('6. Vos droits', `<p>Vous pouvez demander l'accès, la rectification, l'effacement, la limitation ou la portabilité des données que vous nous avez transmises (par exemple par e-mail), vous opposer à leur traitement et retirer votre consentement à tout moment, en écrivant à <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. Nous répondons dans un délai d'un mois. Les données stockées sur votre appareil (favoris) peuvent être supprimées par vous-même : retirez le cœur, ou effacez les données de l'application dans les réglages d'Android, ou désinstallez-la.</p>`) +
+    lg('7. Réclamation', `<p>Vous pouvez introduire une réclamation auprès de l'Autorité de protection des données (Belgique) : Rue de la Presse 35, 1000 Bruxelles, <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener">www.autoriteprotectiondonnees.be</a>, contact@apd-gba.be.</p>`) +
+    lg('8. Enfants', `<p>Lovano ne s'adresse pas aux enfants de moins de 13 ans et ne collecte pas sciemment de données à leur sujet. Les âges des voyageurs saisis pour calculer les tarifs sont de simples tranches d'âge, restent sur votre appareil et n'identifient personne.</p>`) +
+    lg('9. Modifications', `<p>Cette politique peut évoluer, notamment si de nouvelles fonctions sont ajoutées. Si un changement modifiait la façon dont vos données sont traitées, nous vous en informerions dans l'application et, lorsque la loi l'exige, nous demanderions votre accord. La date de version figure en haut de cette page.</p>`)
+  );
 }
 
-function sendChatMessage(){
-  const inp = document.getElementById('chatInput');
-  const text = inp.value.trim();
-  if(!text) return;
-  state.chatMsgs.push({from:'me', text});
-  inp.value='';
-  const body = document.getElementById('chatBody');
-  body.innerHTML = state.chatMsgs.map(m=>`<div class="msg ${m.from}">${m.text}</div>`).join('');
-  body.scrollTop = body.scrollHeight;
-  const typing = document.createElement('div');
-  typing.className='typing-dots';
-  typing.innerHTML='<span></span><span></span><span></span>';
-  body.appendChild(typing);
-  body.scrollTop = body.scrollHeight;
-  setTimeout(()=>{
-    typing.remove();
-    const reply = ADVISOR_REPLIES[Math.floor(Math.random()*ADVISOR_REPLIES.length)];
-    state.chatMsgs.push({from:'them', text:reply});
-    body.innerHTML = state.chatMsgs.map(m=>`<div class="msg ${m.from}">${m.text}</div>`).join('');
-    body.scrollTop = body.scrollHeight;
-  }, 1300);
+function renderTerms(){
+  return legalPage('Règles d\'utilisation', 'Conditions d\'utilisation',
+    lg('1. Éditeur', `<p>Lovano, édité à Bruxelles (Belgique). Contact : <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>`) +
+    lg('2. Ce que fait Lovano', `<p>Lovano est un outil gratuit de planification de voyage : à partir de votre destination, de votre durée, de vos envies et de votre budget, l'application compose automatiquement un itinéraire indicatif, avec des vols, un hébergement et des activités d'exemple. Aucun conseiller humain n'intervient dans cette composition.</p><p><b>Lovano n'est pas une agence de voyage.</b> Lovano n'organise ni ne vend de voyages, de vols, d'hébergements, de locations de voiture ou d'activités, ne prend aucun paiement et n'intervient dans aucune réservation.</p>`) +
+    lg('3. Informations et prix indicatifs', `<p>Les prix, durées de vol, disponibilités et horaires affichés sont des estimations qui peuvent différer de la réalité et ne constituent pas une offre. Vérifiez toujours les conditions et le prix définitifs auprès du prestataire avant de réserver. Pour certaines destinations, les noms d'hôtels et de restaurants sont génériques et donnés à titre illustratif : ils ne correspondent pas nécessairement à un établissement réel.</p>`) +
+    lg('4. Liens partenaires et rémunération', `<p>Les boutons "Booking.com" sont des liens d'affiliation (publicité). Si vous réservez après avoir cliqué, Lovano peut percevoir une commission de la part de Booking.com, sans aucun surcoût pour vous. La réservation est conclue directement entre vous et le prestataire, selon ses propres conditions ; Lovano n'est pas partie à ce contrat.</p>`) +
+    lg('5. Rappels', `<p>Les rappels (notifications) s'appuient sur des créneaux indicatifs (matin, midi, après-midi, soir) et sur une date que vous saisissez. Ils ne remplacent pas les horaires officiels de vos vols, hébergements ou activités : vérifiez-les auprès de vos prestataires.</p>`) +
+    lg('6. Propriété intellectuelle', `<p>L'application Lovano, son contenu, son design et sa marque sont protégés. Vous pouvez l'utiliser pour un usage personnel et non commercial. Les noms et marques de tiers (Booking.com, compagnies aériennes, etc.) appartiennent à leurs titulaires.</p>`) +
+    lg('7. Responsabilité', `<p>Lovano est fourni gratuitement, "en l'état". Dans les limites permises par la loi, Lovano ne garantit pas l'exactitude ni l'exhaustivité des informations et ne peut être tenu responsable des décisions prises sur cette base, ni des services fournis par des tiers. Cette clause n'exclut pas la responsabilité de Lovano en cas de dol, de faute lourde ou pour toute responsabilité qui ne peut être limitée par la loi, et ne porte pas atteinte aux droits impératifs des consommateurs.</p>`) +
+    lg('8. Disponibilité et évolution', `<p>Lovano peut modifier, suspendre ou arrêter tout ou partie du service, ou mettre à jour ces conditions ; la version en vigueur est celle affichée dans l'application.</p>`) +
+    lg('9. Données personnelles et cookies', `<p>Voir la <a href="#" onclick="go('privacy');return false;">politique de confidentialité</a> et la <a href="#" onclick="go('cookies');return false;">politique de cookies</a>.</p>`) +
+    lg('10. Droit applicable et litiges', `<p>Le droit belge s'applique, sans préjudice des règles impératives de protection du consommateur de votre pays de résidence. En cas de difficulté, contactez-nous d'abord par e-mail. Vous pouvez aussi saisir le Service de médiation pour le consommateur (<a href="https://www.mediationconsommateur.be" target="_blank" rel="noopener">www.mediationconsommateur.be</a>).</p>`)
+  );
+}
+
+function renderCookies(){
+  return legalPage('Traceurs et stockage', 'Politique de cookies',
+    lg('1. Lovano n\'utilise aucun cookie', `<p>L'application Lovano ne dépose aucun cookie et n'utilise aucun traceur publicitaire ou de mesure d'audience. C'est pourquoi elle n'affiche pas de bandeau de consentement aux cookies : il n'y a rien à accepter ni à refuser.</p>`) +
+    lg('2. Stockage local strictement nécessaire', `<p>Quand vous marquez une destination d'un cœur, l'application enregistre cette liste dans le stockage local de votre appareil (clé <code>lovano_favorites</code>). Ce stockage sert uniquement à retrouver vos favoris, à votre demande : il n'est jamais envoyé à Lovano ni à un tiers. Il est nécessaire à la fonction que vous demandez et ne requiert donc pas votre consentement au regard de la réglementation belge (loi du 13 juin 2005 relative aux communications électroniques, telle que modifiée).</p>`) +
+    lg('3. Polices', `<p>Les polices de caractères sont intégrées à l'application : aucun service tiers (comme Google Fonts) n'est contacté pour les afficher.</p>`) +
+    lg('4. Liens partenaires', `<p>Quand vous cliquez sur un lien vers Booking.com ou la plateforme d'affiliation CJ Affiliate, vous quittez Lovano : ces sites peuvent déposer leurs propres cookies, pour lesquels ils sont responsables et demandent votre consentement selon leurs règles. Consultez leurs politiques de cookies.</p>`) +
+    lg('5. Effacer le stockage', `<p>Retirez le cœur d'une destination pour la retirer de vos favoris, ou effacez les données de l'application (Android : Paramètres, Applications, Lovano, Stockage, Effacer les données).</p>`) +
+    lg('6. Si cela change', `<p>Si Lovano ajoutait un jour des outils de mesure d'audience ou de publicité, nous vous demanderions votre accord avant tout dépôt de traceur, et cette page serait mise à jour.</p>`)
+  );
 }
 
 /* ============================================================
@@ -2589,16 +2580,6 @@ function afterRender(){
       toast('Itinéraire régénéré');
       render();
     });
-    document.getElementById('btnApplyRefine').addEventListener('click', ()=>{
-      toast('Retouches appliquées à votre itinéraire');
-      render();
-    });
-    document.querySelectorAll('.refine-chip').forEach(c=>{
-      c.addEventListener('click', ()=>{
-        c.style.background='var(--forest)'; c.style.color='#fff';
-        setTimeout(()=>{ c.style.background=''; c.style.color=''; }, 400);
-      });
-    });
     bindDragAndDrop();
     document.querySelectorAll('.flight-option').forEach(btn=>{
       btn.addEventListener('click', ()=>{
@@ -2613,13 +2594,6 @@ function afterRender(){
     document.getElementById('payForm').addEventListener('submit', ()=>{ confirmPayment(); });
   }
 
-  if(state.route==='contact'){
-    document.getElementById('btnSendChat').addEventListener('click', sendChatMessage);
-    document.getElementById('chatInput').addEventListener('keydown', e=>{
-      if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendChatMessage(); }
-    });
-    const body=document.getElementById('chatBody'); if(body) body.scrollTop=body.scrollHeight;
-  }
 }
 
 function bindDragAndDrop(){
