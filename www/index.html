@@ -546,6 +546,7 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
 const BOOKING_AFFILIATE_LINK = 'https://www.tkqlhce.com/click-101873178-15734897'; // Evergreen Link (page d'accueil Booking.com, recommandé)
 const BOOKING_CARS_AFFILIATE_LINK = 'https://www.kqzyfj.com/click-101873178-17122698';
 const BOOKING_ATTRACTIONS_AFFILIATE_LINK = 'https://www.kqzyfj.com/click-101873178-17254615';
+const BOOKING_FLIGHTS_AFFILIATE_LINK = 'https://www.tkqlhce.com/click-101873178-17061705';
 
 const ICN = {
   compass: `<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.4"/><path d="M15.5 8.5L11 11L8.5 15.5L13 13L15.5 8.5Z" fill="currentColor"/></svg>`,
@@ -1693,6 +1694,12 @@ function flightPickerHTML(itin){
     </div>
     <div class="flight-options">
       ${flights.map(f=>flightOptionHTML(f, itin)).join('')}
+    </div>
+    <div style="margin-top:16px; padding-top:16px; border-top:1px dotted rgba(27,42,74,.15); display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+      <div class="muted" style="font-size:12.5px;">Prix indicatifs : comparez et réservez votre vol chez notre partenaire officiel</div>
+      <a href="${BOOKING_FLIGHTS_AFFILIATE_LINK}" target="_blank" rel="noopener sponsored" class="btn btn-outline btn-sm">
+        ${ICN.plane.replace('<svg','<svg style="width:13px;height:13px;"')} Voir les vols sur Booking.com
+      </a>
     </div>
   </div>`;
 }
