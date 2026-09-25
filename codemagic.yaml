@@ -10,6 +10,38 @@ workflows:
         script: npm install
       - name: Ajouter la plateforme Android
         script: npx cap add android || true
+      - name: Cibler l'API Android 36 (exigence Google Play) et gérer les marges système
+        script: |
+          perl -pi -e 's/compileSdkVersion = \d+/compileSdkVersion = 36/; s/targetSdkVersion = \d+/targetSdkVersion = 36/' android/variables.gradle
+          echo "android.suppressUnsupportedCompileSdk=36" >> android/gradle.properties
+          cat android/variables.gradle
+          cat > android/app/src/main/java/com/lovano/app/MainActivity.java <<'EOF'
+          package com.lovano.app;
+
+          import android.os.Bundle;
+          import android.view.View;
+          import androidx.core.graphics.Insets;
+          import androidx.core.view.ViewCompat;
+          import androidx.core.view.WindowInsetsCompat;
+          import com.getcapacitor.BridgeActivity;
+
+          public class MainActivity extends BridgeActivity {
+              @Override
+              public void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
+                  View content = findViewById(android.R.id.content);
+                  content.setBackgroundColor(0xFF1B2A4A);
+                  ViewCompat.setOnApplyWindowInsetsListener(content, (v, windowInsets) -> {
+                      Insets bars = windowInsets.getInsets(
+                          WindowInsetsCompat.Type.systemBars()
+                          | WindowInsetsCompat.Type.displayCutout()
+                          | WindowInsetsCompat.Type.ime());
+                      v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+                      return WindowInsetsCompat.CONSUMED;
+                  });
+              }
+          }
+          EOF
       - name: Générer l'icône et l'écran de démarrage
         script: npx @capacitor/assets generate --android
       - name: Synchroniser le code web
@@ -34,6 +66,38 @@ workflows:
         script: npm install
       - name: Ajouter la plateforme Android
         script: npx cap add android || true
+      - name: Cibler l'API Android 36 (exigence Google Play) et gérer les marges système
+        script: |
+          perl -pi -e 's/compileSdkVersion = \d+/compileSdkVersion = 36/; s/targetSdkVersion = \d+/targetSdkVersion = 36/' android/variables.gradle
+          echo "android.suppressUnsupportedCompileSdk=36" >> android/gradle.properties
+          cat android/variables.gradle
+          cat > android/app/src/main/java/com/lovano/app/MainActivity.java <<'EOF'
+          package com.lovano.app;
+
+          import android.os.Bundle;
+          import android.view.View;
+          import androidx.core.graphics.Insets;
+          import androidx.core.view.ViewCompat;
+          import androidx.core.view.WindowInsetsCompat;
+          import com.getcapacitor.BridgeActivity;
+
+          public class MainActivity extends BridgeActivity {
+              @Override
+              public void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
+                  View content = findViewById(android.R.id.content);
+                  content.setBackgroundColor(0xFF1B2A4A);
+                  ViewCompat.setOnApplyWindowInsetsListener(content, (v, windowInsets) -> {
+                      Insets bars = windowInsets.getInsets(
+                          WindowInsetsCompat.Type.systemBars()
+                          | WindowInsetsCompat.Type.displayCutout()
+                          | WindowInsetsCompat.Type.ime());
+                      v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
+                      return WindowInsetsCompat.CONSUMED;
+                  });
+              }
+          }
+          EOF
       - name: Générer l'icône et l'écran de démarrage
         script: npx @capacitor/assets generate --android
       - name: Synchroniser le code web
