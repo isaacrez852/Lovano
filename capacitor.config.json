@@ -1,6 +1,6 @@
 {
   "appId": "com.lovano.app",
-  "appName": "Lovano",
+  "appName": "Voyavo",
   "webDir": "www",
   "server": {
     "androidScheme": "https"
