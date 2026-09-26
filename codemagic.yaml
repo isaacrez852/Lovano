@@ -14,6 +14,8 @@ workflows:
         script: |
           perl -pi -e 's/compileSdkVersion = \d+/compileSdkVersion = 36/; s/targetSdkVersion = \d+/targetSdkVersion = 36/' android/variables.gradle
           echo "android.suppressUnsupportedCompileSdk=36" >> android/gradle.properties
+          perl -pi -e 's/versionCode \d+/versionCode $ENV{BUILD_NUMBER}/' android/app/build.gradle
+          grep -n "versionCode" android/app/build.gradle
           cat android/variables.gradle
           cat > android/app/src/main/java/com/lovano/app/MainActivity.java <<'EOF'
           package com.lovano.app;
@@ -70,6 +72,8 @@ workflows:
         script: |
           perl -pi -e 's/compileSdkVersion = \d+/compileSdkVersion = 36/; s/targetSdkVersion = \d+/targetSdkVersion = 36/' android/variables.gradle
           echo "android.suppressUnsupportedCompileSdk=36" >> android/gradle.properties
+          perl -pi -e 's/versionCode \d+/versionCode $ENV{BUILD_NUMBER}/' android/app/build.gradle
+          grep -n "versionCode" android/app/build.gradle
           cat android/variables.gradle
           cat > android/app/src/main/java/com/lovano/app/MainActivity.java <<'EOF'
           package com.lovano.app;
