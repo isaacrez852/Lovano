@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voyavo — Planification de voyage</title>
-<meta name="description" content="Voyavo : un outil de planification de voyage. Décrivez votre envie (destination, durée, budget) et obtenez un itinéraire jour par jour avec vols, hébergement et activités indicatifs.">
+<title>Lovano — Planification de voyage</title>
+<meta name="description" content="Lovano : un outil de planification de voyage. Décrivez votre envie (destination, durée, budget) et obtenez un itinéraire jour par jour avec vols, hébergement et activités indicatifs.">
 <meta name="theme-color" content="#1B2A4A">
 <link rel="icon" href="data:,">
 <style>
@@ -515,14 +515,14 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
 </style>
 </head>
 <body>
-<noscript><p style="padding:24px;font-family:sans-serif;">Voyavo nécessite JavaScript. Voyavo est un outil de planification de voyage : décrivez votre envie et obtenez un itinéraire indicatif jour par jour. Contact : lovano.voyages@gmail.com</p></noscript>
+<noscript><p style="padding:24px;font-family:sans-serif;">Lovano nécessite JavaScript. Lovano est un outil de planification de voyage : décrivez votre envie et obtenez un itinéraire indicatif jour par jour. Contact : lovano.voyages@gmail.com</p></noscript>
 <a class="skip-link" href="#app" onclick="document.getElementById('app').focus();return true;">Aller au contenu</a>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <header class="top">
   <div class="wrap">
-    <button class="brand" onclick="go('home')" aria-label="Accueil Voyavo">
+    <button class="brand" onclick="go('home')" aria-label="Accueil Lovano">
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.6"/><circle cx="20" cy="20" r="1.6" fill="currentColor"/><path d="M27 13L18 18L13 27L22 22L27 13Z" fill="currentColor"/></svg>
-      <span>Voyavo</span>
+      <span>Lovano</span>
     </button>
     <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
       <a href="#" onclick="go('home');return false;">Itinéraires sur mesure</a>
@@ -542,7 +542,7 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
     <div class="fbrand">
       <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.6"/><path d="M27 13L18 18L13 27L22 22L27 13Z" fill="currentColor"/></svg>
       <div>
-        <div style="font-family:var(--serif); font-size:19px;">Voyavo</div>
+        <div style="font-family:var(--serif); font-size:19px;">Lovano</div>
         <div style="font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; opacity:.85;">PLANIFICATION DE VOYAGE GRATUITE</div>
       </div>
     </div>
@@ -556,7 +556,7 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
       <a href="#" onclick="go('cookies');return false;">Cookies</a>
     </div>
   </div>
-  <div class="wrap fbottom">© 2026 Voyavo — Outil de planification de voyage, Bruxelles, Belgique. Voyavo n'est pas une agence de voyage et ne vend aucun voyage. Voyavo peut percevoir une commission lorsque vous réservez via un lien partenaire (Booking.com), sans surcoût pour vous.</div>
+  <div class="wrap fbottom">© 2026 Lovano — Outil de planification de voyage, Bruxelles, Belgique. Lovano n'est pas une agence de voyage et ne vend aucun voyage. Lovano peut percevoir une commission lorsque vous réservez via un lien partenaire (Booking.com), sans surcoût pour vous.</div>
 </footer>
 
 <script>
@@ -1402,18 +1402,18 @@ function render(){
   view.className='fade-in';
   view.innerHTML = (routes[state.route]||renderHome)();
   app.appendChild(view);
-  document.title = ROUTE_TITLES[state.route] || 'Voyavo — Planification de voyage';
+  document.title = ROUTE_TITLES[state.route] || 'Lovano — Planification de voyage';
   a11yPass(document);
   afterRender();
   window.scrollTo(0,0);
 }
 
 const ROUTE_TITLES = {
-  home:'Voyavo — Planification de voyage', loading:'Composition de votre itinéraire — Voyavo', itinerary:'Votre itinéraire — Voyavo',
-  destinations:'Destinations — Voyavo', destination:'Destination — Voyavo', favorites:'Favoris — Voyavo',
-  cart:'Récapitulatif estimatif — Voyavo', payment:'Enregistrer mon voyage — Voyavo', confirmation:'Voyage enregistré — Voyavo',
-  mytrips:'Mon carnet de voyage — Voyavo', document:'Carnet de voyage — Voyavo', contact:'Nous contacter — Voyavo',
-  privacy:'Politique de confidentialité — Voyavo', terms:"Conditions d'utilisation — Voyavo", cookies:'Politique de cookies — Voyavo',
+  home:'Lovano — Planification de voyage', loading:'Composition de votre itinéraire — Lovano', itinerary:'Votre itinéraire — Lovano',
+  destinations:'Destinations — Lovano', destination:'Destination — Lovano', favorites:'Favoris — Lovano',
+  cart:'Récapitulatif estimatif — Lovano', payment:'Enregistrer mon voyage — Lovano', confirmation:'Voyage enregistré — Lovano',
+  mytrips:'Mon carnet de voyage — Lovano', document:'Carnet de voyage — Lovano', contact:'Nous contacter — Lovano',
+  privacy:'Politique de confidentialité — Lovano', terms:"Conditions d'utilisation — Lovano", cookies:'Politique de cookies — Lovano',
 };
 const CONTROL_LABELS = {inpDest:'Destination', durInput:'Durée du séjour en jours', durRange:'Durée du séjour (curseur)', customBudgetInput:'Budget par personne en euros pour tout le séjour', payStartDate:'Date de départ (facultatif)', contactMsg:'Votre message'};
 function syncPressed(){
@@ -1454,7 +1454,7 @@ function renderHome(){
       <div class="hero-top">
         <div class="eyebrow">${ICN.compass.replace('<svg','<svg style="width:12px;height:12px;vertical-align:-1px;margin-right:5px;"')} Planification de voyage automatique et gratuite</div>
         <h1>Racontez-nous le voyage que vous imaginez.</h1>
-        <p>Voyavo compose votre itinéraire complet — vols, hébergements, activités — sur mesure et 100&nbsp;% gratuit. Vous ne payez que votre voyage, jamais notre service.</p>
+        <p>Lovano compose votre itinéraire complet — vols, hébergements, activités — sur mesure et 100&nbsp;% gratuit. Vous ne payez que votre voyage, jamais notre service.</p>
       </div>
 
       <div class="trip-form dashed-box">
@@ -1539,7 +1539,7 @@ function renderHome(){
     <div class="wrap">
       <div class="section-head">
         <div>
-          <div class="eyebrow" style="margin-bottom:8px;">Sélection Voyavo</div>
+          <div class="eyebrow" style="margin-bottom:8px;">Sélection Lovano</div>
           <h2>Destinations coup de cœur</h2>
         </div>
         <button class="btn btn-outline btn-sm" onclick="go('destinations')">Voir toutes les destinations</button>
@@ -1561,9 +1561,9 @@ function renderHome(){
         <div>
           ${[
             ['01','Décrivez votre envie','Destination libre ou inspiration, durée, styles et budget.'],
-            ['02','Voyavo compose votre voyage','Itinéraire jour par jour, avec vols, hébergement et activités indicatifs.'],
+            ['02','Lovano compose votre voyage','Itinéraire jour par jour, avec vols, hébergement et activités indicatifs.'],
             ['03','Ajustez votre itinéraire','Changez de vol, réordonnez les journées et comparez les prix.'],
-            ['04','Réservez chez nos partenaires','Voyavo ne vend rien : vous réservez directement chez Booking.com, sans surcoût.'],
+            ['04','Réservez chez nos partenaires','Lovano ne vend rien : vous réservez directement chez Booking.com, sans surcoût.'],
           ].map(([n,t,d])=>`
             <div style="display:flex; gap:16px; margin-bottom:20px;">
               <div style="font-family:var(--mono); color:var(--forest); font-weight:700; font-size:13px; padding-top:2px;">${n}</div>
@@ -1605,7 +1605,7 @@ function renderLoading(){
   return `
   <div class="loading-screen">
     <div class="compass-spin">${ICN.compass}</div>
-    <h2>Voyavo compose votre itinéraire…</h2>
+    <h2>Lovano compose votre itinéraire…</h2>
     <div class="loading-msgs" id="loadingMsg">Analyse de vos envies de voyage</div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
   </div>`;
@@ -1614,7 +1614,7 @@ function renderLoading(){
 function runLoadingSequence(){
   if(state._generating) return; // évite les doubles générations concurrentes (double clic, double appel)
   state._generating = true;
-  const msgs = ['Analyse de vos envies de voyage', 'Recherche de la destination idéale', 'Composition du programme jour par jour', 'Recherche des meilleurs vols au départ de Belgique', 'Sélection des hébergements', 'Apposition du tampon Voyavo ✦'];
+  const msgs = ['Analyse de vos envies de voyage', 'Recherche de la destination idéale', 'Composition du programme jour par jour', 'Recherche des meilleurs vols au départ de Belgique', 'Sélection des hébergements', 'Apposition du tampon Lovano ✦'];
   let i=0;
   const el = document.getElementById('loadingMsg');
   const fill = document.getElementById('progressFill');
@@ -1671,7 +1671,7 @@ function renderItinerary(){
 
       ${budgetNoteHTML(itin)}
 
-      <p class="center-note" style="text-align:left; margin:0 0 18px; text-transform:none; letter-spacing:0;">Informations et prix indicatifs. Voyavo ne vend pas de voyages : les boutons "Booking.com" sont des liens partenaires (publicité) et Voyavo peut percevoir une commission si vous réservez, sans surcoût pour vous.</p>
+      <p class="center-note" style="text-align:left; margin:0 0 18px; text-transform:none; letter-spacing:0;">Informations et prix indicatifs. Lovano ne vend pas de voyages : les boutons "Booking.com" sont des liens partenaires (publicité) et Lovano peut percevoir une commission si vous réservez, sans surcoût pour vous.</p>
 
       ${flightPickerHTML(itin)}
 
@@ -2030,7 +2030,7 @@ function renderCart(){
           <div class="summary-total"><span>Total estimé</span><span class="amt">${euro(total)}</span></div>
           ${trav>1?`<div style="color:rgba(255,255,255,.8); font-size:11.5px; margin-top:-14px; margin-bottom:14px;">soit ${euro(Math.round(total/trav))} / pers. pour ${trav} voyageurs</div>`:''}
           <button class="btn btn-gold btn-block" style="margin-top:20px;" onclick="go('payment')">Enregistrer — ${euro(total)}</button>
-          <div class="free-note">${ICN.shield}<span>Aucun frais de service Voyavo. Prix indicatifs : le prix final est celui affiché par le partenaire au moment de la réservation.</span></div>
+          <div class="free-note">${ICN.shield}<span>Aucun frais de service Lovano. Prix indicatifs : le prix final est celui affiché par le partenaire au moment de la réservation.</span></div>
         </div>
       </div>
     </div>
@@ -2125,7 +2125,7 @@ async function scheduleTripNotifications(trip){
         if(arrivalAt.getTime() > Date.now()){
           notifications.push({
             id: notifId++,
-            title: 'Voyavo — Arrivée à '+trip.itinerary.destination.name,
+            title: 'Lovano — Arrivée à '+trip.itinerary.destination.name,
             body: "Bon voyage ! Votre séjour à "+trip.itinerary.destination.name+" commence aujourd'hui.",
             schedule: { at: arrivalAt },
           });
@@ -2140,7 +2140,7 @@ async function scheduleTripNotifications(trip){
         if(at.getTime() <= Date.now()) return;
         notifications.push({
           id: notifId++,
-          title: "Voyavo — C'est l'heure !",
+          title: "Lovano — C'est l'heure !",
           body: step.title+' ('+step.meta+') commence maintenant.',
           schedule: { at },
         });
@@ -2240,7 +2240,7 @@ function renderDocument(){
     <div class="wrap">
       <div class="doc-sheet">
         <div class="doc-header">
-          <div class="dh-brand">${ICN.compass}<div><div style="font-family:var(--serif); font-size:19px;">Voyavo</div><div style="font-family:var(--mono); font-size:9px; opacity:.75; letter-spacing:.1em;">CARNET DE VOYAGE · INDICATIF</div></div></div>
+          <div class="dh-brand">${ICN.compass}<div><div style="font-family:var(--serif); font-size:19px;">Lovano</div><div style="font-family:var(--mono); font-size:9px; opacity:.75; letter-spacing:.1em;">CARNET DE VOYAGE · INDICATIF</div></div></div>
           <div style="text-align:right; font-family:var(--mono); font-size:11px; opacity:.85;">RÉF. ${trip.id.toUpperCase()}<br>${trip.createdAt}</div>
         </div>
         <div class="doc-body">
@@ -2318,7 +2318,7 @@ const LEGAL_DATE = '19 septembre 2026';
 function sendContactMail(e){
   e.preventDefault();
   const msg = document.getElementById('contactMsg').value;
-  window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Question sur Voyavo') + '&body=' + encodeURIComponent(msg);
+  window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Question sur Lovano') + '&body=' + encodeURIComponent(msg);
 }
 
 function renderContact(){
@@ -2328,7 +2328,7 @@ function renderContact(){
       <div class="hero-top" style="margin-bottom:26px;">
         <div class="eyebrow" style="margin-bottom:8px;">Une question, une remarque ?</div>
         <h1 style="font-size:32px;">Nous contacter</h1>
-        <p>Écrivez-nous par e-mail à <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. Nous répondons dès que possible. Voyavo n'a pas de chat ni de standard téléphonique.</p>
+        <p>Écrivez-nous par e-mail à <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. Nous répondons dès que possible. Lovano n'a pas de chat ni de standard téléphonique.</p>
       </div>
       <form class="advisor-form" onsubmit="sendContactMail(event)">
         <label for="contactMsg" class="eyebrow" style="display:block; margin-bottom:12px;">Votre message</label>
@@ -2357,34 +2357,34 @@ const lg = (title, html) => `<div style="margin-bottom:26px;"><h2 style="font-si
 
 function renderPrivacy(){
   return legalPage('Vos données, en toute transparence', 'Politique de confidentialité',
-    lg('1. Qui est responsable ?', `<p>Le service Voyavo est édité à Bruxelles (Belgique) par Voyavo. Contact pour toute question sur vos données : <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>`) +
-    lg('2. En bref', `<p>Voyavo n'a ni compte, ni inscription, ni publicité, ni outil de mesure d'audience, ni cookie. La plupart des informations que vous saisissez restent sur votre appareil et ne sont jamais envoyées à Voyavo. Voyavo ne demande et ne traite aucune donnée de paiement.</p>`) +
+    lg('1. Qui est responsable ?', `<p>Le service Lovano est édité à Bruxelles (Belgique) par Lovano. Contact pour toute question sur vos données : <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>`) +
+    lg('2. En bref', `<p>Lovano n'a ni compte, ni inscription, ni publicité, ni outil de mesure d'audience, ni cookie. La plupart des informations que vous saisissez restent sur votre appareil et ne sont jamais envoyées à Lovano. Lovano ne demande et ne traite aucune donnée de paiement.</p>`) +
     lg('3. Quelles données, pourquoi, combien de temps ?', `<ul>
-      <li><b>Paramètres de voyage</b> (destination, durée, nombre de voyageurs par tranche d'âge, styles, budget) : utilisés uniquement dans l'application, sur votre appareil, pour composer l'itinéraire. Ils ne sont pas envoyés à Voyavo et disparaissent quand vous fermez l'application. Base légale : exécution du service que vous demandez (art. 6.1.b du RGPD).</li>
-      <li><b>Favoris</b> : la liste des destinations que vous marquez d'un cœur est enregistrée sur votre appareil (stockage local de l'application), jusqu'à ce que vous les retiriez ou effaciez les données de l'application. Elle n'est jamais envoyée à Voyavo. Base légale : fonction que vous demandez.</li>
-      <li><b>Carnet de voyage</b> (voyages enregistrés et date de départ, facultative) : conservé en mémoire de l'application pendant la session uniquement, non envoyé à Voyavo.</li>
+      <li><b>Paramètres de voyage</b> (destination, durée, nombre de voyageurs par tranche d'âge, styles, budget) : utilisés uniquement dans l'application, sur votre appareil, pour composer l'itinéraire. Ils ne sont pas envoyés à Lovano et disparaissent quand vous fermez l'application. Base légale : exécution du service que vous demandez (art. 6.1.b du RGPD).</li>
+      <li><b>Favoris</b> : la liste des destinations que vous marquez d'un cœur est enregistrée sur votre appareil (stockage local de l'application), jusqu'à ce que vous les retiriez ou effaciez les données de l'application. Elle n'est jamais envoyée à Lovano. Base légale : fonction que vous demandez.</li>
+      <li><b>Carnet de voyage</b> (voyages enregistrés et date de départ, facultative) : conservé en mémoire de l'application pendant la session uniquement, non envoyé à Lovano.</li>
       <li><b>Rappels (notifications locales)</b> : si vous indiquez une date de départ et autorisez les notifications dans Android, l'application programme des rappels sur votre appareil. Ce ne sont pas des notifications "push" : aucun serveur n'est impliqué. Base légale : votre consentement (autorisation système), que vous pouvez retirer à tout moment dans les réglages d'Android.</li>
       <li><b>E-mails que vous nous envoyez</b> : si vous nous écrivez, nous recevons votre adresse e-mail, votre nom éventuel et votre message, uniquement pour vous répondre. Base légale : intérêt légitime à répondre à votre demande (art. 6.1.f). Conservation : le temps de traiter votre demande, puis au maximum 12 mois. Ces e-mails sont reçus dans une boîte Gmail (Google), sous-traitant qui peut traiter des données hors de l'Union européenne dans le cadre de garanties reconnues (cadre de protection des données UE-États-Unis ou clauses contractuelles types).</li>
     </ul>`) +
-    lg('4. Liens vers nos partenaires', `<p>L'application contient des liens vers Booking.com (vols, hébergements, voitures, attractions), via la plateforme d'affiliation CJ Affiliate. Lorsque vous cliquez, vous quittez Voyavo : Booking.com et la plateforme d'affiliation peuvent alors utiliser des cookies pour mesurer le clic et attribuer une commission à Voyavo. Ils sont responsables de ces traitements : consultez leurs politiques de confidentialité. Voyavo reçoit uniquement des statistiques de clics et de commissions, qui ne l'identifient pas et ne permettent pas de vous identifier.</p>`) +
+    lg('4. Liens vers nos partenaires', `<p>L'application contient des liens vers Booking.com (vols, hébergements, voitures, attractions), via la plateforme d'affiliation CJ Affiliate. Lorsque vous cliquez, vous quittez Lovano : Booking.com et la plateforme d'affiliation peuvent alors utiliser des cookies pour mesurer le clic et attribuer une commission à Lovano. Ils sont responsables de ces traitements : consultez leurs politiques de confidentialité. Lovano reçoit uniquement des statistiques de clics et de commissions, qui ne l'identifient pas et ne permettent pas de vous identifier.</p>`) +
     lg('5. Ce que nous ne faisons pas', `<p>Nous ne vendons pas vos données, ne les cédons pas à des fins publicitaires, ne vous profilons pas et ne prenons aucune décision automatisée produisant des effets juridiques à votre égard. Les polices de caractères sont intégrées à l'application : aucune requête n'est envoyée à Google Fonts.</p>`) +
     lg('6. Vos droits', `<p>Vous pouvez demander l'accès, la rectification, l'effacement, la limitation ou la portabilité des données que vous nous avez transmises (par exemple par e-mail), vous opposer à leur traitement et retirer votre consentement à tout moment, en écrivant à <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. Nous répondons dans un délai d'un mois. Les données stockées sur votre appareil (favoris) peuvent être supprimées par vous-même : retirez le cœur, ou effacez les données de l'application dans les réglages d'Android, ou désinstallez-la.</p>`) +
     lg('7. Réclamation', `<p>Vous pouvez introduire une réclamation auprès de l'Autorité de protection des données (Belgique) : Rue de la Presse 35, 1000 Bruxelles, <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener">www.autoriteprotectiondonnees.be</a>, contact@apd-gba.be.</p>`) +
-    lg('8. Enfants', `<p>Voyavo ne s'adresse pas aux enfants de moins de 13 ans et ne collecte pas sciemment de données à leur sujet. Les âges des voyageurs saisis pour calculer les tarifs sont de simples tranches d'âge, restent sur votre appareil et n'identifient personne.</p>`) +
+    lg('8. Enfants', `<p>Lovano ne s'adresse pas aux enfants de moins de 13 ans et ne collecte pas sciemment de données à leur sujet. Les âges des voyageurs saisis pour calculer les tarifs sont de simples tranches d'âge, restent sur votre appareil et n'identifient personne.</p>`) +
     lg('9. Modifications', `<p>Cette politique peut évoluer, notamment si de nouvelles fonctions sont ajoutées. Si un changement modifiait la façon dont vos données sont traitées, nous vous en informerions dans l'application et, lorsque la loi l'exige, nous demanderions votre accord. La date de version figure en haut de cette page.</p>`)
   );
 }
 
 function renderTerms(){
   return legalPage('Règles d\'utilisation', 'Conditions d\'utilisation',
-    lg('1. Éditeur', `<p>Voyavo, édité à Bruxelles (Belgique). Contact : <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>`) +
-    lg('2. Ce que fait Voyavo', `<p>Voyavo est un outil gratuit de planification de voyage : à partir de votre destination, de votre durée, de vos envies et de votre budget, l'application compose automatiquement un itinéraire indicatif, avec des vols, un hébergement et des activités d'exemple. Aucun conseiller humain n'intervient dans cette composition.</p><p><b>Voyavo n'est pas une agence de voyage.</b> Voyavo n'organise ni ne vend de voyages, de vols, d'hébergements, de locations de voiture ou d'activités, ne prend aucun paiement et n'intervient dans aucune réservation.</p>`) +
+    lg('1. Éditeur', `<p>Lovano, édité à Bruxelles (Belgique). Contact : <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>`) +
+    lg('2. Ce que fait Lovano', `<p>Lovano est un outil gratuit de planification de voyage : à partir de votre destination, de votre durée, de vos envies et de votre budget, l'application compose automatiquement un itinéraire indicatif, avec des vols, un hébergement et des activités d'exemple. Aucun conseiller humain n'intervient dans cette composition.</p><p><b>Lovano n'est pas une agence de voyage.</b> Lovano n'organise ni ne vend de voyages, de vols, d'hébergements, de locations de voiture ou d'activités, ne prend aucun paiement et n'intervient dans aucune réservation.</p>`) +
     lg('3. Informations et prix indicatifs', `<p>Les prix, durées de vol, disponibilités et horaires affichés sont des estimations qui peuvent différer de la réalité et ne constituent pas une offre. Vérifiez toujours les conditions et le prix définitifs auprès du prestataire avant de réserver. Pour certaines destinations, les noms d'hôtels et de restaurants sont génériques et donnés à titre illustratif : ils ne correspondent pas nécessairement à un établissement réel.</p>`) +
-    lg('4. Liens partenaires et rémunération', `<p>Les boutons "Booking.com" sont des liens d'affiliation (publicité). Si vous réservez après avoir cliqué, Voyavo peut percevoir une commission de la part de Booking.com, sans aucun surcoût pour vous. La réservation est conclue directement entre vous et le prestataire, selon ses propres conditions ; Voyavo n'est pas partie à ce contrat.</p>`) +
+    lg('4. Liens partenaires et rémunération', `<p>Les boutons "Booking.com" sont des liens d'affiliation (publicité). Si vous réservez après avoir cliqué, Lovano peut percevoir une commission de la part de Booking.com, sans aucun surcoût pour vous. La réservation est conclue directement entre vous et le prestataire, selon ses propres conditions ; Lovano n'est pas partie à ce contrat.</p>`) +
     lg('5. Rappels', `<p>Les rappels (notifications) s'appuient sur des créneaux indicatifs (matin, midi, après-midi, soir) et sur une date que vous saisissez. Ils ne remplacent pas les horaires officiels de vos vols, hébergements ou activités : vérifiez-les auprès de vos prestataires.</p>`) +
-    lg('6. Propriété intellectuelle', `<p>L'application Voyavo, son contenu, son design et sa marque sont protégés. Vous pouvez l'utiliser pour un usage personnel et non commercial. Les noms et marques de tiers (Booking.com, compagnies aériennes, etc.) appartiennent à leurs titulaires.</p>`) +
-    lg('7. Responsabilité', `<p>Voyavo est fourni gratuitement, "en l'état". Dans les limites permises par la loi, Voyavo ne garantit pas l'exactitude ni l'exhaustivité des informations et ne peut être tenu responsable des décisions prises sur cette base, ni des services fournis par des tiers. Cette clause n'exclut pas la responsabilité de Voyavo en cas de dol, de faute lourde ou pour toute responsabilité qui ne peut être limitée par la loi, et ne porte pas atteinte aux droits impératifs des consommateurs.</p>`) +
-    lg('8. Disponibilité et évolution', `<p>Voyavo peut modifier, suspendre ou arrêter tout ou partie du service, ou mettre à jour ces conditions ; la version en vigueur est celle affichée dans l'application.</p>`) +
+    lg('6. Propriété intellectuelle', `<p>L'application Lovano, son contenu, son design et sa marque sont protégés. Vous pouvez l'utiliser pour un usage personnel et non commercial. Les noms et marques de tiers (Booking.com, compagnies aériennes, etc.) appartiennent à leurs titulaires.</p>`) +
+    lg('7. Responsabilité', `<p>Lovano est fourni gratuitement, "en l'état". Dans les limites permises par la loi, Lovano ne garantit pas l'exactitude ni l'exhaustivité des informations et ne peut être tenu responsable des décisions prises sur cette base, ni des services fournis par des tiers. Cette clause n'exclut pas la responsabilité de Lovano en cas de dol, de faute lourde ou pour toute responsabilité qui ne peut être limitée par la loi, et ne porte pas atteinte aux droits impératifs des consommateurs.</p>`) +
+    lg('8. Disponibilité et évolution', `<p>Lovano peut modifier, suspendre ou arrêter tout ou partie du service, ou mettre à jour ces conditions ; la version en vigueur est celle affichée dans l'application.</p>`) +
     lg('9. Données personnelles et cookies', `<p>Voir la <a href="#" onclick="go('privacy');return false;">politique de confidentialité</a> et la <a href="#" onclick="go('cookies');return false;">politique de cookies</a>.</p>`) +
     lg('10. Droit applicable et litiges', `<p>Le droit belge s'applique, sans préjudice des règles impératives de protection du consommateur de votre pays de résidence. En cas de difficulté, contactez-nous d'abord par e-mail. Vous pouvez aussi saisir le Service de médiation pour le consommateur (<a href="https://www.mediationconsommateur.be" target="_blank" rel="noopener">www.mediationconsommateur.be</a>).</p>`)
   );
@@ -2392,12 +2392,12 @@ function renderTerms(){
 
 function renderCookies(){
   return legalPage('Traceurs et stockage', 'Politique de cookies',
-    lg('1. Voyavo n\'utilise aucun cookie', `<p>L'application Voyavo ne dépose aucun cookie et n'utilise aucun traceur publicitaire ou de mesure d'audience. C'est pourquoi elle n'affiche pas de bandeau de consentement aux cookies : il n'y a rien à accepter ni à refuser.</p>`) +
-    lg('2. Stockage local strictement nécessaire', `<p>Quand vous marquez une destination d'un cœur, l'application enregistre cette liste dans le stockage local de votre appareil (clé <code>lovano_favorites</code>). Ce stockage sert uniquement à retrouver vos favoris, à votre demande : il n'est jamais envoyé à Voyavo ni à un tiers. Il est nécessaire à la fonction que vous demandez et ne requiert donc pas votre consentement au regard de la réglementation belge (loi du 13 juin 2005 relative aux communications électroniques, telle que modifiée).</p>`) +
+    lg('1. Lovano n\'utilise aucun cookie', `<p>L'application Lovano ne dépose aucun cookie et n'utilise aucun traceur publicitaire ou de mesure d'audience. C'est pourquoi elle n'affiche pas de bandeau de consentement aux cookies : il n'y a rien à accepter ni à refuser.</p>`) +
+    lg('2. Stockage local strictement nécessaire', `<p>Quand vous marquez une destination d'un cœur, l'application enregistre cette liste dans le stockage local de votre appareil (clé <code>lovano_favorites</code>). Ce stockage sert uniquement à retrouver vos favoris, à votre demande : il n'est jamais envoyé à Lovano ni à un tiers. Il est nécessaire à la fonction que vous demandez et ne requiert donc pas votre consentement au regard de la réglementation belge (loi du 13 juin 2005 relative aux communications électroniques, telle que modifiée).</p>`) +
     lg('3. Polices', `<p>Les polices de caractères sont intégrées à l'application : aucun service tiers (comme Google Fonts) n'est contacté pour les afficher.</p>`) +
-    lg('4. Liens partenaires', `<p>Quand vous cliquez sur un lien vers Booking.com ou la plateforme d'affiliation CJ Affiliate, vous quittez Voyavo : ces sites peuvent déposer leurs propres cookies, pour lesquels ils sont responsables et demandent votre consentement selon leurs règles. Consultez leurs politiques de cookies.</p>`) +
-    lg('5. Effacer le stockage', `<p>Retirez le cœur d'une destination pour la retirer de vos favoris, ou effacez les données de l'application (Android : Paramètres, Applications, Voyavo, Stockage, Effacer les données).</p>`) +
-    lg('6. Si cela change', `<p>Si Voyavo ajoutait un jour des outils de mesure d'audience ou de publicité, nous vous demanderions votre accord avant tout dépôt de traceur, et cette page serait mise à jour.</p>`)
+    lg('4. Liens partenaires', `<p>Quand vous cliquez sur un lien vers Booking.com ou la plateforme d'affiliation CJ Affiliate, vous quittez Lovano : ces sites peuvent déposer leurs propres cookies, pour lesquels ils sont responsables et demandent votre consentement selon leurs règles. Consultez leurs politiques de cookies.</p>`) +
+    lg('5. Effacer le stockage', `<p>Retirez le cœur d'une destination pour la retirer de vos favoris, ou effacez les données de l'application (Android : Paramètres, Applications, Lovano, Stockage, Effacer les données).</p>`) +
+    lg('6. Si cela change', `<p>Si Lovano ajoutait un jour des outils de mesure d'audience ou de publicité, nous vous demanderions votre accord avant tout dépôt de traceur, et cette page serait mise à jour.</p>`)
   );
 }
 
@@ -2421,7 +2421,7 @@ function renderAdmin(){
         <div style="display:flex; align-items:center; gap:10px;">
           ${ICN.compass.replace('<svg','<svg style="width:22px;height:22px;color:#C9A24B;"')}
           <div>
-            <div style="font-family:var(--serif); font-size:18px;">Voyavo — Back-office</div>
+            <div style="font-family:var(--serif); font-size:18px;">Lovano — Back-office</div>
             <div style="font-family:var(--mono); font-size:9.5px; opacity:.6; letter-spacing:.1em;">ESPACE PROFESSIONNEL — ACCÈS INTERNE</div>
           </div>
         </div>
