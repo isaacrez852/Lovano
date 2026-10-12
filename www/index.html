@@ -86,7 +86,17 @@ nav.main-nav a:hover, nav.main-nav a.active{opacity:1; border-color:var(--gold);
   padding:10px 16px; border-radius:100px; text-decoration:none;
 }
 .nav-cta:hover{background:var(--forest-dark);}
-.burger{display:none;}
+.burger{display:none; background:none; border:1.5px solid rgba(250,248,242,.45); color:var(--offwhite); width:44px; height:44px; border-radius:10px; align-items:center; justify-content:center; padding:0; flex:none;}
+.burger svg{width:22px; height:22px;}
+@media(max-width:980px){
+  .burger{display:flex;}
+  header.top .wrap{height:66px;}
+  .brand span{font-size:20px;}
+  nav.main-nav{display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0; background:var(--navy); padding:6px 24px 18px; border-bottom:1px solid rgba(201,162,75,.3); box-shadow:var(--shadow-lg);}
+  nav.main-nav.open{display:flex;}
+  nav.main-nav a{padding:15px 2px; font-size:12px; border-bottom:1px solid rgba(250,248,242,.14);}
+  nav.main-nav a.nav-cta{margin-top:14px; text-align:center; border-bottom:1px solid rgba(255,255,255,.15); padding:14px 16px;}
+}
 
 /* ===================== BUTTONS ===================== */
 .btn{
@@ -136,7 +146,7 @@ nav.main-nav a:hover, nav.main-nav a.active{opacity:1; border-color:var(--gold);
   width:88px; height:88px; border-radius:50%;
   border:2.5px solid currentColor; position:relative;
   font-family:var(--mono); text-transform:uppercase; font-size:10px; font-weight:700; letter-spacing:.06em;
-  color:var(--forest); opacity:.9; flex:none;
+  color:var(--forest-dark); opacity:1; flex:none;
 }
 .stamp::before{
   content:''; position:absolute; inset:6px; border:1px solid currentColor; border-radius:50%; opacity:.55;
@@ -157,7 +167,7 @@ nav.main-nav a:hover, nav.main-nav a.active{opacity:1; border-color:var(--gold);
   text-transform:uppercase; padding:5px 11px; border-radius:100px; border:1px solid var(--navy-15); color:var(--navy);
   background:var(--offwhite);
 }
-.badge.gold{border-color:var(--gold-soft); color:#8a6c26; background:#fbf6ea;}
+.badge.gold{border-color:var(--gold-soft); color:#6f561c; background:#fbf6ea;}
 .badge.forest{background:var(--forest); color:#fff; border-color:var(--forest);}
 
 /* ===================== HERO / FORM ===================== */
@@ -248,7 +258,7 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .est-banner .amount small{font-family:var(--mono); font-size:11px; color:var(--navy-80); font-weight:400;}
 
 .form-footer{display:flex; align-items:center; justify-content:space-between; gap:18px; margin-top:30px; flex-wrap:wrap;}
-.custom-budget-toggle{font-family:var(--mono); font-size:11px; text-decoration:underline; color:var(--forest); background:none; border:none; letter-spacing:.05em;}
+.custom-budget-toggle{padding:8px 0; font-family:var(--mono); font-size:11px; text-decoration:underline; color:var(--forest); background:none; border:none; letter-spacing:.05em;}
 .custom-budget-row{display:none; align-items:center; gap:10px; margin-top:14px;}
 .custom-budget-row.show{display:flex;}
 .custom-budget-row input{border:2px solid var(--ui-border); border-radius:8px; padding:9px 12px; font-family:var(--serif); font-size:16px; width:140px;}
@@ -284,7 +294,7 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .itin-card .body{padding:20px 24px; position:relative;}
 .itin-card .card-notch::before{background:var(--cream);}
 .itin-card .card-notch::after{background:var(--cream);}
-.itin-card .body h3{font-size:19px; margin-bottom:4px;}
+.itin-card .body h3{font-size:19px; margin-bottom:4px; padding-right:100px;}
 .itin-card .body .sub{font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--forest); margin-bottom:14px;}
 .step-list{display:flex; flex-direction:column; gap:10px;}
 .step{display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-top:1px dotted rgba(27,42,74,.15);}
@@ -294,9 +304,10 @@ input[type=range]::-moz-range-thumb{width:20px; height:20px; border-radius:50%; 
 .step .step-title{font-weight:600; font-size:14.5px;}
 .step .step-meta{font-family:var(--mono); font-size:10.5px; color:var(--navy-80); margin-top:2px; text-transform:uppercase; letter-spacing:.04em;}
 .step .step-price{font-family:var(--mono); font-size:13px; color:var(--forest); font-weight:700; white-space:nowrap;}
-.itin-card .drag-handle{position:absolute; top:16px; right:16px; cursor:grab; color:var(--navy-80);}
-.itin-card .drag-handle:hover{opacity:1;}
-.itin-card.dragging{opacity:.4;}
+.day-move{position:absolute; top:14px; right:14px; display:flex; gap:8px; z-index:2;}
+.day-move-btn{width:40px; height:40px; border-radius:50%; border:1.5px solid var(--ui-border); background:var(--offwhite); color:var(--navy); font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center; padding:0;}
+.day-move-btn:hover:not(:disabled){background:var(--forest); border-color:var(--forest); color:#fff;}
+.day-move-btn:disabled{opacity:.35; cursor:not-allowed;}
 .itin-card-foot{display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:12px; border-top:1px dotted rgba(27,42,74,.15);}
 
 .flight-picker{background:var(--offwhite); padding:24px 26px; margin-bottom:30px;}
@@ -486,7 +497,7 @@ footer.site-footer .wrap{display:flex; flex-wrap:wrap; justify-content:space-bet
 footer.site-footer .fbrand{display:flex; align-items:center; gap:10px;}
 footer.site-footer .fbrand svg{width:24px; height:24px; color:var(--gold);}
 footer.site-footer .flinks{display:flex; gap:22px; flex-wrap:wrap; font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.08em; opacity:.8;}
-footer.site-footer .flinks a{text-decoration:none;}
+footer.site-footer .flinks a{text-decoration:none; display:inline-block; padding:7px 0;}
 footer.site-footer .flinks a:hover{color:var(--gold);}
 footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255,255,255,.12); font-family:var(--mono); font-size:10.5px; opacity:.8; line-height:1.6;}
 
@@ -532,6 +543,9 @@ footer .fbottom{margin-top:26px; padding-top:20px; border-top:1px solid rgba(255
       <a href="#" onclick="go('contact');return false;">Contact</a>
       <a class="nav-cta" href="#" onclick="go('home');return false;">Planifier ✦</a>
     </nav>
+    <button class="burger" id="btnMenu" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
   </div>
 </header>
 
@@ -572,6 +586,25 @@ const BOOKING_AFFILIATE_LINK = 'https://www.tkqlhce.com/click-101873178-15734897
 const BOOKING_CARS_AFFILIATE_LINK = 'https://www.kqzyfj.com/click-101873178-17122698';
 const BOOKING_ATTRACTIONS_AFFILIATE_LINK = 'https://www.kqzyfj.com/click-101873178-17254615';
 const BOOKING_FLIGHTS_AFFILIATE_LINK = 'https://www.tkqlhce.com/click-101873178-17061705';
+
+// Lien profond CJ : le paramètre url= fait atterrir sur la recherche voulue, avec le suivi d'affiliation conservé.
+function affiliateDeepLink(base, target){ return base + '?url=' + encodeURIComponent(target); }
+function bookingHotelLink(itin, startDate){
+  const dest = itin.destination;
+  const by = itin.travelersByAge || {};
+  const adults = Math.max(1, by.age18plus || 0);
+  const children = (by.age0_6 || 0) + (by.age6_12 || 0) + (by.age12_18 || 0);
+  const rooms = roomsForTravelers(itin.travelers || 1);
+  const q = dest.procedural ? dest.name : (itin.hotel.name + ', ' + dest.name);
+  let url = 'https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(q)
+    + '&group_adults=' + adults + '&group_children=' + children + '&no_rooms=' + rooms + '&lang=fr';
+  if(startDate){
+    const [y, m, d] = startDate.split('-').map(Number);
+    const out = new Date(Date.UTC(y, m - 1, d + itin.hotel.nights)).toISOString().slice(0, 10);
+    url += '&checkin=' + startDate + '&checkout=' + out;
+  }
+  return affiliateDeepLink(BOOKING_AFFILIATE_LINK, url);
+}
 
 const ICN = {
   compass: `<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.2" stroke="currentColor" stroke-width="1.4"/><path d="M15.5 8.5L11 11L8.5 15.5L13 13L15.5 8.5Z" fill="currentColor"/></svg>`,
@@ -765,6 +798,111 @@ const DESTINATIONS = [
       {title:'Croisière nocturne sur le Danube', styles:['romantique','culture'], period:'Soir', price:24, meta:'1h30'},
     ]},
 ];
+
+// Activités supplémentaires des destinations phares (prix indicatifs, arrondis) : évitent les répétitions sur un séjour d'une semaine.
+const EXTRA_ACTIVITIES = {
+  lisbonne: [
+    {title:"Monastère des Hiéronymites à Belém", styles:['culture'], period:'Matin', price:18, meta:'1h30'},
+    {title:"Tour de Belém et bords du Tage", styles:['culture','famille'], period:'Matin', price:12, meta:'1h30'},
+    {title:"Quartier de l'Alfama à pied", styles:['culture','solo'], period:'Matin', price:0, meta:'2h30 · à pied'},
+    {title:"Déjeuner-dégustation au Time Out Market", styles:['gastronomie'], period:'Après-midi', price:15, meta:'1h30'},
+    {title:"Musée national du carrelage (azulejos)", styles:['culture'], period:'Après-midi', price:8, meta:'1h30'},
+    {title:"LX Factory : boutiques et street art", styles:['culture','solo'], period:'Après-midi', price:0, meta:'2h'},
+    {title:"Océanarium de Lisbonne", styles:['famille','nature'], period:'Après-midi', price:25, meta:'2h30'},
+    {title:"Quartier du Chiado et librairies anciennes", styles:['culture'], period:'Après-midi', price:0, meta:'2h'},
+    {title:"Promenade en bateau sur le Tage", styles:['romantique','nature'], period:'Après-midi', price:25, meta:'2h'},
+    {title:"Dîner de poisson grillé à Cais do Sodré", styles:['gastronomie'], period:'Soir', price:30, meta:'2h'},
+    {title:"Tournée des bars du Bairro Alto", styles:['solo','aventure'], period:'Soir', price:15, meta:'3h'},
+    {title:"Concert de fado à l'Alfama", styles:['culture','romantique'], period:'Soir', price:25, meta:'1h30'},
+    {title:"Vue nocturne depuis le Miradouro de Santa Luzia", styles:['romantique'], period:'Soir', price:0, meta:'1h'},
+  ],
+  marrakech: [
+    {title:"Palais de la Bahia", styles:['culture'], period:'Matin', price:7, meta:'1h30'},
+    {title:"Tombeaux saadiens", styles:['culture'], period:'Matin', price:7, meta:'1h'},
+    {title:"Palais El Badi", styles:['culture'], period:'Matin', price:7, meta:'1h30'},
+    {title:"Médersa Ben Youssef", styles:['culture'], period:'Matin', price:5, meta:'1h'},
+    {title:"Mosquée de la Koutoubia et ses jardins", styles:['culture'], period:'Matin', price:0, meta:'1h'},
+    {title:"Le Jardin Secret de la médina", styles:['culture','nature'], period:'Après-midi', price:8, meta:'1h30'},
+    {title:"Cours de cuisine marocaine (tajine)", styles:['gastronomie','famille'], period:'Après-midi', price:40, meta:'3h'},
+    {title:"Musée Yves Saint Laurent", styles:['culture'], period:'Après-midi', price:12, meta:'1h30'},
+    {title:"Jardins de la Ménara", styles:['nature','famille'], period:'Après-midi', price:5, meta:'1h30'},
+    {title:"Quartier Guéliz : galeries et cafés", styles:['culture','solo'], period:'Après-midi', price:0, meta:'2h'},
+    {title:"Thé à la menthe et pâtisseries marocaines", styles:['gastronomie'], period:'Après-midi', price:6, meta:'1h'},
+    {title:"Place Jemaa el-Fna au crépuscule", styles:['culture','aventure'], period:'Soir', price:0, meta:'2h'},
+    {title:"Dîner de brochettes sur les étals de la place", styles:['gastronomie','solo'], period:'Soir', price:10, meta:'1h30'},
+    {title:"Terrasse panoramique sur la médina", styles:['romantique'], period:'Soir', price:8, meta:'1h30'},
+  ],
+  crete: [
+    {title:"Marché couvert de La Canée", styles:['gastronomie','culture'], period:'Matin', price:0, meta:'1h30'},
+    {title:"Forteresse de Firka et musée maritime", styles:['culture'], period:'Matin', price:4, meta:'1h30'},
+    {title:"Quartier vénitien de Splantzia", styles:['culture','romantique'], period:'Matin', price:0, meta:'2h'},
+    {title:"Musée archéologique de La Canée", styles:['culture'], period:'Matin', price:4, meta:'1h30'},
+    {title:"Plage de Nea Chora et baignade", styles:['farniente','famille'], period:'Après-midi', price:0, meta:'3h'},
+    {title:"Phare vénitien et promenade sur la jetée", styles:['romantique','nature'], period:'Après-midi', price:0, meta:'1h30'},
+    {title:"Dégustation de vins crétois", styles:['gastronomie'], period:'Après-midi', price:20, meta:'2h'},
+    {title:"Monastère d'Agia Triada", styles:['culture','nature'], period:'Après-midi', price:3, meta:'1h30'},
+    {title:"Cours de cuisine crétoise", styles:['gastronomie','famille'], period:'Après-midi', price:45, meta:'3h'},
+    {title:"Dîner traditionnel dans une taverne de Splantzia", styles:['gastronomie'], period:'Soir', price:22, meta:'2h'},
+    {title:"Coucher de soleil sur le port vénitien", styles:['romantique'], period:'Soir', price:0, meta:'1h'},
+    {title:"Apéritif face au port vénitien", styles:['romantique','solo'], period:'Soir', price:12, meta:'1h30'},
+    {title:"Soirée de musique crétoise en taverne", styles:['culture'], period:'Soir', price:20, meta:'2h'},
+  ],
+  rome: [
+    {title:"Panthéon et place de la Rotonde", styles:['culture'], period:'Matin', price:5, meta:'1h'},
+    {title:"Galerie Borghèse", styles:['culture'], period:'Matin', price:20, meta:'2h'},
+    {title:"Place d'Espagne et escalier de la Trinité-des-Monts", styles:['culture','romantique'], period:'Matin', price:0, meta:'1h'},
+    {title:"Catacombes de Saint-Calixte", styles:['culture'], period:'Matin', price:10, meta:'1h30'},
+    {title:"Château Saint-Ange", styles:['culture','famille'], period:'Matin', price:16, meta:'2h'},
+    {title:"Place Navone et marché de Campo de' Fiori", styles:['culture','gastronomie'], period:'Après-midi', price:0, meta:'2h'},
+    {title:"Villa Borghèse : balade et barque", styles:['famille','nature'], period:'Après-midi', price:5, meta:'2h'},
+    {title:"Quartier juif et portique d'Octavie", styles:['culture'], period:'Après-midi', price:0, meta:'2h'},
+    {title:"Basilique Saint-Pierre et montée à la coupole", styles:['culture'], period:'Après-midi', price:10, meta:'2h'},
+    {title:"Cafés et pâtisseries romaines", styles:['gastronomie'], period:'Après-midi', price:12, meta:'1h30'},
+    {title:"Dîner dans une trattoria du quartier Monti", styles:['gastronomie'], period:'Soir', price:28, meta:'2h'},
+    {title:"Coucher de soleil depuis le Janicule", styles:['romantique'], period:'Soir', price:0, meta:'1h'},
+    {title:"Colisée et Forum illuminés de nuit", styles:['culture','romantique'], period:'Soir', price:0, meta:'2h'},
+    {title:"Apéritif dans le quartier de Testaccio", styles:['solo','gastronomie'], period:'Soir', price:15, meta:'2h'},
+  ],
+  zanzibar: [
+    {title:"Marché de Darajani et ruelles de Stone Town", styles:['culture'], period:'Matin', price:0, meta:'2h'},
+    {title:"Forêt de Jozani et colobes roux", styles:['nature','famille'], period:'Matin', price:12, meta:'2h30'},
+    {title:"Maison des Merveilles et vieux fort", styles:['culture'], period:'Matin', price:6, meta:'1h30'},
+    {title:"Baignade du matin à Nungwi", styles:['farniente'], period:'Matin', price:0, meta:'3h'},
+    {title:"Ancien marché aux esclaves et cathédrale anglicane", styles:['culture'], period:'Matin', price:6, meta:'1h30'},
+    {title:"Cours de cuisine swahilie", styles:['gastronomie','famille'], period:'Après-midi', price:35, meta:'3h'},
+    {title:"Détente sur la plage de Kendwa", styles:['farniente'], period:'Après-midi', price:0, meta:'3h'},
+    {title:"Snorkeling depuis la plage", styles:['nature','aventure'], period:'Après-midi', price:15, meta:'2h'},
+    {title:"Village de pêcheurs de Jambiani", styles:['culture'], period:'Après-midi', price:8, meta:'2h'},
+    {title:"Massage face à l'océan", styles:['farniente','romantique'], period:'Après-midi', price:30, meta:'1h30'},
+    {title:"Marché nocturne des jardins de Forodhani", styles:['gastronomie','culture'], period:'Soir', price:12, meta:'2h'},
+    {title:"Observation des étoiles sur la plage", styles:['romantique'], period:'Soir', price:0, meta:'1h30'},
+    {title:"Barbecue de fruits de mer sur la plage", styles:['gastronomie'], period:'Soir', price:28, meta:'2h'},
+    {title:"Concert de taarab à Stone Town", styles:['culture'], period:'Soir', price:10, meta:'2h'},
+  ],
+  budapest: [
+    {title:"Visite du Parlement hongrois", styles:['culture'], period:'Matin', price:12, meta:'1h'},
+    {title:"Château de Buda et Galerie nationale", styles:['culture'], period:'Matin', price:10, meta:'2h'},
+    {title:"Basilique Saint-Étienne et panorama", styles:['culture'], period:'Matin', price:6, meta:'1h'},
+    {title:"Grande Halle du marché central", styles:['gastronomie'], period:'Matin', price:0, meta:'1h30'},
+    {title:"Synagogue de la rue Dohány", styles:['culture'], period:'Matin', price:18, meta:'1h30'},
+    {title:"Maison de la Terreur", styles:['culture'], period:'Matin', price:10, meta:'1h30'},
+    {title:"Colline Gellért et Citadelle", styles:['nature','culture'], period:'Après-midi', price:0, meta:'2h'},
+    {title:"Île Marguerite : balade et vélo", styles:['nature','famille'], period:'Après-midi', price:6, meta:'2h'},
+    {title:"Bains Gellért", styles:['farniente','romantique'], period:'Après-midi', price:28, meta:'3h'},
+    {title:"Place des Héros et parc municipal", styles:['culture','famille'], period:'Après-midi', price:0, meta:'2h'},
+    {title:"Rue Váci et café Gerbeaud", styles:['gastronomie'], period:'Après-midi', price:12, meta:'1h30'},
+    {title:"Traversée du Pont des Chaînes illuminé", styles:['romantique'], period:'Soir', price:0, meta:'1h'},
+    {title:"Dîner traditionnel hongrois", styles:['gastronomie'], period:'Soir', price:24, meta:'2h'},
+    {title:"Concert classique à l'opéra ou à la Vigadó", styles:['culture'], period:'Soir', price:30, meta:'2h'},
+    {title:"Bar en rooftop avec vue sur la ville", styles:['solo','romantique'], period:'Soir', price:14, meta:'2h'},
+  ],
+};
+// Fuseaux horaires des destinations phares : les rappels sont programmés à l'heure locale du lieu.
+const DEST_TZ = {lisbonne:'Europe/Lisbon', marrakech:'Africa/Casablanca', crete:'Europe/Athens', rome:'Europe/Rome', zanzibar:'Africa/Dar_es_Salaam', budapest:'Europe/Budapest'};
+DESTINATIONS.forEach(d => {
+  d.activities.push(...(EXTRA_ACTIVITIES[d.id] || []));
+  d.tz = DEST_TZ[d.id];
+});
 
 /* ============================================================
    MOTEUR DE DESTINATIONS ÉTENDU
@@ -1056,6 +1194,46 @@ function saveFavorites(){
   try{ localStorage.setItem('lovano_favorites', JSON.stringify(state.favorites)); }catch(e){}
 }
 state.favorites = loadFavorites();
+
+/* ============================================================
+   CARNET DE VOYAGE — persisté sur l'appareil (localStorage)
+============================================================ */
+const TRIPS_KEY = 'lovano_trips';
+function fmtDate(iso){ return new Date(iso + 'T00:00:00').toLocaleDateString('fr-BE', {day:'numeric', month:'long', year:'numeric'}); }
+function packTrip(t){
+  const dest = t.itinerary.destination;
+  const slim = {...t.itinerary};
+  delete slim.destination; delete slim.flights;
+  return {...t, itinerary: slim, customDest: dest && dest.procedural ? dest : null};
+}
+function unpackTrip(raw){
+  const t = {...raw};
+  if(t.customDest){ PROCEDURAL_CACHE[t.customDest.id] = t.customDest; }
+  const dest = destById(t.itinerary.destinationId);
+  if(!dest) return null;
+  t.itinerary = {...t.itinerary, destination: dest, flights: dest.flights};
+  delete t.customDest;
+  return t;
+}
+function refreshTripStatus(t){
+  if(t.startDate){
+    const end = new Date(t.startDate + 'T00:00:00');
+    end.setDate(end.getDate() + t.duration);
+    if(end.getTime() < Date.now()){ t.status = 'past'; t.steps.termine = true; }
+  }
+  return t;
+}
+function saveTrips(){
+  try{ localStorage.setItem(TRIPS_KEY, JSON.stringify(state.trips.map(packTrip))); }catch(e){}
+}
+function loadTrips(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(TRIPS_KEY) || '[]');
+    if(!Array.isArray(raw)) return [];
+    return raw.map(r => { try{ return unpackTrip(r); }catch(e){ return null; } }).filter(Boolean).map(refreshTripStatus);
+  }catch(e){ return []; }
+}
+state.trips = loadTrips();
 function isFavorite(destId){
   return state.favorites.includes(destId);
 }
@@ -1065,7 +1243,7 @@ function toggleFavorite(destId, evt){
   if(i>=0){ state.favorites.splice(i,1); toast('Retiré des favoris'); }
   else{ state.favorites.push(destId); toast('Ajouté aux favoris ♥'); }
   saveFavorites();
-  render();
+  render(true);
 }
 function favHeartBtnHTML(destId, extraClass){
   const active = isFavorite(destId);
@@ -1088,7 +1266,15 @@ function toast(msg){
   clearTimeout(window._toastT);
   window._toastT = setTimeout(()=>t.classList.remove('show'), 2600);
 }
+function setMenu(open){
+  const nav = document.getElementById('mainNav'), btn = document.getElementById('btnMenu');
+  if(!nav || !btn) return;
+  nav.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  btn.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+}
 function go(route, param=null){
+  setMenu(false);
   state.route = route; state.routeParam = param;
   window.scrollTo({top:0, behavior:'smooth'});
   render();
@@ -1140,29 +1326,35 @@ function roomsForTravelers(travelers){
   return Math.max(1, Math.ceil(travelers/2));
 }
 
+// Chaque journée reçoit une activité par créneau (matin, après-midi, soir), dans l'ordre chronologique.
+// À chaque créneau on prend l'activité la moins utilisée jusque-là, pour éviter les répétitions.
+const SLOT_SOURCES = {'Matin':['Matin'], 'Après-midi':['Après-midi','Midi'], 'Soir':['Soir','Nuit'], 'Journée':['Journée']};
 function buildDaysFromPool(pool, duration){
+  const usage = new Map();
+  const hasDayTrip = pool.some(a => a.period === 'Journée');
+  const pick = (period, takenToday) => {
+    let cands = pool.filter(a => SLOT_SOURCES[period].includes(a.period) && !takenToday.has(a.title));
+    if(!cands.length) cands = pool.filter(a => !takenToday.has(a.title));
+    if(!cands.length) cands = pool;
+    let best = cands[0], bestUse = usage.get(best.title) || 0;
+    cands.forEach(a => { const u = usage.get(a.title) || 0; if(u < bestUse){ best = a; bestUse = u; } });
+    return best;
+  };
   const days = [];
-  let poolIdx = 0;
-  for(let d=1; d<=duration; d++){
-    const stepsCount = d===1 ? 2 : (d===duration ? 2 : 3);
-    const steps = [];
-    const usedPeriods = new Set();
-    // 1er passage : on évite de placer deux fois le même créneau (ex. deux activités "Soir") le même jour
-    let scanned = 0;
-    while(steps.length < stepsCount && scanned < pool.length){
-      const act = pool[poolIdx % pool.length];
-      poolIdx++; scanned++;
-      if(usedPeriods.has(act.period)) continue;
-      usedPeriods.add(act.period);
-      steps.push({...act, id: 'd'+d+'s'+steps.length+'-'+Math.random().toString(36).slice(2,7)});
-    }
-    // 2e passage (pool trop restreint) : on complète même si le créneau se répète, plutôt que de laisser la journée incomplète
-    while(steps.length < stepsCount){
-      const act = pool[poolIdx % pool.length];
-      poolIdx++;
-      steps.push({...act, id: 'd'+d+'s'+steps.length+'-'+Math.random().toString(36).slice(2,7)});
-    }
-    days.push({ day:d, steps, id:'day-'+d });
+  for(let d = 1; d <= duration; d++){
+    let slots;
+    if(d === 1) slots = ['Après-midi', 'Soir'];
+    else if(d === duration) slots = ['Matin', 'Après-midi'];
+    else if(hasDayTrip && d % 3 === 0) slots = ['Journée', 'Soir'];
+    else slots = ['Matin', 'Après-midi', 'Soir'];
+    const taken = new Set();
+    const steps = slots.map((p, i) => {
+      const a = pick(p, taken);
+      taken.add(a.title);
+      usage.set(a.title, (usage.get(a.title) || 0) + 1);
+      return {...a, id: 'd' + d + 's' + i + '-' + Math.random().toString(36).slice(2, 7)};
+    });
+    days.push({ day:d, steps, id:'day-' + d });
   }
   return days;
 }
@@ -1188,6 +1380,7 @@ function fillerFor(period){
 // Remplace les étapes payantes les plus chères par une activité réelle moins chère du même créneau
 // (si le pool en propose une compatible avec le budget restant), et seulement en tout dernier recours
 // par du temps libre gratuit, jusqu'à rentrer dans le budget restant
+const HALF_DAY_COMPAT = {'Journée':['Matin','Après-midi'], 'Matin':['Après-midi'], 'Après-midi':['Matin'], 'Midi':['Matin','Après-midi']};
 function fitActivitiesToBudget(days, remainingForActivities, trav, pool){
   const budget = Math.max(remainingForActivities, 0);
   let flat = [];
@@ -1200,9 +1393,13 @@ function fitActivitiesToBudget(days, remainingForActivities, trav, pool){
     if(ref.price > 0){
       const step = days[ref.di].steps[ref.si];
       const usedTitles = days[ref.di].steps.map(s=>s.title);
+      const tripCount = t => days.reduce((n,d)=>n+d.steps.filter(x=>x.title===t).length, 0);
+      // une excursion d'une journée peut devenir une demi-journée moins chère ; on évite deux fois le même créneau le même jour
+      const otherPeriods = days[ref.di].steps.filter((x,k)=>k!==ref.si).map(x=>x.period);
+      const compat = (HALF_DAY_COMPAT[step.period]||[]);
       const cheaperReal = (pool||[])
-        .filter(a => a.period===step.period && a.price < step.price && !usedTitles.includes(a.title))
-        .sort((a,b)=>b.price-a.price)[0];
+        .filter(a => a.price < step.price && !usedTitles.includes(a.title) && (a.period===step.period || (compat.includes(a.period) && !otherPeriods.includes(a.period))))
+        .sort((a,b)=> (tripCount(a.title)-tripCount(b.title)) || (b.price-a.price))[0];
       if(cheaperReal){
         total -= (step.price-cheaperReal.price)*trav;
         days[ref.di].steps[ref.si] = {...cheaperReal, id:'d'+ref.di+'s'+ref.si+'-'+Math.random().toString(36).slice(2,7)};
@@ -1386,7 +1583,8 @@ function estBannerAmountHTML(){
 /* ============================================================
    RENDER ROUTER
 ============================================================ */
-function render(){
+function render(keepScroll){
+  const keepY = window.scrollY;
   document.querySelectorAll('#mainNav a').forEach(a=>a.classList.remove('active'));
   const app = document.getElementById('app');
   const routes = {
@@ -1405,7 +1603,7 @@ function render(){
   document.title = ROUTE_TITLES[state.route] || 'Lovano — Planification de voyage';
   a11yPass(document);
   afterRender();
-  window.scrollTo(0,0);
+  if(keepScroll) window.scrollTo({top:keepY, behavior:'instant'}); else window.scrollTo(0,0);
 }
 
 const ROUTE_TITLES = {
@@ -1773,7 +1971,7 @@ function hotelInfoHTML(itin){
     ${itin.destination.procedural ? `<div class="center-note" style="margin-top:14px; text-align:left;">Établissement donné à titre indicatif · disponibilité à vérifier auprès du partenaire avant toute réservation</div>` : `<div class="center-note" style="margin-top:14px; text-align:left;">Établissement réel · prix et disponibilité indicatifs, à vérifier auprès du partenaire avant toute réservation</div>`}
     <div style="margin-top:16px; padding-top:16px; border-top:1px dotted rgba(27,42,74,.15); display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
       <div class="muted" style="font-size:12.5px;">Comparez et réservez directement chez notre partenaire officiel</div>
-      <a href="${BOOKING_AFFILIATE_LINK}" target="_blank" rel="noopener sponsored" class="btn btn-outline btn-sm">
+      <a href="${bookingHotelLink(itin)}" target="_blank" rel="noopener sponsored" class="btn btn-outline btn-sm">
         ${ICN.bed.replace('<svg','<svg style="width:13px;height:13px;"')} Voir sur Booking.com
       </a>
     </div>
@@ -1811,9 +2009,13 @@ function restaurantInfoHTML(itin){
 }
 
 function dayCardHTML(day, idx, itin){
+  const last = itin.days.length - 1;
   return `
-  <div class="itin-card card-notch" draggable="true" data-dayidx="${idx}">
-    <div class="drag-handle">${ICN.drag}</div>
+  <div class="itin-card card-notch" data-dayidx="${idx}">
+    <div class="day-move" role="group" aria-label="Déplacer le jour ${day.day}">
+      <button type="button" class="day-move-btn" data-day-move="up" data-day-idx="${idx}" aria-label="Monter le jour ${day.day}" ${idx===0?'disabled':''}>↑</button>
+      <button type="button" class="day-move-btn" data-day-move="down" data-day-idx="${idx}" aria-label="Descendre le jour ${day.day}" ${idx===last?'disabled':''}>↓</button>
+    </div>
     <div class="stub">
       <div class="day-label">Jour</div>
       <div class="day-num">${day.day}</div>
@@ -1830,7 +2032,7 @@ function dayCardHTML(day, idx, itin){
               <div class="step-title">${s.title}</div>
               <div class="step-meta">${s.period} · ${s.meta}</div>
             </div>
-            <div class="step-price">${s.price>0? euro(s.price) : 'Inclus'}</div>
+            <div class="step-price">${s.price>0? euro(s.price) : 'Gratuit'}</div>
           </div>`).join('')}
       </div>
     </div>
@@ -1951,7 +2153,7 @@ function renderDestinationPage(){
           <div class="dashed-box" style="padding:18px; background:var(--offwhite);">
             <div class="badge" style="margin-bottom:10px;">${a.period}</div>
             <div style="font-weight:700; margin-bottom:4px;">${a.title}</div>
-            <div class="muted" style="font-size:12.5px;">${a.meta} · ${a.price>0?euro(a.price):'Inclus'}</div>
+            <div class="muted" style="font-size:12.5px;">${a.meta} · ${a.price>0?euro(a.price):'Gratuit'}</div>
           </div>`).join('')}
       </div>
 
@@ -2008,7 +2210,7 @@ function renderCart(){
             <div class="cl-icon">${ICN.bed}</div>
             <div style="flex:1;">
               <div class="cl-title">${itin.hotel.name}</div>
-              <div class="cl-meta">${itin.hotel.nights} nuits · ${rooms} chambre${rooms>1?'s':''} · ${euro(itin.hotel.pricePerNight)} / nuit / chambre · <a href="${BOOKING_AFFILIATE_LINK}" target="_blank" rel="noopener sponsored" style="color:var(--forest); text-decoration:underline;">voir sur Booking.com</a></div>
+              <div class="cl-meta">${itin.hotel.nights} nuits · ${rooms} chambre${rooms>1?'s':''} · ${euro(itin.hotel.pricePerNight)} / nuit / chambre · <a href="${bookingHotelLink(itin)}" target="_blank" rel="noopener sponsored" style="color:var(--forest); text-decoration:underline;">voir sur Booking.com</a></div>
             </div>
             <div class="cl-price">${euro(hotelTotal)}</div>
           </div>
@@ -2055,9 +2257,9 @@ function renderPayment(){
       </div>
       <div style="display:flex; gap:30px; flex-wrap:wrap;">
         <form class="pay-form" id="payForm" onsubmit="return false;">
-          <p class="muted" style="font-size:14px; margin-top:0;"><b>Aucun paiement n'est demandé et aucune réservation n'est effectuée dans l'application.</b> Ce voyage est enregistré dans votre carnet, sur votre appareil. Pour réserver vols, hébergements, voitures ou activités, utilisez ensuite les liens de notre partenaire Booking.com.</p>
+          <p class="muted" style="font-size:14px; margin-top:0;"><b>Aucun paiement n'est demandé et aucune réservation n'est effectuée dans l'application.</b> Ce voyage est enregistré dans votre carnet, sur votre appareil, jusqu'à ce que vous le supprimiez. Pour réserver vols, hébergements, voitures ou activités, utilisez ensuite les liens de notre partenaire Booking.com.</p>
           <div class="pay-field"><label>Date de départ (facultatif)</label><input type="date" id="payStartDate" min="${new Date().toISOString().slice(0,10)}"></div>
-          <p class="muted" style="font-size:12.5px; margin:-6px 0 16px;">Cette date sert uniquement à programmer, sur votre appareil, des rappels (notifications locales) aux moments prévus de votre voyage. Elle n'est envoyée à personne. Ces rappels sont indicatifs et ne remplacent pas les horaires officiels de vos vols, hébergements ou activités.</p>
+          <p class="muted" style="font-size:12.5px; margin:-6px 0 16px;">Cette date sert uniquement à programmer, sur votre appareil, des rappels (notifications locales) aux moments prévus de votre voyage. Elle n'est envoyée à personne, sauf à Booking.com si vous cliquez ensuite sur le lien de réservation d'hébergement de votre carnet (elle pré-remplit vos dates). Les heures suivent l'heure locale de la destination pour les destinations phares, sinon l'heure de votre téléphone. Ces rappels sont indicatifs et ne remplacent pas les horaires officiels de vos vols, hébergements ou activités.</p>
           <button class="btn btn-primary btn-block" id="btnPay" type="submit">Enregistrer dans mon carnet</button>
         </form>
         <div style="flex:1; min-width:240px;">
@@ -2083,72 +2285,114 @@ function confirmPayment(){
   const newTrip = {
     id:tripId, label: 'Voyage à '+itin.destination.name, destinationId: itin.destinationId, duration: itin.duration,
     createdAt: new Date().toLocaleDateString('fr-BE',{day:'numeric',month:'long',year:'numeric'}),
-    startDate,
+    startDate, notifIds: [],
     status:'upcoming', itinerary: itin, total,
     steps:{vol:true, hebergement:true, activites:true, termine:false},
   };
   state.trips.unshift(newTrip);
-  scheduleTripNotifications(newTrip);
+  saveTrips();
+  scheduleTripNotifications(newTrip).then(res => {
+    if(!res) return;
+    newTrip.notifIds = res.ids;
+    saveTrips();
+    if(res.message) toast(res.message);
+  });
   state.routeParam = tripId;
   go('confirmation', tripId);
 }
 
+async function deleteTrip(id){
+  const t = state.trips.find(x => x.id === id);
+  if(!t) return;
+  if(!confirm('Supprimer ce voyage de votre carnet ? Les rappels associés seront annulés.')) return;
+  if(t.notifIds && t.notifIds.length){
+    const LN = getLocalNotifications();
+    if(LN){ try{ await LN.cancel({notifications: t.notifIds.map(n => ({id:n}))}); }catch(e){} }
+  }
+  state.trips = state.trips.filter(x => x.id !== id);
+  saveTrips();
+  toast('Voyage supprimé');
+  render(true);
+}
+
 /* ============================================================
-   NOTIFICATIONS DE VOYAGE (app native uniquement, via Capacitor)
-   Prévient le voyageur au moment de chaque étape payante de son
-   planning (activité, restaurant) ainsi qu'à son arrivée.
+   RAPPELS DE VOYAGE (application Android uniquement, via Capacitor)
+   Un rappel local à l'arrivée et à chaque étape prévue du planning,
+   à l'heure locale de la destination (créneaux indicatifs).
 ============================================================ */
 const PERIOD_NOTIF_TIME = {
   'Matin': {h:9, m:0}, 'Midi': {h:12, m:30}, 'Après-midi': {h:15, m:0},
   'Soir': {h:19, m:30}, 'Nuit': {h:21, m:0}, 'Journée': {h:10, m:0},
 };
+function isNativeApp(){
+  return typeof Capacitor !== 'undefined' && !!Capacitor.isNativePlatform && Capacitor.isNativePlatform();
+}
+function getLocalNotifications(){
+  if(!isNativeApp()) return null;
+  if(Capacitor.Plugins && Capacitor.Plugins.LocalNotifications) return Capacitor.Plugins.LocalNotifications;
+  try{ return Capacitor.registerPlugin ? Capacitor.registerPlugin('LocalNotifications') : null; }catch(e){ return null; }
+}
+function tzOffsetMs(utcMs, tz){
+  const dtf = new Intl.DateTimeFormat('en-US', {timeZone:tz, hourCycle:'h23', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit'});
+  const p = {};
+  dtf.formatToParts(new Date(utcMs)).forEach(x => { p[x.type] = x.value; });
+  const asUtc = Date.UTC(+p.year, +p.month - 1, +p.day, (+p.hour) % 24, +p.minute, +p.second);
+  return asUtc - Math.floor(utcMs / 1000) * 1000;
+}
+// Instant correspondant à y-mo-d h:mi dans le fuseau tz (ou celui de l'appareil si tz est inconnu)
+function zonedTime(y, mo, d, h, mi, tz){
+  if(tz){
+    try{
+      const guess = Date.UTC(y, mo - 1, d, h, mi, 0);
+      let t = guess - tzOffsetMs(guess, tz);
+      t = guess - tzOffsetMs(t, tz);
+      return new Date(t);
+    }catch(e){}
+  }
+  return new Date(y, mo - 1, d, h, mi, 0, 0);
+}
 async function scheduleTripNotifications(trip){
+  if(!trip.startDate || !isNativeApp()) return null;
+  const LN = getLocalNotifications();
+  if(!LN) return {ids:[], message:'Rappels indisponibles sur cet appareil.'};
   try{
-    if(!trip.startDate) return;
-    if(typeof Capacitor === 'undefined' || !Capacitor.isNativePlatform || !Capacitor.isNativePlatform()) return;
-    const LocalNotifications = Capacitor.Plugins && Capacitor.Plugins.LocalNotifications;
-    if(!LocalNotifications) return;
-    const perm = await LocalNotifications.requestPermissions();
-    if(perm.display !== 'granted') return;
-
-    const startDate = new Date(trip.startDate+'T00:00:00');
+    const perm = await LN.requestPermissions();
+    if(perm.display !== 'granted') return {ids:[], message:'Rappels non programmés : autorisez les notifications dans les réglages Android.'};
+    const [y, m, d] = trip.startDate.split('-').map(Number);
+    const dest = trip.itinerary.destination;
     const notifications = [];
-    let notifId = Math.floor(Math.random()*1000000);
-
+    let id = 100000 + Math.floor(Math.random() * 1000000);
+    const add = (at, title, body) => {
+      if(at.getTime() > Date.now()) notifications.push({id:id++, title, body, schedule:{at, allowWhileIdle:true}});
+    };
     trip.itinerary.days.forEach(day => {
-      const dayDate = new Date(startDate);
-      dayDate.setDate(dayDate.getDate() + (day.day - 1));
-
-      if(day.day === 1){
-        const arrivalAt = new Date(dayDate);
-        arrivalAt.setHours(9, 0, 0, 0);
-        if(arrivalAt.getTime() > Date.now()){
-          notifications.push({
-            id: notifId++,
-            title: 'Lovano — Arrivée à '+trip.itinerary.destination.name,
-            body: "Bon voyage ! Votre séjour à "+trip.itinerary.destination.name+" commence aujourd'hui.",
-            schedule: { at: arrivalAt },
-          });
-        }
-      }
-
+      const base = new Date(Date.UTC(y, m - 1, d + day.day - 1));
+      const Y = base.getUTCFullYear(), M = base.getUTCMonth() + 1, D = base.getUTCDate();
+      if(day.day === 1) add(zonedTime(Y, M, D, 9, 0, dest.tz), 'Lovano — Arrivée à ' + dest.name, "Bon voyage ! Votre séjour à " + dest.name + " commence aujourd'hui.");
       day.steps.forEach(step => {
-        if(!step.price || step.price<=0) return; // pas de notification pour les créneaux libres
+        if(String(step.id).startsWith('filler-')) return;
         const t = PERIOD_NOTIF_TIME[step.period] || PERIOD_NOTIF_TIME['Matin'];
-        const at = new Date(dayDate);
-        at.setHours(t.h, t.m, 0, 0);
-        if(at.getTime() <= Date.now()) return;
-        notifications.push({
-          id: notifId++,
-          title: "Lovano — C'est l'heure !",
-          body: step.title+' ('+step.meta+') commence maintenant.',
-          schedule: { at },
-        });
+        add(zonedTime(Y, M, D, t.h, t.m, dest.tz), "Lovano — C'est le moment prévu", step.title + ' (' + step.meta + ') figure à votre planning.');
       });
     });
-
-    if(notifications.length) await LocalNotifications.schedule({ notifications });
-  }catch(e){ console.warn('Notifications de voyage non programmées :', e); }
+    if(!notifications.length) return {ids:[], message:'Aucun rappel à programmer : toutes les dates sont déjà passées.'};
+    await LN.schedule({notifications});
+    return {ids: notifications.map(n => n.id), message: notifications.length + ' rappels programmés.'};
+  }catch(e){
+    return {ids:[], message:'Impossible de programmer les rappels.'};
+  }
+}
+async function testNotification(){
+  const LN = getLocalNotifications();
+  if(!LN){ toast('Notifications indisponibles sur cet appareil'); return; }
+  try{
+    const perm = await LN.requestPermissions();
+    if(perm.display !== 'granted'){ toast('Autorisez les notifications dans les réglages Android'); return; }
+    await LN.schedule({notifications:[{id:900001, title:'Lovano — Test', body:'Les rappels fonctionnent sur cet appareil.', schedule:{at:new Date(Date.now() + 10000), allowWhileIdle:true}}]});
+    toast('Test programmé : la notification peut arriver avec quelques minutes de retard');
+  }catch(e){
+    toast('Échec du test : ' + String((e && e.message) || e).replace(/[<>&]/g, ''));
+  }
 }
 
 /* ============================================================
@@ -2162,7 +2406,7 @@ function renderConfirmation(){
     <div class="wrap confirm-wrap">
       <div class="stamp r1 stamp-pop"><span>Enregistré ✦</span></div>
       <h2>Votre voyage est enregistré</h2>
-      <p class="muted">Votre voyage à ${trip.itinerary.destination.name} est enregistré dans votre carnet, sur cet appareil, pour la durée de votre session. <b>Aucune réservation n'a été effectuée</b> : pour réserver, utilisez les liens Booking.com de votre itinéraire.</p>
+      <p class="muted">Votre voyage à ${trip.itinerary.destination.name} est enregistré dans votre carnet, sur cet appareil. Vous pouvez le supprimer à tout moment depuis votre carnet. <b>Aucune réservation n'a été effectuée</b> : pour réserver, utilisez les liens Booking.com de votre itinéraire.</p>
       <div style="display:flex; gap:12px; justify-content:center; margin-top:30px; flex-wrap:wrap;">
         <button class="btn btn-primary" onclick="go('document','${trip.id}')">${ICN.ticket.replace('<svg','<svg style="width:14px;height:14px;"')} Voir mon carnet de voyage</button>
         <button class="btn btn-outline" onclick="go('mytrips')">Mon carnet</button>
@@ -2183,7 +2427,7 @@ function renderMyTrips(){
       <div class="hero-top" style="margin-bottom:34px;">
         <div class="eyebrow" style="margin-bottom:8px;">Espace personnel</div>
         <h1 style="font-size:34px;">Mon carnet de voyage</h1>
-        <p>Retrouvez ici les voyages enregistrés pendant cette session, présentés comme un passeport avec leurs étapes prévues.</p>
+        <p>Retrouvez ici les voyages enregistrés sur cet appareil, présentés comme un passeport avec leurs étapes prévues.</p>
       </div>
 
       <h3 style="font-size:19px; margin-bottom:16px;">À venir</h3>
@@ -2206,7 +2450,7 @@ function passportCardHTML(t){
     <div class="passport-head">
       <div>
         <h3>${t.label}</h3>
-        <div class="sub">${t.duration} jours · créé le ${t.createdAt} · ${euro(t.total)}</div>
+        <div class="sub">${t.duration} jours · ${t.startDate ? 'départ le ' + fmtDate(t.startDate) : 'créé le ' + t.createdAt} · ${euro(t.total)}</div>
       </div>
       <span class="badge ${t.status==='upcoming'?'gold':'forest'}">${t.status==='upcoming'?'À venir':'Terminé'}</span>
     </div>
@@ -2219,6 +2463,7 @@ function passportCardHTML(t){
     <div class="passport-actions">
       <button class="btn btn-gold btn-sm" onclick="go('document','${t.id}')">Voir le carnet de voyage</button>
       <button class="btn btn-outline btn-sm" style="color:#fff; border-color:rgba(255,255,255,.4);" onclick="go('destination','${t.destinationId}')">Revoir la destination</button>
+      <button class="btn btn-outline btn-sm" style="color:#fff; border-color:rgba(255,255,255,.4);" onclick="deleteTrip('${t.id}')">Supprimer</button>
     </div>
   </div>`;
 }
@@ -2249,6 +2494,7 @@ function renderDocument(){
             <div class="doc-row"><span class="k">Voyage</span><span class="v">${itin.destination.name}, ${itin.destination.country}</span></div>
             <div class="doc-row"><span class="k">Durée</span><span class="v">${itin.duration} jours</span></div>
             <div class="doc-row"><span class="k">Voyageurs</span><span class="v">${travelersSummaryText(itin.travelersByAge)}</span></div>
+            ${trip.startDate ? `<div class="doc-row"><span class="k">Date de départ</span><span class="v">${fmtDate(trip.startDate)}</span></div>` : ''}
             <div class="doc-row"><span class="k">Statut</span><span class="v">${trip.status==='upcoming'?'Planifié (aucune réservation effectuée)':'Voyage effectué'}</span></div>
           </div>
 
@@ -2269,6 +2515,7 @@ function renderDocument(){
               <div class="doc-row"><span class="k">Établissement</span><span class="v">${itin.hotel.name}</span></div>
               <div class="doc-row"><span class="k">Nuits / chambres</span><span class="v">${itin.hotel.nights} nuits · ${rooms} chambre${rooms>1?'s':''}</span></div>
               <div class="doc-row"><span class="k">Prix total</span><span class="v">${euro(hotelTotal)}</span></div>
+              <div class="doc-row"><span class="k">Réserver</span><span class="v"><a href="${bookingHotelLink(itin, trip.startDate)}" target="_blank" rel="noopener sponsored" style="color:var(--forest); text-decoration:underline;">Booking.com (lien partenaire)</a></span></div>
             </div>
           </div>
 
@@ -2285,7 +2532,7 @@ function renderDocument(){
             ${itin.days.map(day=>`
               <div style="margin-bottom:14px;">
                 <div style="font-weight:700; margin-bottom:6px;">Jour ${day.day}</div>
-                ${day.steps.map(s=>`<div class="doc-row"><span class="k">${s.period} — ${s.title}</span><span class="v">${s.price>0?euro(s.price*trav)+' ('+euro(s.price)+'/pers.)':'Inclus'}</span></div>`).join('')}
+                ${day.steps.map(s=>`<div class="doc-row"><span class="k">${s.period} — ${s.title}</span><span class="v">${s.price>0?euro(s.price*trav)+' ('+euro(s.price)+'/pers.)':'Gratuit'}</span></div>`).join('')}
               </div>`).join('')}
           </div>
 
@@ -2303,6 +2550,7 @@ function renderDocument(){
       </div>
       <div class="doc-print-bar">
         <button class="btn btn-outline" onclick="window.print()">Imprimer / Télécharger en PDF</button>
+        ${isNativeApp() ? `<button class="btn btn-outline" onclick="testNotification()">Tester une notification</button>` : ''}
         <button class="btn btn-primary" onclick="go('mytrips')">Retour à mon espace</button>
       </div>
     </div>
@@ -2313,7 +2561,7 @@ function renderDocument(){
    CONTACT CONSEILLER
 ============================================================ */
 const CONTACT_EMAIL = 'lovano.voyages@gmail.com';
-const LEGAL_DATE = '19 septembre 2026';
+const LEGAL_DATE = '12 octobre 2026';
 
 function sendContactMail(e){
   e.preventDefault();
@@ -2362,13 +2610,13 @@ function renderPrivacy(){
     lg('3. Quelles données, pourquoi, combien de temps ?', `<ul>
       <li><b>Paramètres de voyage</b> (destination, durée, nombre de voyageurs par tranche d'âge, styles, budget) : utilisés uniquement dans l'application, sur votre appareil, pour composer l'itinéraire. Ils ne sont pas envoyés à Lovano et disparaissent quand vous fermez l'application. Base légale : exécution du service que vous demandez (art. 6.1.b du RGPD).</li>
       <li><b>Favoris</b> : la liste des destinations que vous marquez d'un cœur est enregistrée sur votre appareil (stockage local de l'application), jusqu'à ce que vous les retiriez ou effaciez les données de l'application. Elle n'est jamais envoyée à Lovano. Base légale : fonction que vous demandez.</li>
-      <li><b>Carnet de voyage</b> (voyages enregistrés et date de départ, facultative) : conservé en mémoire de l'application pendant la session uniquement, non envoyé à Lovano.</li>
+      <li><b>Carnet de voyage</b> (voyages enregistrés, avec leur date de départ facultative et l'identifiant technique de leurs rappels) : enregistré sur votre appareil (stockage local) jusqu'à ce que vous supprimiez le voyage avec le bouton « Supprimer » de votre carnet ou que vous effaciez les données de l'application. Il n'est jamais envoyé à Lovano. Base légale : fonction que vous demandez.</li>
       <li><b>Rappels (notifications locales)</b> : si vous indiquez une date de départ et autorisez les notifications dans Android, l'application programme des rappels sur votre appareil. Ce ne sont pas des notifications "push" : aucun serveur n'est impliqué. Base légale : votre consentement (autorisation système), que vous pouvez retirer à tout moment dans les réglages d'Android.</li>
       <li><b>E-mails que vous nous envoyez</b> : si vous nous écrivez, nous recevons votre adresse e-mail, votre nom éventuel et votre message, uniquement pour vous répondre. Base légale : intérêt légitime à répondre à votre demande (art. 6.1.f). Conservation : le temps de traiter votre demande, puis au maximum 12 mois. Ces e-mails sont reçus dans une boîte Gmail (Google), sous-traitant qui peut traiter des données hors de l'Union européenne dans le cadre de garanties reconnues (cadre de protection des données UE-États-Unis ou clauses contractuelles types).</li>
     </ul>`) +
-    lg('4. Liens vers nos partenaires', `<p>L'application contient des liens vers Booking.com (vols, hébergements, voitures, attractions), via la plateforme d'affiliation CJ Affiliate. Lorsque vous cliquez, vous quittez Lovano : Booking.com et la plateforme d'affiliation peuvent alors utiliser des cookies pour mesurer le clic et attribuer une commission à Lovano. Ils sont responsables de ces traitements : consultez leurs politiques de confidentialité. Lovano reçoit uniquement des statistiques de clics et de commissions, qui ne l'identifient pas et ne permettent pas de vous identifier.</p>`) +
+    lg('4. Liens vers nos partenaires', `<p>L'application contient des liens vers Booking.com (vols, hébergements, voitures, attractions), via la plateforme d'affiliation CJ Affiliate. Lorsque vous cliquez, vous quittez Lovano : Booking.com et la plateforme d'affiliation peuvent alors utiliser des cookies pour mesurer le clic et attribuer une commission à Lovano. Ils sont responsables de ces traitements : consultez leurs politiques de confidentialité. Lovano reçoit uniquement des statistiques de clics et de commissions, qui ne l'identifient pas et ne permettent pas de vous identifier. Pour pré-remplir votre recherche, le lien « Voir sur Booking.com » de l'hébergement transmet à Booking.com, dans l'adresse du lien, le nom de la destination (ou de l'hôtel), le nombre de voyageurs adultes et enfants, le nombre de chambres et, si vous l'avez saisie, la date de départ. Rien n'est transmis tant que vous ne cliquez pas.</p>`) +
     lg('5. Ce que nous ne faisons pas', `<p>Nous ne vendons pas vos données, ne les cédons pas à des fins publicitaires, ne vous profilons pas et ne prenons aucune décision automatisée produisant des effets juridiques à votre égard. Les polices de caractères sont intégrées à l'application : aucune requête n'est envoyée à Google Fonts.</p>`) +
-    lg('6. Vos droits', `<p>Vous pouvez demander l'accès, la rectification, l'effacement, la limitation ou la portabilité des données que vous nous avez transmises (par exemple par e-mail), vous opposer à leur traitement et retirer votre consentement à tout moment, en écrivant à <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. Nous répondons dans un délai d'un mois. Les données stockées sur votre appareil (favoris) peuvent être supprimées par vous-même : retirez le cœur, ou effacez les données de l'application dans les réglages d'Android, ou désinstallez-la.</p>`) +
+    lg('6. Vos droits', `<p>Vous pouvez demander l'accès, la rectification, l'effacement, la limitation ou la portabilité des données que vous nous avez transmises (par exemple par e-mail), vous opposer à leur traitement et retirer votre consentement à tout moment, en écrivant à <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>. Nous répondons dans un délai d'un mois. Les données stockées sur votre appareil (favoris, carnet de voyage) peuvent être supprimées par vous-même : retirez le cœur d'un favori, supprimez un voyage avec le bouton « Supprimer » de votre carnet, ou effacez les données de l'application dans les réglages d'Android, ou désinstallez-la.</p>`) +
     lg('7. Réclamation', `<p>Vous pouvez introduire une réclamation auprès de l'Autorité de protection des données (Belgique) : Rue de la Presse 35, 1000 Bruxelles, <a href="https://www.autoriteprotectiondonnees.be" target="_blank" rel="noopener">www.autoriteprotectiondonnees.be</a>, contact@apd-gba.be.</p>`) +
     lg('8. Enfants', `<p>Lovano ne s'adresse pas aux enfants de moins de 13 ans et ne collecte pas sciemment de données à leur sujet. Les âges des voyageurs saisis pour calculer les tarifs sont de simples tranches d'âge, restent sur votre appareil et n'identifient personne.</p>`) +
     lg('9. Modifications', `<p>Cette politique peut évoluer, notamment si de nouvelles fonctions sont ajoutées. Si un changement modifiait la façon dont vos données sont traitées, nous vous en informerions dans l'application et, lorsque la loi l'exige, nous demanderions votre accord. La date de version figure en haut de cette page.</p>`)
@@ -2393,10 +2641,10 @@ function renderTerms(){
 function renderCookies(){
   return legalPage('Traceurs et stockage', 'Politique de cookies',
     lg('1. Lovano n\'utilise aucun cookie', `<p>L'application Lovano ne dépose aucun cookie et n'utilise aucun traceur publicitaire ou de mesure d'audience. C'est pourquoi elle n'affiche pas de bandeau de consentement aux cookies : il n'y a rien à accepter ni à refuser.</p>`) +
-    lg('2. Stockage local strictement nécessaire', `<p>Quand vous marquez une destination d'un cœur, l'application enregistre cette liste dans le stockage local de votre appareil (clé <code>lovano_favorites</code>). Ce stockage sert uniquement à retrouver vos favoris, à votre demande : il n'est jamais envoyé à Lovano ni à un tiers. Il est nécessaire à la fonction que vous demandez et ne requiert donc pas votre consentement au regard de la réglementation belge (loi du 13 juin 2005 relative aux communications électroniques, telle que modifiée).</p>`) +
+    lg('2. Stockage local strictement nécessaire', `<p>Quand vous marquez une destination d'un cœur ou que vous enregistrez un voyage, l'application les mémorise dans le stockage local de votre appareil (clés <code>lovano_favorites</code> et <code>lovano_trips</code>). Ce stockage sert uniquement à retrouver vos favoris et vos voyages, à votre demande : il n'est jamais envoyé à Lovano ni à un tiers. Il est nécessaire à la fonction que vous demandez et ne requiert donc pas votre consentement au regard de la réglementation belge (loi du 13 juin 2005 relative aux communications électroniques, telle que modifiée).</p>`) +
     lg('3. Polices', `<p>Les polices de caractères sont intégrées à l'application : aucun service tiers (comme Google Fonts) n'est contacté pour les afficher.</p>`) +
     lg('4. Liens partenaires', `<p>Quand vous cliquez sur un lien vers Booking.com ou la plateforme d'affiliation CJ Affiliate, vous quittez Lovano : ces sites peuvent déposer leurs propres cookies, pour lesquels ils sont responsables et demandent votre consentement selon leurs règles. Consultez leurs politiques de cookies.</p>`) +
-    lg('5. Effacer le stockage', `<p>Retirez le cœur d'une destination pour la retirer de vos favoris, ou effacez les données de l'application (Android : Paramètres, Applications, Lovano, Stockage, Effacer les données).</p>`) +
+    lg('5. Effacer le stockage', `<p>Retirez le cœur d'une destination pour la retirer de vos favoris, supprimez un voyage depuis votre carnet, ou effacez les données de l'application (Android : Paramètres, Applications, Lovano, Stockage, Effacer les données).</p>`) +
     lg('6. Si cela change', `<p>Si Lovano ajoutait un jour des outils de mesure d'audience ou de publicité, nous vous demanderions votre accord avant tout dépôt de traceur, et cette page serait mise à jour.</p>`)
   );
 }
@@ -2580,12 +2828,12 @@ function afterRender(){
       toast('Itinéraire régénéré');
       render();
     });
-    bindDragAndDrop();
+    bindDayMoves();
     document.querySelectorAll('.flight-option').forEach(btn=>{
       btn.addEventListener('click', ()=>{
         state.currentItinerary.selectedFlightId = btn.dataset.flight;
         toast('Vol mis à jour : ' + flightById(state.currentItinerary.destination, btn.dataset.flight).airline);
-        render();
+        render(true);
       });
     });
   }
@@ -2596,31 +2844,30 @@ function afterRender(){
 
 }
 
-function bindDragAndDrop(){
-  const container = document.getElementById('dayCards');
-  if(!container) return;
-  let dragSrc = null;
-  container.querySelectorAll('.itin-card').forEach(card=>{
-    card.addEventListener('dragstart', ()=>{ dragSrc = card; card.classList.add('dragging'); });
-    card.addEventListener('dragend', ()=>{ card.classList.remove('dragging'); });
-    card.addEventListener('dragover', e=>{ e.preventDefault(); });
-    card.addEventListener('drop', e=>{
-      e.preventDefault();
-      if(!dragSrc || dragSrc===card) return;
-      const idx1 = parseInt(dragSrc.dataset.dayidx), idx2 = parseInt(card.dataset.dayidx);
-      const itin = state.currentItinerary;
-      const tmp = itin.days[idx1];
-      itin.days[idx1] = itin.days[idx2];
-      itin.days[idx2] = tmp;
-      toast('Ordre des journées mis à jour');
-      render();
-    });
+function bindDayMoves(){
+  document.querySelectorAll('[data-day-move]').forEach(btn => {
+    btn.addEventListener('click', () => moveDay(parseInt(btn.dataset.dayIdx, 10), btn.dataset.dayMove === 'up' ? -1 : 1));
   });
+}
+function moveDay(idx, delta){
+  const itin = state.currentItinerary;
+  const j = idx + delta;
+  if(!itin || j < 0 || j >= itin.days.length) return;
+  const tmp = itin.days[idx]; itin.days[idx] = itin.days[j]; itin.days[j] = tmp;
+  itin.days.forEach((d, i) => { d.day = i + 1; });
+  render(true);
+  toast('Ordre des journées mis à jour');
+  const dir = delta < 0 ? 'up' : 'down';
+  const same = document.querySelector('[data-day-move="' + dir + '"][data-day-idx="' + j + '"]');
+  const target = (same && !same.disabled) ? same : document.querySelector('[data-day-idx="' + j + '"]:not([disabled])');
+  if(target) target.focus({preventScroll:true});
 }
 
 /* ============================================================
    INIT
 ============================================================ */
+document.getElementById('btnMenu').addEventListener('click', () => setMenu(!document.getElementById('mainNav').classList.contains('open')));
+document.addEventListener('keydown', e => { if(e.key === 'Escape') setMenu(false); });
 render();
 </script>
 </body>
